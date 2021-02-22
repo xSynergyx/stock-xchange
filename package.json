@@ -3,9 +3,11 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.3",
+    "prettier": "^2.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.2",
+    "socket.io-client": "^3.1.1",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
@@ -32,5 +34,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy":  "http://localhost:8081"
+  "proxy": "http://localhost:8081"
 }
