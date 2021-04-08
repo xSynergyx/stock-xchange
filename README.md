@@ -1,4 +1,5 @@
-# Flask and create-react-app
+# StockXChange
+An app to bring together a community of investors ready and willing to help each other grow.
 
 ## Requirements
 1. `npm install`
@@ -13,7 +14,7 @@
 3. Preview web page in browser '/'
 
 ## Deploy to Heroku
-*Don't do the Heroku step for assignments, you only need to deploy for Project 2*
+
 1. Create a Heroku app: `heroku create --buildpack heroku/python`
 2. Add nodejs buildpack: `heroku buildpacks:add --index 1 heroku/nodejs`
 3. Push to Heroku: `git push heroku main`
