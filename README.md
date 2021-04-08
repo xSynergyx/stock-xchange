@@ -4,6 +4,7 @@ An app to bring together a community of investors ready and willing to help each
 ## Requirements
 1. `npm install`
 2. `pip install -r requirements.txt`
+3. `npm install react-router-dom`
 
 ## Setup
 1. Run `echo "DANGEROUSLY_DISABLE_HOST_CHECK=true" > .env.development.local` in the project directory
