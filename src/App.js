@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Login from './components/Login.js';
+import Logout from './components/Logout.js';
 
 import Home from './components/Home.js';
 import Stock from './components/Stock.js'
@@ -14,7 +16,7 @@ function App() {
         Stock XChange
         </header>
         <div>
-          <nav className="navbar">
+          <nav>
             <ul>
               <li>
                 <Link to="/home">Home</Link>
@@ -35,6 +37,9 @@ function App() {
           </Switch>
         </div>
       </Router>
+      
+      <Login />
+      <Logout />
           
     </div>
   );
