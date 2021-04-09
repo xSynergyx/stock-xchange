@@ -22,7 +22,7 @@ function App() {
     return (
       <div className="App">
         <Router>
-          <header>
+          <header className="App-header">
           Stock XChange
           </header>
           <div>
@@ -55,6 +55,9 @@ function App() {
   
   return (
       <div className="App">
+        <header className="App-header">
+          Stock XChange
+        </header>
         <Login authenticated={authenticated}/>
       </div>
     );
