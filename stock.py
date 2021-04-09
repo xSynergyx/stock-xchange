@@ -23,7 +23,7 @@ class Stock:
         symbols = df['Symbol']
         stock_lst = []
         num_list = []
-        while len(stock_lst) < 3:
+        while len(stock_lst) < 4:
             num = randint(0, len(symbols)-1)
             if num not in num_list:
                 stock_lst.append(symbols[num])
@@ -63,11 +63,24 @@ class Stock:
         stocks = [x.upper() for x in query] #capatalize symbols for json file
         response = requests.get(self.IEX_SANDBOX_URL, params=params)
         response_json = response.json()
-        print(response_json)
+        #print(response_json)
+        for stock in stocks:
+            stock_dict = {}
+            stock_quote = response_json[stock]['quote']
+            #print(stock_quote)
+            stock_dict['Symbol'] = stock
+            stock_dict['Company'] = stock_quote['companyName']
+            stock_dict['High'] = stock_quote['high']
+            stock_dict['Low'] = stock_quote['low']
+            stock_dict['Price'] = stock_quote['latestPrice']
+            data[stock] = stock_dict
+        return data
         
     def news(self, query):
         """ Gathers articles related to company after click """
         pass
 
 TEST = Stock()
-print(TEST.default())
+for i in TEST.default():
+    print(str(i) + '\n')
+#print(TEST.default())
