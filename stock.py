@@ -38,12 +38,11 @@ class Stock:
         energy_stock = self.symbols('energy.csv')
         finance_stock = self.symbols('finance.csv')
         utilities_stock = self.symbols('pub_utilities.csv')
-        # print('mega: ' + str(mega_stock))
-        # print('tech: ' + str(tech_stock))
-        # print('energy: ' + str(energy_stock))
-        # print('finance: ' + str(finance_stock))
-        # print('public utilities: ' + str(utilities_stock))
         home_lst.append({'Mega': self.search(mega_stock)})
+        home_lst.append({'Tech': self.search(tech_stock)})
+        home_lst.append({'Energy': self.search(energy_stock)})
+        home_lst.append({'Utilities': self.search(utilities_stock)})
+        home_lst.append({'Finance': self.search(finance_stock)})
         return home_lst
 
     def search(self, query):
