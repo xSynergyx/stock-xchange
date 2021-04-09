@@ -5,10 +5,11 @@ import { refreshTokenSetup } from '../utils/refreshToken';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
-function Login() {
+function Login(props) {
     
     const onSuccess = (res) => {
         console.log('[Login Success] currentUser: ', res.profileObj);
+        props.authenticated();
         
         refreshTokenSetup(res);
     };

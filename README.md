@@ -1,4 +1,4 @@
-# StockXChange
+# StockX Change
 An app to bring together a community of investors ready and willing to help each other grow.
 
 ## Requirements
