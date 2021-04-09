@@ -1,6 +1,6 @@
 import requests
 from random import randint
-import pandas as pd #Add to requirements
+import pandas as pd #Add to requirements pandas and numpy
 import time
 
 
@@ -24,7 +24,15 @@ class Stock:
         """Default homescreen with stock information"""
         home_lst = []
         mega_stock = self.symbols('mega.csv')
-        print(mega_stock)
+        tech_stock = self.symbols('tech.csv')
+        energy_stock = self.symbols('energy.csv')
+        finance_stock = self.symbols('finance.csv')
+        utilities_stock = self.symbols('pub_utilities.csv')
+        print('mega: ' + str(mega_stock))
+        print('tech: ' + str(tech_stock))
+        print('energy: ' + str(energy_stock))
+        print('finance: ' + str(finance_stock))
+        print('public utilities: ' + str(utilities_stock))
         return home_lst
     
 test = Stock()
