@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import Home from './components/Home.js';
 import Stock from './components/Stock.js'
+import StockPage from './components/StockPage.js'
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
             </Route>
             <Route path="/home">
               <Home />
+            </Route>
+            <Route 
+              path="/stock_page/:id"
+              render={(props) => <StockPage id={props.match.params.id}/>}>
             </Route>
           </Switch>
         </div>
