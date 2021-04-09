@@ -1,8 +1,16 @@
+"""
+    stock.py
+
+    Stock class file.
+"""
 import requests
 from random import randint
 import pandas as pd #Add to requirements pandas and numpy
 import time
+import os
+from dotenv import load_dotenv, find_dotenv
 
+load_dotenv(find_dotenv())
 
 class Stock:
     BASE_URL = "https://sandbox.iexapis.com/stable/stock/market/batch?"
@@ -34,6 +42,22 @@ class Stock:
         print('finance: ' + str(finance_stock))
         print('public utilities: ' + str(utilities_stock))
         return home_lst
+
+    def search(self, query):
+        """Takes list of symbols, and gathers stock information"""
+        data = {}
+        symbols = None
+        params = {
+         'symbols': symbols,
+         'types': 'quote',
+         'token': os.getenv('IEX_CLOUD_SANDBOX_KEY')
+        }
+        pass
+   
+    def news(self, query):
+        """ Gathers articles related to company after click """
+        pass
+
     
 test = Stock()
 print(test.default())
