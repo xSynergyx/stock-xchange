@@ -8,10 +8,11 @@ import { GoogleLogout } from 'react-google-login';
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 console.log(process.env);
 
-function Logout() {
+function Logout(props) {
     
     const onSuccess = (res) => {
         alert('Lougout made successfully');
+        props.authenticated();
     };
     
     return (
