@@ -33,11 +33,11 @@ class Stock:
     def default(self):
         """Default homescreen with stock information"""
         home_lst = []
-        mega_stock = self.symbols('mega.csv')
-        tech_stock = self.symbols('tech.csv')
-        energy_stock = self.symbols('energy.csv')
-        finance_stock = self.symbols('finance.csv')
-        utilities_stock = self.symbols('pub_utilities.csv')
+        mega_stock = self.symbols('stock_categories/mega.csv')
+        tech_stock = self.symbols('stock_categories/tech.csv')
+        energy_stock = self.symbols('stock_categories/energy.csv')
+        finance_stock = self.symbols('stock_categories/finance.csv')
+        utilities_stock = self.symbols('stock_categories/pub_utilities.csv')
         home_lst.append({'Mega': self.search(mega_stock)})
         home_lst.append({'Tech': self.search(tech_stock)})
         home_lst.append({'Energy': self.search(energy_stock)})
