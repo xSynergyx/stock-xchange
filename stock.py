@@ -4,11 +4,11 @@
     Stock class file.
 """
 from random import randint
+from dotenv import load_dotenv, find_dotenv
 #import time
 import os
 import requests
 import pandas as pd #Add to requirements pandas and numpy
-from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
