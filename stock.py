@@ -14,8 +14,8 @@ load_dotenv(find_dotenv())
 
 def symbols(csv_file):
     """Gathers symbols into list from csv file"""
-    df = pd.read_csv(csv_file)
-    symbol = df['Symbol']
+    file = pd.read_csv(csv_file)
+    symbol = file['Symbol']
     stock_lst = []
     num_list = []
     while len(stock_lst) < 4:
