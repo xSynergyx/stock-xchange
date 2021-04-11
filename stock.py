@@ -85,7 +85,7 @@ class Stock:
         #news = {}
         #return news
 
-TEST = Stock()
-for j in TEST.default():
-    print(str(j) + '\n')
-#print(TEST.default())
+# TEST = Stock()
+# for j in TEST.default():
+#     print(str(j) + '\n')
+# #print(TEST.default())
