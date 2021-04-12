@@ -28,6 +28,7 @@ def symbols(csv_file):
 class Stock:
     """Class object gathers stock information and news for selected companies"""
     IEX_SANDBOX_URL = "https://sandbox.iexapis.com/stable/stock/market/batch?"
+    IEX_SANDBOX_NEWS_URL = "https://sandbox.iexapis.com/stable/stock/market/batch?"
     NYT_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json"
 
     def default(self):
@@ -75,17 +76,44 @@ class Stock:
             data[stock] = stock_dict
         return data
 
-    def news_nyt(self, stock):
-        """ Gathers articles related to company after click """
-        #news = {}
-        #return news
-
-    def news_iex(self, stock):
-        """ Back up news method with IEX API incase NYT doesn't work """
-        #news = {}
-        #return news
+    def news(self, stock):
+        """ Gathers five articles related to company after click with NYT API
+            Use IEX API in case of KeyError from NYT reaching minute request limit.
+        """
+        news = []
+        try:
+            params = {
+                'q' : stock + ' ',
+                'news_desk' : 'Business',
+                'api-key': os.getenv('NYT_KEY')
+            }
+            response = requests.get(self.NYT_URL, params=params)
+            data = response.json()
+            for i in range(5):
+                print(data['response']['docs'][i]['headline']['main'])
+                news.append(data['response']['docs'][i]['headline']['main'])
+            #print(data)
+        except KeyError:
+            params = {
+                'symbols': stock,
+                'token': os.getenv('IEX_CLOUD_SANDBOX_KEY'),
+                'types': 'news',
+                'last': 5
+            }
+            response = requests.get(self.IEX_SANDBOX_NEWS_URL, params=params)
+            #print(response)
+            data = response.json()
+            #print(data[stock])
+            stock_news = data[stock]['news']
+            for headline in stock_news:
+                print(str(headline['headline']))
+                news.append(headline['headline'])
+        except ValueError: #simplejson.errors.JSONDecodeError
+            print("Decode JSON failed")
+            news = ["Refresh page"]
+        return news
 
 # TEST = Stock()
-# for j in TEST.default():
-#     print(str(j) + '\n')
+# for count in range(20):
+#     TEST.news('AAPL')
 # #print(TEST.default())
