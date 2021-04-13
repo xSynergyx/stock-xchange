@@ -21,9 +21,15 @@ class StockSearchTestCase(unittest.TestCase):
     def setUp(self):
         self.success_test_params = [
             {
+                DATA_INPUT: ['XXXX'],
+                EXPECTED_OUTPUT: {
+                    'XXXX' : 'Not Found'
+                }
+            },
+            {
                 DATA_INPUT: ['AAPL'],
                 EXPECTED_OUTPUT: {
-                    'APPL' :
+                    'AAPL' :
                         {
                             'Symbol' : 'AAPL',
                             'Company' : 'Apple Inc',
@@ -109,16 +115,19 @@ class StockSearchTestCase(unittest.TestCase):
             a_symbols = list(actual_result.keys())
             e_symbols = list(expected_result.keys())
             i = 0
-            while i < len(a_symbols):
-                a_symb = a_symbols[i] # actual symbol
-                e_symb = e_symbols[i] # expected symbol
-                self.assertEqual(
-                    actual_result[a_symb]['Company'], expected_result[e_symb]['Company']
-                )
-                self.assertEqual(
-                    actual_result[a_symb]['High'] is int, expected_result[e_symb]['High'] is int
-                )
-                i += 1
+            if type(expected_result[test[DATA_INPUT][0]]) == dict:
+                while i < len(a_symbols):
+                    a_symb = a_symbols[i] # actual symbol
+                    e_symb = e_symbols[i] # expected symbol
+                    self.assertEqual(
+                        actual_result[a_symb]['Company'], expected_result[e_symb]['Company']
+                    )
+                    self.assertEqual(
+                        actual_result[a_symb]['High'] is int, expected_result[e_symb]['High'] is int
+                    )
+                    i += 1
+            else:
+                self.assertEqual(actual_result, expected_result)
             print("TEST{} passed".format(test_pass))
             test_pass += 1
         print("All test cases pass")
