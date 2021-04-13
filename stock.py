@@ -63,7 +63,14 @@ class Stock:
         }
         stocks = [x.upper() for x in query] #capatalize symbols for json file
         response = requests.get(self.IEX_SANDBOX_URL, params=params)
+        
+        if response.status_code == 404: #Resource not found
+            data[query[0]] = 'Not Found'
+            return data
         response_json = response.json()
+        if response_json[query[0]]['quote'] == None: #200 status but still not valid stock symbol
+            data[query[0]] = 'Not Found'
+            return data
         #print(response_json)
         for stock in stocks:
             stock_dict = {}
