@@ -23,8 +23,12 @@ class NewsTestCase(unittest.TestCase):
             {
                 DATA_INPUT: ['AAPL']*12, #NYT TO IEX TEST after 12 requests
                 EXPECTED_OUTPUT: ['a', 'b', 'c', 'd', 'e']
-                }
+            },
+            { 
+                DATA_INPUT: ['MSFT'],
+                EXPECTED_OUTPUT: ['a', 'b', 'c', 'd', 'e']
             }
+
         ]
 
     def test_news(self):
@@ -36,10 +40,16 @@ class NewsTestCase(unittest.TestCase):
         for test in self.success_test_params:
             test_stock = Stock()
             #do for loop
-            actual_result = test_stock.news(test[DATA_INPUT])
+            
+            actual_result = None
+            lst_symbols = test[DATA_INPUT]
+            
+            for symb in lst_symbols:
+                actual_result = test_stock.news(symb)
             expected_result = test[EXPECTED_OUTPUT]
             self.assertEqual(len(actual_result), len(expected_result)) #Same Length
-            
+            for i in range(len(actual_result)): 
+                self.assertEqual(actual_result[i] is str, expected_result[i] is str)
             print("TEST{} passed".format(test_pass))
             test_pass += 1
         print("All test cases pass")

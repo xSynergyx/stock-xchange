@@ -95,9 +95,12 @@ class Stock:
                 'api-key': os.getenv('NYT_KEY')
             }
             response = requests.get(self.NYT_URL, params=params)
+            print(response)
+            if response.status_code == 429: #Too many requests
+                raise KeyError("Response 429")
             data = response.json()
             for i in range(5):
-                print(data['response']['docs'][i]['headline']['main'])
+                #print(data['response']['docs'][i]['headline']['main'])
                 news.append(data['response']['docs'][i]['headline']['main'])
             #print(data)
         except KeyError:
@@ -108,16 +111,17 @@ class Stock:
                 'last': 5
             }
             response = requests.get(self.IEX_SANDBOX_NEWS_URL, params=params)
-            #print(response)
+            print(response)
             data = response.json()
             #print(data[stock])
             stock_news = data[stock]['news']
             for headline in stock_news:
-                print(str(headline['headline']))
+                #print(str(headline['headline']))
                 news.append(headline['headline'])
         except ValueError: #simplejson.errors.JSONDecodeError
             print("Decode JSON failed")
             news = ["Refresh page"]
+        print(news)
         return news
 
 # TEST = Stock()
