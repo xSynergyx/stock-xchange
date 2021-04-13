@@ -21,8 +21,8 @@ function Stock() {
     // Redirect to the selected stock's page
     // when the user clicks on a row in the list
     // Check App.js for the Route this triggers
-    const onRowClick = (stock_id) => {
-        history.push('/stock_page/' + stock_id);
+    const onRowClick = (stock_symbol) => {
+        history.push('/stock_page/' + stock_symbol);
     }
 
     return (
@@ -41,7 +41,7 @@ function Stock() {
                 <tbody>
                     {stocks.map((stock) => {
                         return (
-                            <tr id={stock.id} onClick={() => onRowClick(stock.id)}>
+                            <tr id={stock.Symbol} onClick={() => onRowClick(stock.Symbol)}>
                                 {headers.map((header) => (
                                     <td>{stock[header]}</td>
                                 ))}

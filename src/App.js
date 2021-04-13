@@ -34,8 +34,8 @@ function App() {
               <Home />
             </Route>
             <Route 
-              path="/stock_page/:id"
-              render={(props) => <StockPage id={props.match.params.id}/>}>
+              path="/stock_page/:symbol" 
+              render={(props) => <StockPage id={props.match.params.symbol} />}>
             </Route>
           </Switch>
         </div>
