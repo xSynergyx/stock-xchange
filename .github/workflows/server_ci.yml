@@ -41,6 +41,6 @@ jobs:
         
       - name: Lint files
         run: |
-          pylint **/*.py
+          pylint *.py; **/*.py
      # - name: Run tests
       #  run: python -m unittest

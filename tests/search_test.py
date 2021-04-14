@@ -115,7 +115,7 @@ class StockSearchTestCase(unittest.TestCase):
             a_symbols = list(actual_result.keys())
             e_symbols = list(expected_result.keys())
             i = 0
-            if type(expected_result[test[DATA_INPUT][0]]) == dict:
+            if isinstance(expected_result[test[DATA_INPUT][0]], dict):
                 while i < len(a_symbols):
                     a_symb = a_symbols[i] # actual symbol
                     e_symb = e_symbols[i] # expected symbol
