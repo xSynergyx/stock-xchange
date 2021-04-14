@@ -9,6 +9,7 @@ from flask import Flask, send_from_directory
 from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv,find_dotenv
 
 SOCKET_IO = SocketIO()
 
@@ -18,24 +19,27 @@ APP.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 DB = SQLAlchemy(APP)
-import stock_databse
+import models
 
-
+stocks_List={'stocks_name':[] , 'symbols': [], 'high_stocks':[], 'lows_stocks':[], 'like':[], 'comments':[]
+    }
 # Displaying on UI
-def display_on_ui(stocks_name, symbols, high_stocks, lows_stocks,comments):
-    all_stocks=stock_databse.Stocks.query.all()
-    stocks_name=[]
-    symbols=[]
-    high_stocks=[]
-    low_stocks=[]
-    comments=[]
+def display_on_ui():
+    all_stocks=models.Stocks.query.all()
+    
     for data in all_stocks:
-        stocks_name.append(data.stocks_name)
-        symbols.append(data.symbols)
-        high_stocks.append(data.high_stocks)
-        low_stocks.append(data.low_stocks)
-        comments.append(data.comments)
-    return stocks_name,symbols,high_stocks,low_stocks,comments
+        data['stocks_name'].append(data.stocks_name)
+        data['symbols'].append(data.stocks_name)
+        
+        data['high_stocks'].append(data.stocks_name)
+        data['lows_stocks'].append(data.stocks_name)
+        
+        data['like'].append(data.stocks_name)
+        data['comments'].append(data.stocks_name)
+    
+    SOCKET_IO.emit()
+    return 
+    
     
     
 @APP.route('/', defaults={"filename": "index.html"})
