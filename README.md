@@ -4,7 +4,8 @@ An app to bring together a community of investors ready and willing to help each
 ## Requirements
 1. `npm install`
 2. `pip install -r requirements.txt`
-3. `npm install react-router-dom`
+3. `npm install --save react-router-dom`
+4. `npm install --save react-google-login`
 
 ## Setup
 1. Run `echo "DANGEROUSLY_DISABLE_HOST_CHECK=true" > .env.development.local` in the project directory
@@ -31,7 +32,12 @@ An app to bring together a community of investors ready and willing to help each
 
 1. Create a Heroku app: `heroku create --buildpack heroku/python`
 2. Add nodejs buildpack: `heroku buildpacks:add --index 1 heroku/nodejs`
-3. Push to Heroku: `git push heroku main`
+3. Push to Heroku: `git push heroku {optional_branch_name}:main`
+
+### Heroku Database setup
+1. Create remote DB: `heroku addons:create heroku-postgresql:hobby-dev`
+2. Get database URL: `heroku config`
+3. export database URL: `export DATABASE_URL='{insert_database_url_here}` (no curly braces)
 
 ## Linting 
 + E1101 (import-error) because unites files function correctly, which means that the file successfully imported

@@ -23,7 +23,7 @@ function App() {
       <div className="App">
         <Router>
           <header className="App-header">
-          Stock XChange
+          Stock XChange!
           </header>
           <div>
             <nav>
