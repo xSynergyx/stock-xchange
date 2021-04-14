@@ -6,14 +6,8 @@ import Login from './components/Login.js';
 import Logout from './components/Logout.js';
 
 import Home from './components/Home.js';
-<<<<<<< HEAD
-import Stock from './components/Stock.js';
-
-
-=======
 import Stock from './components/Stock.js'
 import StockPage from './components/StockPage.js'
->>>>>>> 6cb4ec2f1a4805560c5409689de7fc8deb415d1f
 
 function App() {
   
