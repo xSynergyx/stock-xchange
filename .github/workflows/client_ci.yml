@@ -30,3 +30,4 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     - run: npx eslint src/
+    - run: npx eslint src/components
