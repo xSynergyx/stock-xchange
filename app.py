@@ -7,7 +7,7 @@
 import os
 import json
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask import Flask, send_from_directory, request
 from stock import Stock
 
@@ -30,21 +30,29 @@ def stocks():
     # straight forward
 
     # This method of searching a hardcoded JSON file is just for testing.
-    
+
     # stocks_data = {}
     # with open('test_stock_data.json', 'r') as json_file:
     #     stocks_data = json.loads(json_file.read())
     stocks_data = None
     stock = Stock()
-    weekdays = [0,1,2,3,4] 
+    weekdays = [0, 1, 2, 3, 4]
     curr_day = datetime.today().weekday()
     now = datetime.now()
     curr_date = curr_date = now.strftime("%Y-%m-%d")
     open_time = datetime.strptime('{} 9:30AM EST'.format(curr_date), '%Y-%m-%d %I:%M%p %Z')
     close_time = datetime.strptime('{} 4:00PM EST'.format(curr_date), '%Y-%m-%d %I:%M%p %Z')
+    time_lst = []
+    time_lst.append(open_time)
+    while True:
+        open_time += timedelta(minutes=15)
+        time_lst.append(open_time)
+        if open_time == close_time:
+            open_time = datetime.strptime('{} 9:30AM EST'.format(curr_date), '%Y-%m-%d %I:%M%p %Z')
+            break
     
-    if (curr_day in weekdays) and (now >= open_time and now <= close_time):
-        if True: #CHANGEif statement that checks at 15 minute increments
+    if curr_day in weekdays and open_time <= now <= close_time:
+        if now in time_lst: 
             stocks_info = stock.default()
             #Add data into db and commit data
             print(stocks_data)
@@ -60,14 +68,14 @@ def stock_page():
     """ Function that sends individual stock info to stock page """
 
     stock = Stock()
-    weekdays = [0,1,2,3,4] 
+    weekdays = [0, 1, 2, 3, 4]
     curr_day = datetime.datetime.today().weekday()
-    while True:
+    while True: #CANT DO WHILE LOOP
         if curr_day in weekdays:
             page_data = stock.default()
-            print(page_data)   
+            print(page_data)
             #Include line where stock info is stored into db between api call times
-            
+
     # Get the stock id sent from the client side
     # stock_symbol = request.get_json()['stock_symbol']
     # page_data = {}
