@@ -16,7 +16,8 @@ APP = Flask(__name__, static_folder='./build/static')
 APP.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 # Gets rid of a warning
 APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+DB = SQLAlchemy(APP)
+import models
 # Datetime object to store the last time the database was updated
 # Server-wide variable compared to each incoming client-side request
 last_updated_time = None
@@ -28,7 +29,6 @@ def display_on_ui():
     
     print('this')
     return None
-    
     
     
 @APP.route('/', defaults={"filename": "index.html"})
@@ -141,7 +141,7 @@ def stock_page():
     return {"stock_data": stock_data, "page_data": page_data}
 
 if __name__ == "__main__":
-    # DB.create_all()
+    DB.create_all()
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
     SOCKET_IO.run(
         APP,
