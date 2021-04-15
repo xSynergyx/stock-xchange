@@ -11,7 +11,7 @@ const StockPage = (props) => {
             headers: {
                 "content_type":"application/json",
             },
-            body: JSON.stringify({stock_symbol: props.id})
+            body: JSON.stringify({stock_symbol: props.symbol})
         })
         .then(res => res.json())
         .then(data => {
@@ -20,10 +20,10 @@ const StockPage = (props) => {
         })
     }, []);
 
-    if ('Name' in stockData) {
+    if ('Symbol' in stockData) {
         return (
             <div>
-                <h1>{stockData['Name']}</h1>
+                <h1>{stockData['Company']}</h1>
                 Following is test data...
                 <h1>Comments</h1>
                 { 
