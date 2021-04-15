@@ -39,14 +39,15 @@ class Stock:
         energy_stock = symbols('stock_categories/energy.csv')
         finance_stock = symbols('stock_categories/finance.csv')
         utilities_stock = symbols('stock_categories/pub_utilities.csv')
-        home_lst.append({'Mega': self.search(mega_stock)})
-        home_lst.append({'Tech': self.search(tech_stock)})
-        home_lst.append({'Energy': self.search(energy_stock)})
-        home_lst.append({'Utilities': self.search(utilities_stock)})
-        home_lst.append({'Finance': self.search(finance_stock)})
+        home_lst.append({'Mega': self.search(mega_stock, 'Mega')})
+        home_lst.append({'Tech': self.search(tech_stock, 'Tech')})
+        home_lst.append({'Energy': self.search(energy_stock, 'Energy')})
+        home_lst.append({'Utilities': self.search(utilities_stock, 'Utilities')})
+        home_lst.append({'Finance': self.search(finance_stock, 'Finance')})
         return home_lst
 
-    def search(self, query):
+    #query is a list and category should be None when searching for indiviudal stock
+    def search(self, query, category): 
         """Takes list of symbols, and gathers stock information"""
         data = {}
         stock_symbols = None
@@ -79,6 +80,7 @@ class Stock:
             stock_dict['High'] = stock_quote['high']
             stock_dict['Low'] = stock_quote['low']
             stock_dict['Price'] = stock_quote['latestPrice']
+            stock_dict['Category'] = category
             data[stock] = stock_dict
         return data
 
