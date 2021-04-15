@@ -3,6 +3,8 @@ import React , { useState, useEffect } from 'react';
 const StockPage = (props) => {
     const [pageData, setPageData] = useState({})
     const [stockData, setStockData] = useState({})
+    const [newsData, setNewsData] = useState([])
+    const [activeSection, setActiveSection] = useState('');
 
     // Request the page info (comments, company bio, likes, etc.) from the server.
     useEffect(() => {
@@ -17,24 +19,38 @@ const StockPage = (props) => {
         .then(data => {
             setPageData(data['page_data']);
             setStockData(data['stock_data']);
+            setNewsData(data['news_data']);
+            console.log(newsData);
         })
     }, []);
+
+    const onSectionClick = (selectedSection) => {
+        setActiveSection(() => {
+            return selectedSection;
+        });
+    }
 
     if ('Symbol' in stockData) {
         return (
             <div>
-                <h1>{stockData['Company']}</h1>
-                Following is test data...
-                <h1>Comments</h1>
-                { 
-                    pageData.comments.map((comment) => (
-                        <div>
-                            {comment.message}
-                        </div>
-                    ))
-                }
-                <h1>Company Information</h1>
-                {pageData.information}
+                <h1>{stockData.Company} ({stockData.Symbol})</h1>
+                <h3>Current Price: ${stockData.Price}</h3>
+                <h3>High: ${stockData.High}</h3>
+                <h3>Low: ${stockData.Low}</h3>
+                <h3>Category: {stockData.Category}</h3>
+                
+                <div>
+                    <button onClick={() => setActiveSection(() => 'News')}>News</button>
+                    <button onClick={() => setActiveSection('Comments')}>Comments</button>
+                    <button>Overview</button>
+                </div>
+
+                <ContentSection 
+                    activeSection={activeSection} 
+                    stockData={stockData} 
+                    pageData={pageData} 
+                    newsData={newsData} 
+                />
             </div>
         )
     }
@@ -44,6 +60,40 @@ const StockPage = (props) => {
             Loading...
         </div>
     )
+}
+
+const ContentSection = (props) => {
+    if (props.activeSection == 'News') {
+        return (
+            <div>
+                {props.newsData.map((article) => {
+                    return (
+                        <div>
+                            <h2>{article.headline}</h2>
+                            {article.summary.length == 0 ? <h3>No Summary Available</h3> : <h3>{article.summary}</h3>}
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    }
+    else if (props.activeSection == 'Comments') {
+        return (
+            <div>
+                {props.pageData.comments.map((comment) => {
+                    return (
+                        <div>
+                            {comment.message}
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    }
+
+    else {
+        return null;
+    }
 }
 
 export default StockPage;

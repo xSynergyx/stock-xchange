@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 
 const StockTable = (props) => {
-    const headers = ['Symbol', 'Company', 'High', 'Low', 'Price']
+    const headers = ['Symbol', 'Company', 'High', 'Low', 'Price', 'Category'];
     const history = useHistory();
 
     // Redirect to the selected stock's page
@@ -22,6 +22,7 @@ const StockTable = (props) => {
                         <td>High</td>
                         <td>Low</td>
                         <td>Price</td>
+                        <td>Category</td>
                     </tr>
                 </thead>
                 <tbody>

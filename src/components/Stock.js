@@ -22,17 +22,7 @@ function Stock() {
         return (
             <div>
                 <h2>Click on a row to go to that stock's discussion page.</h2>
-                Mega Cap Stocks
-                <StockTable stocks={stocks.Mega} />
-                Tech Stocks
-                <StockTable stocks={stocks.Tech} />
-                Energy Stocks
-                <StockTable stocks={stocks.Energy} />
-                Utilities Stocks
-                <StockTable stocks={stocks.Utilities} />
-                Finance Stocks
-                <StockTable stocks={stocks.Finance} />
-
+                <StockTable stocks={stocks.allStocks} />
             </div>
         );
     }

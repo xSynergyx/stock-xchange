@@ -71,7 +71,7 @@ class Stock:
         if response_json[query[0]]['quote'] is None: #200 status but still not valid stock symbol
             data[query[0]] = 'Not Found'
             return data
-        #print(response_json)
+        # print(response_json)
         for stock in stocks:
             stock_dict = {}
             stock_quote = response_json[stock]['quote']
@@ -96,14 +96,16 @@ class Stock:
                 'api-key': os.getenv('NYT_KEY')
             }
             response = requests.get(self.NYT_URL, params=params)
-            print(response)
             if response.status_code == 429: #Too many requests
                 raise KeyError("Response 429")
             data = response.json()
             for i in range(5):
-                #print(data['response']['docs'][i]['headline']['main'])
-                news.append(data['response']['docs'][i]['headline']['main'])
-            #print(data)
+                # print(data['response']['docs'][i]['headline']['main'])
+                # print(data['response']['docs'][i])
+                news.append({
+                    'headline': data['response']['docs'][i]['headline']['main'],
+                    'summary': data['response']['docs'][i]['snippet']
+                })
         except KeyError:
             params = {
                 'symbols': stock,
@@ -112,17 +114,19 @@ class Stock:
                 'last': 5
             }
             response = requests.get(self.IEX_SANDBOX_NEWS_URL, params=params)
-            print(response)
+            # print(response)
             data = response.json()
-            #print(data[stock])
             stock_news = data[stock]['news']
             for headline in stock_news:
                 #print(str(headline['headline']))
-                news.append(headline['headline'])
+                news.append({
+                    'headline': headline['headline'],
+                    'summary': headline['summary']
+                })
         except ValueError: #simplejson.errors.JSONDecodeError
             print("Decode JSON failed")
-            news = ["Refresh page"]
-        print(news)
+            news.append({'error': 'Refresh page'})
+        # print(news)
         return news
 
 # TEST = Stock()
