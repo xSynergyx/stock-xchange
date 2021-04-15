@@ -1,6 +1,5 @@
 '''
     app.py
-
     Server file.
 '''
 
@@ -30,8 +29,9 @@ stocks_List={'stocks_name':[] , 'symbols': [], 'high_stocks':[], 'lows_stocks':[
     }
 # Displaying on UI
 def display_on_ui():
+    
     print('this')
-    return "Hey WHat"
+    return None
     
     
     
@@ -50,8 +50,6 @@ def on_connect():
 def on_disconnect():
     """CHecks if user is disconnected """
     print('User disconnected!')
-
-
 
 
 if __name__ == "__main__":
