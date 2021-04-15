@@ -5,7 +5,7 @@
 '''
 
 import os
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory,json, session
 from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
@@ -20,25 +20,18 @@ APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 DB = SQLAlchemy(APP)
 import models
+COR_S = CORS(APP, resources={r"/*": {"origins": "*"}})
+SOCKET_IO = SocketIO(APP,
+                     cors_allowed_origins="*",
+                     json=json,
+                     manage_session=False)
 
 stocks_List={'stocks_name':[] , 'symbols': [], 'high_stocks':[], 'lows_stocks':[], 'like':[], 'comments':[]
     }
 # Displaying on UI
 def display_on_ui():
-    all_stocks=models.Stocks.query.all()
-    
-    for data in all_stocks:
-        data['stocks_name'].append(data.stocks_name)
-        data['symbols'].append(data.stocks_name)
-        
-        data['high_stocks'].append(data.stocks_name)
-        data['lows_stocks'].append(data.stocks_name)
-        
-        data['like'].append(data.stocks_name)
-        data['comments'].append(data.stocks_name)
-    
-    SOCKET_IO.emit()
-    return 
+    print('this')
+    return "Hey WHat"
     
     
     
@@ -48,11 +41,18 @@ def index(filename):
     """ index """
     return send_from_directory('./build', filename)
 
+@SOCKET_IO.on('connect')
+def on_connect():
+    """ checks if user connected and dsiplay the leaderboard """
+    print('User connected!')
 
-APP.run(
-    host=os.getenv('IP', '0.0.0.0'),
-    port=8081 if os.getenv('C9_PORT') else int(os.getenv('PORT', 8081)),
-)
+@SOCKET_IO.on('disconnect')
+def on_disconnect():
+    """CHecks if user is disconnected """
+    print('User disconnected!')
+
+
+
 
 if __name__ == "__main__":
     # DB.create_all()
