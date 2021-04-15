@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Login from './components/Login.js';
 import Logout from './components/Logout.js';
 
-import Home from './components/Home.js';
+import Profile from './components/Profile.js';
 import Stock from './components/Stock.js';
 
 
@@ -22,17 +22,20 @@ function App() {
     return (
       <div className="App">
         <Router>
-          <header className="App-header">
-          Stock XChange!
-          </header>
           <div>
             <nav>
               <ul>
-                <li>
-                  <Link to="/home">Home</Link>
+                <li className="navbar-header">
+                  <Link to="/">Stock XChange</Link>
                 </li>
-                <li>
+                <li className="navbar">
+                  <Link to="/profile">Profile</Link>
+                </li>
+                <li className="navbar">
                   <Link to="/stock">Stock Page</Link>
+                </li>
+                <li className ="navbar-right">
+                  <Logout authenticated={authenticated}/>
                 </li>
               </ul>
             </nav>
@@ -41,13 +44,15 @@ function App() {
               <Route path="/stock">
                 <Stock />
               </Route>
-              <Route path="/home">
-                <Home />
+              <Route path="/profile">
+                <Profile />
+              </Route>
+              <Route path="/">
+                <p>Stock List Component goes in here</p>
               </Route>
             </Switch>
           </div>
         </Router>
-        <Logout authenticated={authenticated}/>
             
       </div>
     );
@@ -55,9 +60,11 @@ function App() {
   
   return (
       <div className="App">
-        <header className="App-header">
-          Stock XChange
-        </header>
+        <ul>
+          <li className="navbar-home">
+            Stock XChange
+          </li>
+        </ul>
         <Login authenticated={authenticated}/>
       </div>
     );
