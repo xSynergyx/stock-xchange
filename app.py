@@ -10,14 +10,17 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv,find_dotenv
 
-SOCKET_IO = SocketIO()
+
 
 APP = Flask(__name__, static_folder='./build/static')
+SOCKET_IO = SocketIO()
+load_dotenv(find_dotenv())
 APP.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 # Gets rid of a warning
 APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 DB = SQLAlchemy(APP)
 import models
+# DB.create_all()
 # Datetime object to store the last time the database was updated
 # Server-wide variable compared to each incoming client-side request
 last_updated_time = None
@@ -25,11 +28,16 @@ last_updated_time = None
 stocks_List={'stocks_name':[] , 'symbols': [], 'high_stocks':[], 'lows_stocks':[], 'like':[], 'comments':[]
     }
 # Displaying on UI
-def display_on_ui():
+# def display_on_ui():
     
-    print('this')
-    return None
-    
+#     print('this')
+#     return None
+
+COR_S = CORS(APP, resources={r"/*": {"origins": "*"}})
+SOCKET_IO = SocketIO(APP,
+                     cors_allowed_origins="*",
+                     json=json,
+                     manage_session=False)
     
 @APP.route('/', defaults={"filename": "index.html"})
 @APP.route('/<path:filename>')
@@ -74,14 +82,20 @@ def stocks():
         # Call the API to update records in the database
         api_data = stock.default()
         last_updated_time = now
+        
+        # TO DO
         #Add data into db and commit data
         #stocks_data = parse_api_data(data)
+        
+        
         stocks_data = parse_api_data(api_data)
         print(parse_api_data(api_data))
 
     if curr_day in weekdays and open_time <= now <= close_time:
         if now in time_lst: 
             stocks_info = stock.default()
+            
+            # TO DO
             #Add data into db and commit data
             print(stocks_data)
             stocks_data = {} #Populate dictionary with 4 of each most recent stock in each group

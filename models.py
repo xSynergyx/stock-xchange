@@ -8,18 +8,18 @@ class Person(DB.Model):
     bio = DB.Column(DB.Text(), nullable=False)
     stocks = DB.relationship('like_table', backref='user')
 
-    def __innit__(self, username, bio):
+    def __init__(self, username, bio):
         self.username = username
         self.bio = bio
 
 # user like stocks table
-class LikeTable(DB.Model):
+class Liketable(DB.Model):
     ''' User like stocks table'''
-    id = DB.Column(DB.Integer, primary_key=True)
-    stocks = DB.Column(DB.Integer, DB.ForeignKey('person.id'))
+    id = DB.Column(DB.Integer, DB.ForeignKey('person.id'), primary_key=True)
+    # stocks = DB.Column(DB.Integer, DB.ForeignKey('person.id'))
     all_stock = DB.relationship('Stocks', backref='stocks', lazy='select')
 
-    def __innit__(self, stocks):
+    def __init__(self, stocks):
         self.stocks = stocks
 
 
@@ -48,10 +48,10 @@ class Stocks(DB.Model):
 # All the comments Table
 class Comments(DB.Model):
     ''' All the comment Table'''
-    id = DB.Column(DB.Integer, primary_key=True)
+    id = DB.Column(DB.Integer,DB.ForeignKey('stocks.id'), primary_key=True)
     username = DB.Column(DB.String(80), unique=True, nullable=False)
     comment = DB.Column(DB.Text(), nullable=False)
-    stocks_column = DB.Column(DB.Integer, DB.ForeignKey('stocks.id'))
+    # stocks_column = DB.Column(DB.Integer, DB.ForeignKey('stocks.id'))
 
     def __init__(self, username, comment):
         self.username = username
