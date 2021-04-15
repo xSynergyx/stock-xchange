@@ -23,7 +23,6 @@ class LikeTable(DB.Model):
         self.stocks = stocks
 
 
-
 # All the Stocks Table
 class Stocks(DB.Model):
     '''all the Stocks from the API'''
@@ -33,16 +32,18 @@ class Stocks(DB.Model):
     high_stocks = DB.Column(DB.Integer, nullable=False)
     low_stocks = DB.Column(DB.Integer, nullable=False)
     likes = DB.Column(DB.Integer, nullable=False)
+    category= DB.Column(DB.String(80), unique=True, nullable=False)
 
     # stocks_column = DB.Column(DB.Integer,DB.ForeignKey('like_table.id'))
     all_stock = DB.relationship('Comments', backref='comments', lazy='select')
 
-    def __init__(self, stocks_name, symbols, high_stocks, low_stocks, likes):
+    def __init__(self, stocks_name, symbols, high_stocks, low_stocks, likes, category):
         self.stocks_name = stocks_name
         self.symbols = symbols
         self.high_stocks = high_stocks
         self.low_stocks = low_stocks
         self.comment = likes
+        self.category = category
 
 # All the comments Table
 class Comments(DB.Model):

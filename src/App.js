@@ -2,8 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import Login from './components/Login.js';
-import Logout from './components/Logout.js';
 
 import Profile from './components/Profile.js';
 import Stock from './components/Stock.js';
