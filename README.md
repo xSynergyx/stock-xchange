@@ -6,6 +6,9 @@ An app to bring together a community of investors ready and willing to help each
 2. `pip install -r requirements.txt`
 3. `npm install --save react-router-dom`
 4. `npm install --save react-google-login`
+5. `sudo yum install postgresql postgresql-server postgresql-devel postgresql-contrib postgresql-docs` (enter yes on all prompts)
+6. `pip install psycopg2-binary`
+7. `pip install Flask-SQLAlchemy==2.1`
 
 ## Setup
 1. Run `echo "DANGEROUSLY_DISABLE_HOST_CHECK=true" > .env.development.local` in the project directory
@@ -19,14 +22,21 @@ An app to bring together a community of investors ready and willing to help each
 ### Modules
 + Flask, Requests, Python-dotenv, Random, Time, Datetime, and Pandas
 ### IEX Cloud API
-1. Go to https://iexcloud.io/ to make a free account.
-2. Once signed up and logged in, go to your account dashboard and click on API Tokens.
-3. You are given a real api key that counts against your monthly api calls and a sandbox api key that gives you unlimited calls with fake data. To access the real API token, click the 'Sandbox View' switch to off. To access the sandbox token, switch it to off.
+1. On the [IEX Cloud page](https://iexcloud.io/) make a free account
+2. Once signed up and logged in, go to your account dashboard and click on API Tokens
+3. You are given a real api key that counts against your monthly api calls and a sandbox api key that gives you unlimited calls with fake data. To access the real API token, click the 'Sandbox View' switch to off. To access the sandbox token, switch it to off
 
 ### New York Times API
-1. Go to https://developer.nytimes.com/ to make a free NYT developer account.
-2. After logging in, go to 'Apps' and click 'New Apps'.
-3. Create the app and enable all APIs and create the API key.
+1. On the [NYTimes page](https://developer.nytimes.com/) make a free NYT developer account
+2. After logging in, go to 'Apps' and click 'New Apps'
+3. Create the app and enable all APIs and create the API key
+
+### Google Login API
+1. On the Google [credentials page](https://console.cloud.google.com/apis/credentials) create a project
+2. Then click 'Create credentials' and select 'OAuth Client ID'
+3. Name the OAuth client
+4. Get the Client ID
+4. Provide required Redirect URI's (local routes can be added for development)
 
 ## Deploy to Heroku
 
