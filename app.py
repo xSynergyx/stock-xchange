@@ -55,7 +55,7 @@ APP.run(
 )
 
 if __name__ == "__main__":
-    DB.create_all()
+    # DB.create_all()
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
     SOCKET_IO.run(
         APP,
