@@ -6,23 +6,24 @@
 
 import os
 import json
-import time
 from datetime import datetime, timedelta
 from flask import Flask, send_from_directory, request
 from stock import Stock
-from stock_utils import *
+from stock_utils import parse_api_data
 
 APP = Flask(__name__, static_folder='./build/static')
 
 # Datetime object to store the last time the database was updated
 # Server-wide variable compared to each incoming client-side request
-last_updated_time = None
+LAST_UPDATED_TIME = None
+
 
 @APP.route('/', defaults={"filename": "index.html"})
 @APP.route('/<path:filename>')
 def index(filename):
     """ index """
     return send_from_directory('./build', filename)
+
 
 @APP.route('/stocks', methods=['GET'])
 def stocks():
@@ -39,13 +40,20 @@ def stocks():
     curr_date = curr_date = now.strftime("%Y-%m-%d")
     open_time = datetime.strptime('{} 9:30AM EST'.format(curr_date), '%Y-%m-%d %I:%M%p %Z')
     close_time = datetime.strptime('{} 4:00PM EST'.format(curr_date), '%Y-%m-%d %I:%M%p %Z')
-    
-    if (curr_day in weekdays) and (now >= open_time and now <= close_time):
-        global last_updated_time
-        if (last_updated_time == None) or (now > last_updated_time + timedelta(minutes=15)):
+
+    if (
+            curr_day in weekdays
+            and open_time <= now <= close_time
+    ):
+        global LAST_UPDATED_TIME
+
+        if (
+                LAST_UPDATED_TIME is None
+                or now > LAST_UPDATED_TIME + timedelta(minutes=15)
+        ):
             # Call the API to update records in the database
             api_data = stock.default()
-            last_updated_time = now
+            LAST_UPDATED_TIME = now
             #Add data into db and commit data
             stocks_data = parse_api_data(api_data)
             with open('test_stock_data3.json', 'w') as json_file:
@@ -58,12 +66,13 @@ def stocks():
                 stocks_data = json.loads(json_file.read())
     else:
         print("After hour stock data")
-        #Gather random 4 stocks from db
+        # Gather random 4 stocks from db
         # For Testing
         with open('test_stock_data3.json', 'r') as json_file:
             stocks_data = json.loads(json_file.read())
 
     return stocks_data
+
 
 @APP.route('/stock_page', methods=['POST'])
 def stock_page():
@@ -74,12 +83,12 @@ def stock_page():
     # for the symbol request sent by the client
 
     # stock = Stock()
-    # weekdays = [0,1,2,3,4] 
+    # weekdays = [0,1,2,3,4]
     # curr_day = datetime.datetime.today().weekday()
     #     if curr_day in weekdays:
-    #         
+
     #         #Include line where stock info is stored into db between api call times
-            
+
     # Get the stock id sent from the client side
     user_symbol = request.get_json()['stock_symbol']
     # page_data = {}
@@ -125,7 +134,8 @@ def search():
     #       return Stock info already in DB in JSON format
     # else Stock_Symbol isn't in DB:
     #   if it's a weekday and during market hours:
-    #       call API with user's request, add new Stock record to DB, return data to client in JSON format
+    #       call API with user's request, add new Stock record to DB,
+    #       return data to client in JSON format
     #   else:
     #       return stock info not available message
 

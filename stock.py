@@ -47,7 +47,7 @@ class Stock:
         return home_lst
 
     #query is a list and category should be None when searching for indiviudal stock
-    def search(self, query, category): 
+    def search(self, query, category):
         """Takes list of symbols, and gathers stock information"""
         data = {}
         stock_symbols = None
@@ -93,7 +93,8 @@ class Stock:
             params = {
                 'q' : stock + ' ',
                 'news_desk' : 'Business',
-                'api-key': os.getenv('NYT_KEY')
+                'api-key': os.getenv('NYT_KEY'),
+                'sort': 'relevance'
             }
             response = requests.get(self.NYT_URL, params=params)
             if response.status_code == 429: #Too many requests
@@ -104,7 +105,7 @@ class Stock:
                 # print(data['response']['docs'][i])
                 news.append({
                     'headline': data['response']['docs'][i]['headline']['main'],
-                    'summary': data['response']['docs'][i]['snippet']
+                    'snippet': data['response']['docs'][i]['snippet']
                 })
         except KeyError:
             params = {
@@ -121,7 +122,7 @@ class Stock:
                 #print(str(headline['headline']))
                 news.append({
                     'headline': headline['headline'],
-                    'summary': headline['summary']
+                    'snippet': headline['summary']
                 })
         except ValueError: #simplejson.errors.JSONDecodeError
             print("Decode JSON failed")

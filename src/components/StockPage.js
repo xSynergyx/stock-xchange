@@ -20,15 +20,8 @@ const StockPage = (props) => {
             setPageData(data['page_data']);
             setStockData(data['stock_data']);
             setNewsData(data['news_data']);
-            console.log(newsData);
         })
-    }, []);
-
-    const onSectionClick = (selectedSection) => {
-        setActiveSection(() => {
-            return selectedSection;
-        });
-    }
+    }, [props.symbol]);
 
     if ('Symbol' in stockData) {
         return (
@@ -41,7 +34,7 @@ const StockPage = (props) => {
                 
                 <div>
                     <button onClick={() => setActiveSection(() => 'News')}>News</button>
-                    <button onClick={() => setActiveSection('Comments')}>Comments</button>
+                    <button onClick={() => setActiveSection(() => 'Comments')}>Comments</button>
                     <button>Overview</button>
                 </div>
 
@@ -49,8 +42,7 @@ const StockPage = (props) => {
                     activeSection={activeSection} 
                     stockData={stockData} 
                     pageData={pageData} 
-                    newsData={newsData} 
-                />
+                    newsData={newsData} />
             </div>
         )
     }
@@ -63,21 +55,21 @@ const StockPage = (props) => {
 }
 
 const ContentSection = (props) => {
-    if (props.activeSection == 'News') {
+    if (props.activeSection === 'News') {
         return (
             <div>
                 {props.newsData.map((article) => {
                     return (
                         <div>
                             <h2>{article.headline}</h2>
-                            {article.summary.length == 0 ? <h3>No Summary Available</h3> : <h3>{article.summary}</h3>}
+                            {article.snippet.length === 0 ? <h3>No Snippet Available</h3> : <h3>{article.snippet}</h3>}
                         </div>
                     );
                 })}
             </div>
         );
     }
-    else if (props.activeSection == 'Comments') {
+    else if (props.activeSection === 'Comments') {
         return (
             <div>
                 {props.pageData.comments.map((comment) => {

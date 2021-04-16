@@ -1,11 +1,9 @@
 import './Stock.css';
 import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
 import StockTable from './StockTable.js'
 
 function Stock() {
     const [stocks, setStocks] = useState({});
-    const headers = ['Symbol', 'Name', 'Price (Intraday)', 'Change', 'Market Cap']
     
     // Request the list of all stocks from the server using the '/stocks'
     // path. The server would retrieve the records from the Stocks table in the
