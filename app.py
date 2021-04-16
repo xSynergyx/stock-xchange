@@ -176,32 +176,28 @@ api_data = stock.default()
 stocks_data = parse_api_data(api_data)
 # print(json.dumps(stocks_data, indent=4))
 
-# # def add_stocks_db(data):
-# x=stocks_data['allStocks']
-# for i in x:
-    # stockname=i['Company']
-    # print(stockname)
-    # symbol=i['Symbol']
-    # print(symbol)
-    # high=str(i['High'])
-    # print(high)
-    # low=str(i['Low'])
-    # categories=i['Category']
-    # print(categories)
-      
-    # print('STOCKNAME: '+ stockname + 'SYMBOLS:'+ symbol + 'HIGHPRICE: '+high +'LOWpRICE : '+low+ 'CATOGRY : '+ categories)  
-#         #Add to db
-#     stocks_db= models.Stocks.query.all()
-#     new_Stock=models.Stocks(stock_name=stockname, symbols=symbol , high_stocks=high, low_stocks=low, likes=0 , category=categories)
-#     DB.session.add(new_Stock)
-#     DB.session.commit()
+def add_stocks_db(data):
+    x=data['allStocks']
+    for i in x:
+        stockname=i['Company']
+        symbol=i['Symbol']
+        high=i['High']
+        low=i['Low']
+        current=i['Price']
+        categories=i['Category']
+            #Add to db
+        stocks_db= models.Stocks.query.all()
+        new_Stock=models.Stocks(stocks_name=stockname, symbols=symbol , high_stocks=high, low_stocks=low,current_price=current, likes=0, category=categories)
+        DB.session.add(new_Stock)
+        DB.session.commit()
         
         
-# # add_stocks_db(stocks_data)
+
 
 
 if __name__ == "__main__":
     DB.create_all()
+    add_stocks_db(stocks_data)
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
     SOCKET_IO.run(
         APP,
