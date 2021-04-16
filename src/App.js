@@ -6,16 +6,23 @@ import Login from './components/Login.js';
 import Logout from './components/Logout.js';
 
 import Profile from './components/Profile.js';
+import MyList from './components/MyList.js';
 import Stock from './components/Stock.js';
+import SearchBar from './components/SearchBar.js';
 
 
 
 function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("Profile");
   
   function authenticated(){
     setIsLoggedIn(!isLoggedIn);
+  }
+  
+  function updateUsername(newUsername){
+    setUsername(newUsername);
   }
   
   if (isLoggedIn){
@@ -29,7 +36,10 @@ function App() {
                   <Link to="/">Stock XChange</Link>
                 </li>
                 <li className="navbar">
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/profile">{ username }</Link>
+                </li>
+                <li className="navbar">
+                  <Link to="/mylist">My List</Link>
                 </li>
                 <li className="navbar">
                   <Link to="/stock">Stock Page</Link>
@@ -37,10 +47,16 @@ function App() {
                 <li className ="navbar-right">
                   <Logout authenticated={authenticated}/>
                 </li>
+                <li className="navbar-right">
+                  <SearchBar />
+                </li>
               </ul>
             </nav>
             
             <Switch>
+              <Route path="/mylist">
+                <MyList />
+              </Route>
               <Route path="/stock">
                 <Stock />
               </Route>
@@ -65,7 +81,7 @@ function App() {
             Stock XChange
           </li>
         </ul>
-        <Login authenticated={authenticated}/>
+        <Login authenticated={authenticated} updateUsername={updateUsername}/>
       </div>
     );
 }
