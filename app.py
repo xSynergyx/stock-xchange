@@ -179,16 +179,20 @@ stocks_data = parse_api_data(api_data)
 # # def add_stocks_db(data):
 # x=stocks_data['allStocks']
 # for i in x:
-#     stockname=i['Company']
-#     symbol=i['Symbol']
-#     high=i['High']
-#     low=i['Low']
-#     categories=i['Category']
-       
-       
+    # stockname=i['Company']
+    # print(stockname)
+    # symbol=i['Symbol']
+    # print(symbol)
+    # high=str(i['High'])
+    # print(high)
+    # low=str(i['Low'])
+    # categories=i['Category']
+    # print(categories)
+      
+    # print('STOCKNAME: '+ stockname + 'SYMBOLS:'+ symbol + 'HIGHPRICE: '+high +'LOWpRICE : '+low+ 'CATOGRY : '+ categories)  
 #         #Add to db
 #     stocks_db= models.Stocks.query.all()
-#     new_Stock=models.Stocks(stock_name=stockname, symbols=symbol , high_stocks=high, low_stocks=low, likes=100 , category=categories)
+#     new_Stock=models.Stocks(stock_name=stockname, symbols=symbol , high_stocks=high, low_stocks=low, likes=0 , category=categories)
 #     DB.session.add(new_Stock)
 #     DB.session.commit()
         
