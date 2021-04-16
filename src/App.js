@@ -13,9 +13,14 @@ import Stock from './components/Stock.js';
 function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("Profile");
   
   function authenticated(){
     setIsLoggedIn(!isLoggedIn);
+  }
+  
+  function updateUsername(newUsername){
+    setUsername(newUsername);
   }
   
   if (isLoggedIn){
@@ -29,7 +34,7 @@ function App() {
                   <Link to="/">Stock XChange</Link>
                 </li>
                 <li className="navbar">
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/profile">{ username }</Link>
                 </li>
                 <li className="navbar">
                   <Link to="/stock">Stock Page</Link>
@@ -65,7 +70,7 @@ function App() {
             Stock XChange
           </li>
         </ul>
-        <Login authenticated={authenticated}/>
+        <Login authenticated={authenticated} updateUsername={updateUsername}/>
       </div>
     );
 }

@@ -9,6 +9,9 @@ function Login(props) {
     
     const onSuccess = (res) => {
         console.log('[Login Success] currentUser: ', res.profileObj);
+        var name = res.profileObj.name.split(" ")[0]
+        
+        props.updateUsername(name);
         props.authenticated();
         
         refreshTokenSetup(res);
