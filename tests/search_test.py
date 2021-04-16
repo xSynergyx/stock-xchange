@@ -35,7 +35,8 @@ class StockSearchTestCase(unittest.TestCase):
                             'Company' : 'Apple Inc',
                             'High' : 0,
                             'Low' : 0,
-                            'Price' : 0
+                            'Price' : 0,
+                            'Category': None
                         }
                 }
             },
@@ -48,7 +49,8 @@ class StockSearchTestCase(unittest.TestCase):
                             'Company': 'JPMorgan Chase & Co.',
                             'High': 0,
                             'Low': 0,
-                            'Price': 0
+                            'Price': 0,
+                            'Category': None
                         },
                     'JNJ':
                         {
@@ -56,7 +58,8 @@ class StockSearchTestCase(unittest.TestCase):
                             'Company': 'Johnson & Johnson',
                             'High': 0,
                             'Low': 0,
-                            'Price': 0
+                            'Price': 0,
+                            'Category': None
                         }
                 }
             },
@@ -69,7 +72,8 @@ class StockSearchTestCase(unittest.TestCase):
                             'Company': 'Total SE - ADR',
                             'High': 0,
                             'Low': 0,
-                            'Price': 0
+                            'Price': 0,
+                            'Category': None
                         },
                     'COP':
                         {
@@ -77,7 +81,8 @@ class StockSearchTestCase(unittest.TestCase):
                             'Company': 'Conoco Phillips',
                             'High': 0,
                             'Low': 0,
-                            'Price': 0
+                            'Price': 0,
+                            'Category': None
                         },
                     'EOG':
                         {
@@ -85,7 +90,8 @@ class StockSearchTestCase(unittest.TestCase):
                             'Company': 'EOG Resources, Inc.',
                             'High': 0,
                             'Low': 0,
-                            'Price': 0
+                            'Price': 0,
+                            'Category': None
                         },
                     'TPL':
                         {
@@ -93,7 +99,8 @@ class StockSearchTestCase(unittest.TestCase):
                             'Company': 'Texas Pacific Land Corporation',
                             'High': 0,
                             'Low': 0,
-                            'Price': 0
+                            'Price': 0,
+                            'Category': None
                         }
                 }
             }
@@ -108,7 +115,7 @@ class StockSearchTestCase(unittest.TestCase):
         for test in self.success_test_params:
             test_stock = Stock()
 
-            actual_result = test_stock.search(test[DATA_INPUT])
+            actual_result = test_stock.search(test[DATA_INPUT], None)
             expected_result = test[EXPECTED_OUTPUT]
             self.assertEqual(len(actual_result), len(expected_result)) #Same Length
             #Assuming this passed
@@ -124,6 +131,9 @@ class StockSearchTestCase(unittest.TestCase):
                     )
                     self.assertEqual(
                         actual_result[a_symb]['High'] is int, expected_result[e_symb]['High'] is int
+                    )
+                    self.assertEqual(
+                        actual_result[a_symb]['Category'], expected_result[e_symb]['Category']
                     )
                     i += 1
             else:

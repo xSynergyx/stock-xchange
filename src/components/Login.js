@@ -33,7 +33,7 @@ function Login(props) {
                 isSignedIn={true}
             />
         </div>
-        );
+    );
 }
 
 export default Login;
