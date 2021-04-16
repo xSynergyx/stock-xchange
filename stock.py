@@ -44,6 +44,9 @@ class Stock:
         home_lst.append({'Energy': self.search(energy_stock, 'Energy')})
         home_lst.append({'Utilities': self.search(utilities_stock, 'Utilities')})
         home_lst.append({'Finance': self.search(finance_stock, 'Finance')})
+
+        print('//////////////////// RAW DATA FROM THE API ////////////////////')
+        print(home_lst)
         return home_lst
 
     #query is a list and category should be None when searching for indiviudal stock
