@@ -6,7 +6,9 @@ import Login from './components/Login.js';
 import Logout from './components/Logout.js';
 
 import Profile from './components/Profile.js';
+import MyList from './components/MyList.js';
 import Stock from './components/Stock.js';
+import SearchBar from './components/SearchBar.js';
 
 
 
@@ -37,15 +39,24 @@ function App() {
                   <Link to="/profile">{ username }</Link>
                 </li>
                 <li className="navbar">
+                  <Link to="/mylist">My List</Link>
+                </li>
+                <li className="navbar">
                   <Link to="/stock">Stock Page</Link>
                 </li>
                 <li className ="navbar-right">
                   <Logout authenticated={authenticated}/>
                 </li>
+                <li className="navbar-right">
+                  <SearchBar />
+                </li>
               </ul>
             </nav>
             
             <Switch>
+              <Route path="/mylist">
+                <MyList />
+              </Route>
               <Route path="/stock">
                 <Stock />
               </Route>
