@@ -33,7 +33,7 @@ function App() {
                   <Link to="/stock">Stock Page</Link>
                 </li>
                 <li className ="navbar-right">
-                  <Logout authenticated={authenticated}/>
+                  
                 </li>
               </ul>
             </nav>
@@ -63,7 +63,7 @@ function App() {
             Stock XChange
           </li>
         </ul>
-        <Login authenticated={authenticated}/>
+        
       </div>
     );
 }

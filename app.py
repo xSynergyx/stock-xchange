@@ -27,11 +27,7 @@ last_updated_time = None
 
 stocks_List={'stocks_name':[] , 'symbols': [], 'high_stocks':[], 'lows_stocks':[], 'like':[], 'comments':[]
     }
-# Displaying on UI
-# def display_on_ui():
-    
-#     print('this')
-#     return None
+
 
 COR_S = CORS(APP, resources={r"/*": {"origins": "*"}})
 SOCKET_IO = SocketIO(APP,
@@ -44,6 +40,18 @@ SOCKET_IO = SocketIO(APP,
 def index(filename):
     """ index """
     return send_from_directory('./build', filename)
+
+# When a client connects from this Socket connection, this function is run
+@SOCKET_IO.on('connect')
+def on_connect():
+    """ checks if user connected and dsiplay the leaderboard """
+    print('User connected!')
+
+# When a client disconnects from this Socket connection, this function is run
+@SOCKET_IO.on('disconnect')
+def on_disconnect():
+    """CHecks if user is disconnected """
+    print('User disconnected!')
 
 @APP.route('/stocks', methods=['GET'])
 def stocks():
