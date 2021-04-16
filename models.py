@@ -6,7 +6,7 @@ class Person(DB.Model):
     id = DB.Column(DB.Integer, primary_key=True)
     username = DB.Column(DB.String(80), unique=True, nullable=False)
     bio = DB.Column(DB.Text(), nullable=False)
-    stocks = DB.relationship('like_table', backref='user')
+    stocks = DB.relationship('Liketable', backref='person', lazy='select')
 
     def __init__(self, username, bio):
         self.username = username
@@ -16,11 +16,11 @@ class Person(DB.Model):
 class Liketable(DB.Model):
     ''' User like stocks table'''
     id = DB.Column(DB.Integer, DB.ForeignKey('person.id'), primary_key=True)
-    # stocks = DB.Column(DB.Integer, DB.ForeignKey('person.id'))
-    all_stock = DB.relationship('Stocks', backref='stocks', lazy='select')
+    all_stockstocks = DB.Column(DB.Integer, nullable=False)
+    # all_stock = DB.relationship('Stocks', backref='liketable', lazy='select')
 
-    def __init__(self, stocks):
-        self.stocks = stocks
+    def __init__(self, all_stocks):
+        self.stocks = all_stocks
 
 
 # All the Stocks Table
@@ -35,7 +35,7 @@ class Stocks(DB.Model):
     category= DB.Column(DB.String(80), unique=True, nullable=False)
 
     # stocks_column = DB.Column(DB.Integer,DB.ForeignKey('like_table.id'))
-    all_stock = DB.relationship('Comments', backref='comments', lazy='select')
+    all_stock = DB.relationship('Comments', backref='stocks', lazy='select')
 
     def __init__(self, stocks_name, symbols, high_stocks, low_stocks, likes, category):
         self.stocks_name = stocks_name

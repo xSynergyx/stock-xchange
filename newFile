@@ -1,0 +1,337 @@
+//////////////////// RAW DATA FROM THE API ////////////////////
+[{'Mega': {'NKE': {'Symbol': 'NKE', 'Company': 'Nike, Inc. - Class B', 'High': 139.48, 'Low': 137.78, 'Price': 134.73, 'Category': 'Mega'}, 'NFLX': {'Symbol': 'NFLX', 'Company': 'NetFlix Inc', 'High': 556.77, 'Low': 551, 'Price': 572.42, 'Category': 'Mega'}, 'FB': {'Symbol': 'FB', 'Company': 'Facebook Inc - Class A', 'High': 315.94, 'Low': 312.3, 'Price': 309.42, 'Category': 'Mega'}, 'JPM': {'Symbol': 'JPM', 'Company': 'JPMorgan Chase & Co.', 'High': 156.5, 'Low': 152.42, 'Price': 154.97, 'Category': 'Mega'}}}, {'Tech': {'MSFT': {'Symbol': 'MSFT', 'Company': 'Microsoft Corporation', 'High': 263.05, 'Low': 268.29, 'Price': 268.9, 'Category': 'Tech'}, 'ADBE': {'Symbol': 'ADBE', 'Company': 'Adobe Inc', 'High': 546.03, 'Low': 522.01, 'Price': 526.4, 'Category': 'Tech'}, 'INTC': {'Symbol': 'INTC', 'Company': 'Intel Corp.', 'High': 67.18, 'Low': 65.68, 'Price': 65.64, 'Category': 'Tech'}, 'CSCO': {'Symbol': 'CSCO', 'Company': 'Cisco Systems, Inc.', 'High': 52.63, 'Low': 53.24, 'Price': 52.28, 'Category': 'Tech'}}}, {'Energy': {'CNQ': {'Symbol': 'CNQ', 'Company': 'Canadian Natural Resources Ltd.', 'High': 32.8, 'Low': 32, 'Price': 31.58, 'Category': 'Energy'}, 'CMI': {'Symbol': 'CMI', 'Company': 'Cummins Inc.', 'High': 269.36, 'Low': 272.74, 'Price': 274.08, 'Category': 'Energy'}, 'PSX': {'Symbol': 'PSX', 'Company': 'Phillips 66', 'High': 81.2, 'Low': 80.86, 'Price': 79.96, 'Category': 'Energy'}, 'BKR': {'Symbol': 'BKR', 'Company': 'Baker Hughes Co - Class A', 'High': 20.38, 'Low': 20.4, 'Price': 20.7, 'Category': 'Energy'}}}, {'Utilities': {'LUMN': {'Symbol': 'LUMN', 'Company': 'Lumen Technologies Inc', 'High': 13.37, 'Low': 13.22, 'Price': 13.28, 'Category': 'Utilities'}, 'EXC': {'Symbol': 'EXC', 'Company': 'Exelon Corp.', 'High': 46.258, 'Low': 46.53, 'Price': 48.01, 'Category': 'Utilities'}, 'AWK': {'Symbol': 'AWK', 'Company': 'American Water Works Co. Inc.', 'High': 161.19, 'Low': 159.21, 'Price': 164.05, 'Category': 'Utilities'}, 'AGR': {'Symbol': 'AGR', 'Company': 'Avangrid Inc', 'High': 53.36, 'Low': 53.316, 'Price': 52.93, 'Category': 'Utilities'}}}, {'Finance': {'DFS': {'Symbol': 'DFS', 'Company': 'Discover Financial Services', 'High': 103.73, 'Low': 100.92, 'Price': 104, 'Category': 'Finance'}, 'BLK': {'Symbol': 'BLK', 'Company': 'Blackrock Inc.', 'High': 850.838, 'Low': 843, 'Price': 850.89, 'Category': 'Finance'}, 'PRU': {'Symbol': 'PRU', 'Company': 'Prudential Financial Inc.', 'High': 101.89, 'Low': 96.83, 'Price': 97.5, 'Category': 'Finance'}, 'MTB': {'Symbol': 'MTB', 'Company': 'M & T Bank Corp', 'High': 159.6, 'Low': 156.31, 'Price': 160.75, 'Category': 'Finance'}}}]
+{
+    "allStocks": [
+        {
+            "Symbol": "NKE",
+            "Company": "Nike, Inc. - Class B",
+            "High": 139.48,
+            "Low": 137.78,
+            "Price": 134.73,
+            "Category": "Mega"
+        },
+        {
+            "Symbol": "NFLX",
+            "Company": "NetFlix Inc",
+            "High": 556.77,
+            "Low": 551,
+            "Price": 572.42,
+            "Category": "Mega"
+        },
+        {
+            "Symbol": "FB",
+            "Company": "Facebook Inc - Class A",
+            "High": 315.94,
+            "Low": 312.3,
+            "Price": 309.42,
+            "Category": "Mega"
+        },
+        {
+            "Symbol": "JPM",
+            "Company": "JPMorgan Chase & Co.",
+            "High": 156.5,
+            "Low": 152.42,
+            "Price": 154.97,
+            "Category": "Mega"
+        },
+        {
+            "Symbol": "MSFT",
+            "Company": "Microsoft Corporation",
+            "High": 263.05,
+            "Low": 268.29,
+            "Price": 268.9,
+            "Category": "Tech"
+        },
+        {
+            "Symbol": "ADBE",
+            "Company": "Adobe Inc",
+            "High": 546.03,
+            "Low": 522.01,
+            "Price": 526.4,
+            "Category": "Tech"
+        },
+        {
+            "Symbol": "INTC",
+            "Company": "Intel Corp.",
+            "High": 67.18,
+            "Low": 65.68,
+            "Price": 65.64,
+            "Category": "Tech"
+        },
+        {
+            "Symbol": "CSCO",
+            "Company": "Cisco Systems, Inc.",
+            "High": 52.63,
+            "Low": 53.24,
+            "Price": 52.28,
+            "Category": "Tech"
+        },
+        {
+            "Symbol": "CNQ",
+            "Company": "Canadian Natural Resources Ltd.",
+            "High": 32.8,
+            "Low": 32,
+            "Price": 31.58,
+            "Category": "Energy"
+        },
+        {
+            "Symbol": "CMI",
+            "Company": "Cummins Inc.",
+            "High": 269.36,
+            "Low": 272.74,
+            "Price": 274.08,
+            "Category": "Energy"
+        },
+        {
+            "Symbol": "PSX",
+            "Company": "Phillips 66",
+            "High": 81.2,
+            "Low": 80.86,
+            "Price": 79.96,
+            "Category": "Energy"
+        },
+        {
+            "Symbol": "BKR",
+            "Company": "Baker Hughes Co - Class A",
+            "High": 20.38,
+            "Low": 20.4,
+            "Price": 20.7,
+            "Category": "Energy"
+        },
+        {
+            "Symbol": "LUMN",
+            "Company": "Lumen Technologies Inc",
+            "High": 13.37,
+            "Low": 13.22,
+            "Price": 13.28,
+            "Category": "Utilities"
+        },
+        {
+            "Symbol": "EXC",
+            "Company": "Exelon Corp.",
+            "High": 46.258,
+            "Low": 46.53,
+            "Price": 48.01,
+            "Category": "Utilities"
+        },
+        {
+            "Symbol": "AWK",
+            "Company": "American Water Works Co. Inc.",
+            "High": 161.19,
+            "Low": 159.21,
+            "Price": 164.05,
+            "Category": "Utilities"
+        },
+        {
+            "Symbol": "AGR",
+            "Company": "Avangrid Inc",
+            "High": 53.36,
+            "Low": 53.316,
+            "Price": 52.93,
+            "Category": "Utilities"
+        },
+        {
+            "Symbol": "DFS",
+            "Company": "Discover Financial Services",
+            "High": 103.73,
+            "Low": 100.92,
+            "Price": 104,
+            "Category": "Finance"
+        },
+        {
+            "Symbol": "BLK",
+            "Company": "Blackrock Inc.",
+            "High": 850.838,
+            "Low": 843,
+            "Price": 850.89,
+            "Category": "Finance"
+        },
+        {
+            "Symbol": "PRU",
+            "Company": "Prudential Financial Inc.",
+            "High": 101.89,
+            "Low": 96.83,
+            "Price": 97.5,
+            "Category": "Finance"
+        },
+        {
+            "Symbol": "MTB",
+            "Company": "M & T Bank Corp",
+            "High": 159.6,
+            "Low": 156.31,
+            "Price": 160.75,
+            "Category": "Finance"
+        }
+    ]
+}
+//////////////////// RAW DATA FROM THE API ////////////////////
+[{'Mega': {'HD': {'Symbol': 'HD', 'Company': 'Home Depot, Inc.', 'High': 338.3, 'Low': 324.43, 'Price': 326, 'Category': 'Mega'}, 'UNH': {'Symbol': 'UNH', 'Company': 'Unitedhealth Group Inc', 'High': 408.34, 'Low': 387, 'Price': 390.25, 'Category': 'Mega'}, 'ADBE': {'Symbol': 'ADBE', 'Company': 'Adobe Inc', 'High': 539.27, 'Low': 539.75, 'Price': 545.27, 'Category': 'Mega'}, 'NKE': {'Symbol': 'NKE', 'Company': 'Nike, Inc. - Class B', 'High': 134.95, 'Low': 138.99, 'Price': 138.02, 'Category': 'Mega'}}}, {'Tech': {'MSFT': {'Symbol': 'MSFT', 'Company': 'Microsoft Corporation', 'High': 262.09, 'Low': 267.44, 'Price': 262.5, 'Category': 'Tech'}, 'CSCO': {'Symbol': 'CSCO', 'Company': 'Cisco Systems, Inc.', 'High': 52.78, 'Low': 51.59, 'Price': 51.76, 'Category': 'Tech'}, 'FB': {'Symbol': 'FB', 'Company': 'Facebook Inc - Class A', 'High': 310.94, 'Low': 319.1, 'Price': 312.68, 'Category': 'Tech'}, 'NVDA': {'Symbol': 'NVDA', 'Company': 'NVIDIA Corp', 'High': 654.516, 'Low': 631.52, 'Price': 659.23, 'Category': 'Tech'}}}, {'Energy': {'PBR': {'Symbol': 'PBR', 'Company': 'Petroleo Brasileiro S.A. Petrobras - ADR', 'High': 8.34, 'Low': 8.16, 'Price': 8.2, 'Category': 'Energy'}, 'COP': {'Symbol': 'COP', 'Company': 'Conoco Phillips', 'High': 55.24, 'Low': 53.23, 'Price': 53.7, 'Category': 'Energy'}, 'DVN': {'Symbol': 'DVN', 'Company': 'Devon Energy Corp.', 'High': 23.02, 'Low': 22.744, 'Price': 23.45, 'Category': 'Energy'}, 'BBL': {'Symbol': 'BBL', 'Company': 'BHP Group Plc - ADR', 'High': 64.73, 'Low': 63.92, 'Price': 64.79, 'Category': 'Energy'}}}, {'Utilities': {'ETR': {'Symbol': 'ETR', 'Company': 'Entergy Corp.', 'High': 109.04, 'Low': 104.6, 'Price': 109.48, 'Category': 'Utilities'}, 'TU': {'Symbol': 'TU', 'Company': 'Telus Corp.', 'High': 20.81, 'Low': 21.4, 'Price': 21.26, 'Category': 'Utilities'}, 'PPL': {'Symbol': 'PPL', 'Company': 'PPL Corp', 'High': 29.06, 'Low': 29.91, 'Price': 29.33, 'Category': 'Utilities'}, 'NEE': {'Symbol': 'NEE', 'Company': 'NextEra Energy Inc', 'High': 80.468, 'Low': 79.43, 'Price': 82.08, 'Category': 'Utilities'}}}, {'Finance': {'AJG': {'Symbol': 'AJG', 'Company': 'Arthur J. Gallagher & Co.', 'High': 138.32, 'Low': 134.36, 'Price': 136.06, 'Category': 'Finance'}, 'CM': {'Symbol': 'CM', 'Company': 'Canadian Imperial Bank Of Commerce', 'High': 103, 'Low': 102.76, 'Price': 101.39, 'Category': 'Finance'}, 'GL': {'Symbol': 'GL', 'Company': 'Globe Life Inc', 'High': 106.55, 'Low': 101.339, 'Price': 105.5, 'Category': 'Finance'}, 'INVH': {'Symbol': 'INVH', 'Company': 'Invitation Homes Inc', 'High': 33.2, 'Low': 33.3, 'Price': 33.11, 'Category': 'Finance'}}}]
+{
+    "allStocks": [
+        {
+            "Symbol": "HD",
+            "Company": "Home Depot, Inc.",
+            "High": 338.3,
+            "Low": 324.43,
+            "Price": 326,
+            "Category": "Mega"
+        },
+        {
+            "Symbol": "UNH",
+            "Company": "Unitedhealth Group Inc",
+            "High": 408.34,
+            "Low": 387,
+            "Price": 390.25,
+            "Category": "Mega"
+        },
+        {
+            "Symbol": "ADBE",
+            "Company": "Adobe Inc",
+            "High": 539.27,
+            "Low": 539.75,
+            "Price": 545.27,
+            "Category": "Mega"
+        },
+        {
+            "Symbol": "NKE",
+            "Company": "Nike, Inc. - Class B",
+            "High": 134.95,
+            "Low": 138.99,
+            "Price": 138.02,
+            "Category": "Mega"
+        },
+        {
+            "Symbol": "MSFT",
+            "Company": "Microsoft Corporation",
+            "High": 262.09,
+            "Low": 267.44,
+            "Price": 262.5,
+            "Category": "Tech"
+        },
+        {
+            "Symbol": "CSCO",
+            "Company": "Cisco Systems, Inc.",
+            "High": 52.78,
+            "Low": 51.59,
+            "Price": 51.76,
+            "Category": "Tech"
+        },
+        {
+            "Symbol": "FB",
+            "Company": "Facebook Inc - Class A",
+            "High": 310.94,
+            "Low": 319.1,
+            "Price": 312.68,
+            "Category": "Tech"
+        },
+        {
+            "Symbol": "NVDA",
+            "Company": "NVIDIA Corp",
+            "High": 654.516,
+            "Low": 631.52,
+            "Price": 659.23,
+            "Category": "Tech"
+        },
+        {
+            "Symbol": "PBR",
+            "Company": "Petroleo Brasileiro S.A. Petrobras - ADR",
+            "High": 8.34,
+            "Low": 8.16,
+            "Price": 8.2,
+            "Category": "Energy"
+        },
+        {
+            "Symbol": "COP",
+            "Company": "Conoco Phillips",
+            "High": 55.24,
+            "Low": 53.23,
+            "Price": 53.7,
+            "Category": "Energy"
+        },
+        {
+            "Symbol": "DVN",
+            "Company": "Devon Energy Corp.",
+            "High": 23.02,
+            "Low": 22.744,
+            "Price": 23.45,
+            "Category": "Energy"
+        },
+        {
+            "Symbol": "BBL",
+            "Company": "BHP Group Plc - ADR",
+            "High": 64.73,
+            "Low": 63.92,
+            "Price": 64.79,
+            "Category": "Energy"
+        },
+        {
+            "Symbol": "ETR",
+            "Company": "Entergy Corp.",
+            "High": 109.04,
+            "Low": 104.6,
+            "Price": 109.48,
+            "Category": "Utilities"
+        },
+        {
+            "Symbol": "TU",
+            "Company": "Telus Corp.",
+            "High": 20.81,
+            "Low": 21.4,
+            "Price": 21.26,
+            "Category": "Utilities"
+        },
+        {
+            "Symbol": "PPL",
+            "Company": "PPL Corp",
+            "High": 29.06,
+            "Low": 29.91,
+            "Price": 29.33,
+            "Category": "Utilities"
+        },
+        {
+            "Symbol": "NEE",
+            "Company": "NextEra Energy Inc",
+            "High": 80.468,
+            "Low": 79.43,
+            "Price": 82.08,
+            "Category": "Utilities"
+        },
+        {
+            "Symbol": "AJG",
+            "Company": "Arthur J. Gallagher & Co.",
+            "High": 138.32,
+            "Low": 134.36,
+            "Price": 136.06,
+            "Category": "Finance"
+        },
+        {
+            "Symbol": "CM",
+            "Company": "Canadian Imperial Bank Of Commerce",
+            "High": 103,
+            "Low": 102.76,
+            "Price": 101.39,
+            "Category": "Finance"
+        },
+        {
+            "Symbol": "GL",
+            "Company": "Globe Life Inc",
+            "High": 106.55,
+            "Low": 101.339,
+            "Price": 105.5,
+            "Category": "Finance"
+        },
+        {
+            "Symbol": "INVH",
+            "Company": "Invitation Homes Inc",
+            "High": 33.2,
+            "Low": 33.3,
+            "Price": 33.11,
+            "Category": "Finance"
+        }
+    ]
+}
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off

@@ -8,6 +8,7 @@ import json
 from datetime import datetime, timedelta
 from flask import Flask, send_from_directory, request, session
 from stock import Stock
+from flask_socketio import SocketIO
 from stock_utils import parse_api_data
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
@@ -26,12 +27,6 @@ import models
 # Datetime object to store the last time the database was updated
 # Server-wide variable compared to each incoming client-side request
 LAST_UPDATED_TIME = None
-COR_S = CORS(APP, resources={r"/*": {"origins": "*"}})
-SOCKET_IO = SocketIO(APP,
-                     cors_allowed_origins="*",
-                     json=json,
-                     manage_session=False)
-
 stocks_List={'stocks_name':[] , 'symbols': [], 'high_stocks':[], 'lows_stocks':[], 'like':[], 'comments':[]
     }
 
@@ -67,7 +62,6 @@ def stocks():
     # for all records and convert the result to JSON. Haven't looked much
     # into converting SQLAlchemy query results to JSON, but it should be
     # straight forward
-
     stock = Stock()
     weekdays = [0, 1, 2, 3, 4]
     curr_day = datetime.today().weekday()
@@ -158,6 +152,7 @@ def stock_page():
 @APP.route('/search', methods=['POST'])
 def search():
     ''' Processes user's request and returns the stock information '''
+    return None
     ###### Proposed Logic Below #######
     # if Stock_Symbol is in database:
     #  if today is a weekday and during market hours:
@@ -177,7 +172,29 @@ def search():
 
 stock = Stock()
 api_data = stock.default()
+# print(api_data)
 stocks_data = parse_api_data(api_data)
+# print(json.dumps(stocks_data, indent=4))
+
+# # def add_stocks_db(data):
+# x=stocks_data['allStocks']
+# for i in x:
+#     stockname=i['Company']
+#     symbol=i['Symbol']
+#     high=i['High']
+#     low=i['Low']
+#     categories=i['Category']
+       
+       
+#         #Add to db
+#     stocks_db= models.Stocks.query.all()
+#     new_Stock=models.Stocks(stock_name=stockname, symbols=symbol , high_stocks=high, low_stocks=low, likes=100 , category=categories)
+#     DB.session.add(new_Stock)
+#     DB.session.commit()
+        
+        
+# # add_stocks_db(stocks_data)
+
 
 if __name__ == "__main__":
     DB.create_all()
