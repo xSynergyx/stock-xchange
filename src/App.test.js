@@ -1,8 +1,14 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('Stock XChange logo and Login button in displayed', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  
+  const joinElement = screen.getByText('Stock XChange');
+  expect(joinElement).toBeInTheDocument();
+  
+  const joinButtonElement = screen.getByText('Login');
+  expect(joinButtonElement).toBeInTheDocument();
+  
+  //fireEvent.click(joinButtonElement);
 });
