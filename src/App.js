@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
@@ -9,7 +8,7 @@ import Profile from './components/Profile.js';
 import MyList from './components/MyList.js';
 import Stock from './components/Stock.js';
 import SearchBar from './components/SearchBar.js';
-
+import StockPage from './components/StockPage.js';
 
 
 function App() {
@@ -63,27 +62,28 @@ function App() {
               <Route path="/profile">
                 <Profile />
               </Route>
-              <Route path="/">
-                <p>Stock List Component goes in here</p>
+              <Route 
+                path="/stock_page/:symbol"
+                render={(props) => <StockPage symbol={props.match.params.symbol}/>}
+              >
               </Route>
             </Switch>
           </div>
         </Router>
-            
       </div>
     );
   }
   
   return (
-      <div className="App">
-        <ul>
-          <li className="navbar-home">
-            Stock XChange
-          </li>
-        </ul>
-        <Login authenticated={authenticated} updateUsername={updateUsername}/>
-      </div>
-    );
+    <div className="App">
+      <ul>
+        <li className="navbar-home">
+          Stock XChange
+        </li>
+      </ul>
+      <Login authenticated={authenticated} updateUsername={updateUsername}/>
+    </div>
+  );
 }
 
 export default App;

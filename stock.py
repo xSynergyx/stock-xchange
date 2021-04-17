@@ -39,14 +39,15 @@ class Stock:
         energy_stock = symbols('stock_categories/energy.csv')
         finance_stock = symbols('stock_categories/finance.csv')
         utilities_stock = symbols('stock_categories/pub_utilities.csv')
-        home_lst.append({'Mega': self.search(mega_stock)})
-        home_lst.append({'Tech': self.search(tech_stock)})
-        home_lst.append({'Energy': self.search(energy_stock)})
-        home_lst.append({'Utilities': self.search(utilities_stock)})
-        home_lst.append({'Finance': self.search(finance_stock)})
+        home_lst.append({'Mega': self.search(mega_stock, 'Mega')})
+        home_lst.append({'Tech': self.search(tech_stock, 'Tech')})
+        home_lst.append({'Energy': self.search(energy_stock, 'Energy')})
+        home_lst.append({'Utilities': self.search(utilities_stock, 'Utilities')})
+        home_lst.append({'Finance': self.search(finance_stock, 'Finance')})
         return home_lst
 
-    def search(self, query):
+    #query is a list and category should be None when searching for indiviudal stock
+    def search(self, query, category):
         """Takes list of symbols, and gathers stock information"""
         data = {}
         stock_symbols = None
@@ -63,7 +64,6 @@ class Stock:
         }
         stocks = [x.upper() for x in query] #capatalize symbols for json file
         response = requests.get(self.IEX_SANDBOX_URL, params=params)
-
         if response.status_code == 404: #Resource not found
             data[query[0]] = 'Not Found'
             return data
@@ -71,7 +71,7 @@ class Stock:
         if response_json[query[0]]['quote'] is None: #200 status but still not valid stock symbol
             data[query[0]] = 'Not Found'
             return data
-        #print(response_json)
+        # print(response_json)
         for stock in stocks:
             stock_dict = {}
             stock_quote = response_json[stock]['quote']
@@ -80,6 +80,7 @@ class Stock:
             stock_dict['High'] = stock_quote['high']
             stock_dict['Low'] = stock_quote['low']
             stock_dict['Price'] = stock_quote['latestPrice']
+            stock_dict['Category'] = category
             data[stock] = stock_dict
         return data
 
@@ -92,17 +93,20 @@ class Stock:
             params = {
                 'q' : stock + ' ',
                 'news_desk' : 'Business',
-                'api-key': os.getenv('NYT_KEY')
+                'api-key': os.getenv('NYT_KEY'),
+                'sort': 'relevance'
             }
             response = requests.get(self.NYT_URL, params=params)
-            print(response)
             if response.status_code == 429: #Too many requests
                 raise KeyError("Response 429")
             data = response.json()
             for i in range(5):
-                #print(data['response']['docs'][i]['headline']['main'])
-                news.append(data['response']['docs'][i]['headline']['main'])
-            #print(data)
+                # print(data['response']['docs'][i]['headline']['main'])
+                # print(data['response']['docs'][i])
+                news.append({
+                    'headline': data['response']['docs'][i]['headline']['main'],
+                    'snippet': data['response']['docs'][i]['snippet']
+                })
         except KeyError:
             params = {
                 'symbols': stock,
@@ -111,17 +115,19 @@ class Stock:
                 'last': 5
             }
             response = requests.get(self.IEX_SANDBOX_NEWS_URL, params=params)
-            print(response)
+            # print(response)
             data = response.json()
-            #print(data[stock])
             stock_news = data[stock]['news']
             for headline in stock_news:
                 #print(str(headline['headline']))
-                news.append(headline['headline'])
+                news.append({
+                    'headline': headline['headline'],
+                    'snippet': headline['summary']
+                })
         except ValueError: #simplejson.errors.JSONDecodeError
             print("Decode JSON failed")
-            news = ["Refresh page"]
-        print(news)
+            news.append({'Error': 'Refresh page'})
+        # print(news)
         return news
 
 # TEST = Stock()
