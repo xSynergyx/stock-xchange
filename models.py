@@ -32,14 +32,15 @@ class Stocks(DB.Model):
     symbols = DB.Column(DB.String(10), unique=True, nullable=True)
     high_stocks = DB.Column(DB.Float, nullable=True)
     low_stocks = DB.Column(DB.Float, nullable=True)
-    current_price=DB.Column(DB.Float, nullable=True)
+    current_price = DB.Column(DB.Float, nullable=True)
     likes = DB.Column(DB.Integer, nullable=True)
-    category= DB.Column(DB.String(80),nullable=True)
+    category = DB.Column(DB.String(80),nullable=True)
 
     like_table_id = DB.Column(DB.Integer,DB.ForeignKey('liketable.id'))
     all_stock = DB.relationship('Comments', backref='stocks', lazy='select')
 
-    def __init__(self, stocks_name, symbols, high_stocks, low_stocks, current_price, likes, category):
+    def __init__(self, stocks_name, symbols, high_stocks, 
+        low_stocks, current_price, likes, category):
         self.stocks_name = stocks_name
         self.symbols = symbols
         self.high_stocks = high_stocks

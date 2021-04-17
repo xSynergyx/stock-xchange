@@ -5,16 +5,15 @@
 
 import os
 import json
-from flask_sqlalchemy import SQLAlchemy
+import random
 from datetime import datetime, timedelta
-from flask import Flask, send_from_directory, request, session
-from stock import Stock
+from flask import Flask, send_from_directory, request
 from flask_socketio import SocketIO
-from stock_utils import parse_api_data
 from flask_cors import CORS
 from dotenv import load_dotenv,find_dotenv
+from stock import Stock
 from database import DB
-import random
+from stock_utils import parse_api_data
 
 APP = Flask(__name__, static_folder='./build/static')
 load_dotenv(find_dotenv())
@@ -92,7 +91,7 @@ def stocks():
             # Gather 4 random stocks from each category
             stocks_data = get_random_stocks_db()
     else:
-        if (LAST_UPDATED_TIME is None):
+        if LAST_UPDATED_TIME is None:
             # Just in case it's not during market hours
             # and the database could be empty
             api_data = stock.default()
@@ -129,7 +128,7 @@ def stock_page():
 
     # Check if the request stock exists in the database
     stock_record = models.Stocks.query.filter_by(symbols=user_symbol).first()
-    if (stock_record is None):
+    if stock_record is None:
         stock_data.update({'Error': 'Invalid Stock Request'})
 
     else:
@@ -152,7 +151,7 @@ def stock_page():
         stock_obj = Stock()
         try:
             news_data = stock_obj.news(stock_data['Company'])
-        except Exception:
+        except KeyError:
             news_data.append({'Error': 'Couldn\'t Retrieve News Data'})
 
     return {'stock_data': stock_data, "page_data": page_data, "news_data": news_data}
@@ -165,7 +164,6 @@ def search():
     ###### Proposed Logic Below #######
     # if Stock_Symbol is in database:
     #  if today is a weekday and during market hours:
-    #      
     #    call API, update DB, return stock info in JSON format
     #       else:
     #           return Stock Info already in DB in JSON format
@@ -181,14 +179,14 @@ def search():
 
 def add_stocks_db(data):
     ''' Insert stock data into the DB '''
-    x=data['allStocks']
-    for i in x:
-        stockname=i['Company']
-        symbol=i['Symbol']
-        high=i['High']
-        low=i['Low']
-        current=i['Price']
-        categories=i['Category']
+    all_stocks = data['allStocks']
+    for i in all_stocks:
+        stockname = i['Company']
+        symbol = i['Symbol']
+        high = i['High']
+        low = i['Low']
+        current = i['Price']
+        categories = i['Category']
 
         # Check if the stock record already exists
         stock_record = models.Stocks.query.filter_by(symbols=symbol).first()
@@ -199,8 +197,8 @@ def add_stocks_db(data):
             stock_record.current_price = current
         else:
             # Add the new stock record to the DB
-            new_Stock=models.Stocks(
-                stocks_name=stockname, 
+            new_stock = models.Stocks(
+                stocks_name=stockname,
                 symbols=symbol,
                 high_stocks=high,
                 low_stocks=low,
@@ -208,7 +206,7 @@ def add_stocks_db(data):
                 likes=0,
                 category=categories)
 
-            DB.session.add(new_Stock)
+            DB.session.add(new_stock)
         DB.session.commit()
 
 
