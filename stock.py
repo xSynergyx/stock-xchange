@@ -126,7 +126,7 @@ class Stock:
                 })
         except ValueError: #simplejson.errors.JSONDecodeError
             print("Decode JSON failed")
-            news.append({'error': 'Refresh page'})
+            news.append({'Error': 'Refresh page'})
         # print(news)
         return news
 

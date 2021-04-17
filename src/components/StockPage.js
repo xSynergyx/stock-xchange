@@ -24,7 +24,15 @@ const StockPage = (props) => {
         })
     }, [props.symbol]);
 
-    if ('Symbol' in stockData) {
+    if ('Error' in stockData) {
+        return (
+            <div id="page_body">
+                <h1>{stockData.Error}</h1>
+            </div>
+        );
+    }
+
+    else if ('Symbol' in stockData) {
         return (
             <div id="page_body">
                 <h1>{stockData.Company} ({stockData.Symbol})</h1>
@@ -49,7 +57,7 @@ const StockPage = (props) => {
     }
 
     return (
-        <div>
+        <div id="page_body">
             Loading...
         </div>
     )
@@ -57,6 +65,14 @@ const StockPage = (props) => {
 
 const ContentSection = (props) => {
     if (props.activeSection === 'News') {
+        if (props.newsData.length > 0 && 'Error' in props.newsData[0]) {
+            return (
+                <div>
+                    {props.newsData[0].Error}
+                </div>
+            );
+        }
+
         return (
             <div>
                 {props.newsData.map((article) => {
@@ -70,6 +86,7 @@ const ContentSection = (props) => {
             </div>
         );
     }
+
     else if (props.activeSection === 'Comments') {
         return (
             <div>
