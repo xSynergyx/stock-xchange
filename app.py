@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from flask import Flask, send_from_directory, request
 from flask_socketio import SocketIO
 from flask_cors import CORS
-from dotenv import load_dotenv,find_dotenv
+from dotenv import load_dotenv, find_dotenv
 from stock import Stock
 from database import DB
 from stock_utils import parse_api_data
@@ -141,12 +141,12 @@ def stock_page():
         # Get the stock info from the DB
         stock_data = {}
         stock_data.update({
-                'Symbol': stock_record.symbols,
-                'Company': stock_record.stocks_name,
-                'High': stock_record.high_stocks,
-                'Low': stock_record.low_stocks,
-                'Price': stock_record.current_price,
-                'Category': stock_record.category})
+            'Symbol': stock_record.symbols,
+            'Company': stock_record.stocks_name,
+            'High': stock_record.high_stocks,
+            'Low': stock_record.low_stocks,
+            'Price': stock_record.current_price,
+            'Category': stock_record.category})
 
         stock_obj = Stock()
         try:
