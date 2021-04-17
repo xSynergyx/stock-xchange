@@ -78,7 +78,7 @@ const StockTable = (props) => {
                     type="radio"
                     name="filter"/>Category
             </div>
-            <table id="stocks_table">
+            <table id="stocks_table" data-testid="stocks_table">
                 <thead>
                     <tr>
                         <td>Symbol</td>
