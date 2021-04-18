@@ -33,7 +33,7 @@ class Stocks(DB.Model):
     low_stocks = DB.Column(DB.Float, nullable=True)
     current_price=DB.Column(DB.Float, nullable=True)
     likes = DB.Column(DB.Integer, nullable=True)
-    category= DB.Column(DB.String(80),nullable=True)
+    category= DB.Column(DB.String(80),nullable=False)
 
     like_table_id = DB.Column(DB.Integer,DB.ForeignKey('liketable.id'))
     all_stock = DB.relationship('Comments', backref='stocks', lazy='select')
