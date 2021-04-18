@@ -12,7 +12,7 @@ const StockPage = (props) => {
         fetch("/stock_page", {
             method: "POST",
             headers: {
-                "content_type":"application/json",
+                "Content-Type": "application/json; charset=utf-8",
             },
             body: JSON.stringify({stock_symbol: props.symbol})
         })

@@ -66,8 +66,8 @@ def stocks():
     curr_day = datetime.today().weekday()
     now = datetime.now()
     curr_date = curr_date = now.strftime("%Y-%m-%d")
-    open_time = datetime.strptime('{} 9:30AM EST'.format(curr_date), '%Y-%m-%d %I:%M%p %Z')
-    close_time = datetime.strptime('{} 4:00PM EST'.format(curr_date), '%Y-%m-%d %I:%M%p %Z')
+    open_time = datetime.strptime('{} 9:30AM'.format(curr_date), '%Y-%m-%d %I:%M%p')
+    close_time = datetime.strptime('{} 4:00PM'.format(curr_date), '%Y-%m-%d %I:%M%p')
 
     if (
             curr_day in weekdays
@@ -124,7 +124,7 @@ def stock_page():
     page_data = {}
     stock_data = {}
     # Get the stock id sent from the client side
-    user_symbol = request.get_json()['stock_symbol']
+    user_symbol = request.get_json(force=True)['stock_symbol']
 
     # Check if the request stock exists in the database
     stock_record = models.Stocks.query.filter_by(symbols=user_symbol).first()
