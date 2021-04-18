@@ -108,8 +108,7 @@ class StockSearchTestCase(unittest.TestCase):
 
     def test_search(self):
         """
-        Tests to see if search method returns a dictionary with the correct
-        information based on the submitted stock symbols
+        Search method tests.
         """
         test_pass = 1
         for test in self.success_test_params:

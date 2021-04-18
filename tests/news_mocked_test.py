@@ -33,8 +33,7 @@ class NewsTestCase(unittest.TestCase):
 
     def test_news(self):
         """
-        Tests to see if search method returns a dictionary with the correct
-        information based on the submitted stock symbols
+        News method tests.
         """
         test_pass = 1
         for test in self.success_test_params:

@@ -17,7 +17,7 @@ OUTPUTS = [EXPECTED1, EXPECTED2, EXPECTED3]
 DATA_INPUT = 'input'
 EXPECTED_OUTPUT = 'expected'
 
-class NewsTestCase(unittest.TestCase):
+class StockUtilsTestCase(unittest.TestCase):
     """
     Stock search test case class.
     """
@@ -39,8 +39,7 @@ class NewsTestCase(unittest.TestCase):
 
     def test_stocks_util(self):
         """
-        Tests to see if search method returns a dictionary with the correct
-        information based on the submitted stock symbols
+        Stock Util tests.
         """
         test_pass = 1
         for test in self.success_test_params:
@@ -55,7 +54,7 @@ class NewsTestCase(unittest.TestCase):
             )
             print("TEST{} passed".format(test_pass))
             test_pass += 1
-        print("All news test cases pass")
+        print("All test cases pass")
 
 
 if __name__ == '__main__':

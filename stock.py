@@ -14,15 +14,20 @@ load_dotenv(find_dotenv())
 
 def symbols(csv_file):
     """Gathers symbols into list from csv file"""
-    file = pd.read_csv(csv_file)
-    symbol = file['Symbol']
     stock_lst = []
-    num_list = []
-    while len(stock_lst) < 4:
-        num = randint(0, len(symbol)-1)
-        if num not in num_list:
-            stock_lst.append(symbol[num])
-            num_list.append(num)
+    try:
+        file = pd.read_csv(csv_file)
+        symbol = file['Symbol']
+        num_list = []
+        while len(stock_lst) < 4:
+            num = randint(0, len(symbol)-1)
+            if num not in num_list:
+                stock_lst.append(symbol[num])
+                num_list.append(num)
+    except FileNotFoundError:
+        stock_lst = ['File Not Found']
+    except KeyError:
+        stock_lst = ['Wrong Format']
     return stock_lst
 
 class Stock:
@@ -130,7 +135,7 @@ class Stock:
         # print(news)
         return news
 
-# TEST = Stock()
+TEST = Stock()
 # for count in range(20):
 #     TEST.news('AAPL')
-# #print(TEST.default())
+print(TEST.default())
