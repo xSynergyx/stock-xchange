@@ -185,15 +185,15 @@ def add_stocks_db(data):
         low=i['Low']
         current=i['Price']
         categories=i['Category']
-            #Add to db
         stocks_db= models.Stocks.query.all()
-        new_Stock=models.Stocks(stocks_name=stockname, symbols=symbol , high_stocks=high, low_stocks=low,current_price=current, likes=0, category=categories)
-        DB.session.add(new_Stock)
-        DB.session.commit()
-        
-        
-
-
+        if stockname not in stocks_db:
+            #Add to db
+            new_Stock=models.Stocks(stocks_name=stockname, symbols=symbol , high_stocks=high, low_stocks=low,current_price=current, likes=0, category=categories)
+            DB.session.add(new_Stock)
+            DB.session.commit()
+        else:
+            return "Already Added"
+    
 
 if __name__ == "__main__":
     DB.create_all()
