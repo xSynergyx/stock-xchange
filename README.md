@@ -51,8 +51,9 @@ An app to bring together a community of investors ready and willing to help each
 
 ## Linting 
 + E1101 (import-error) because unites files function correctly, which means that the file successfully imported
-+ W0603
++ W0603 (global-statement)
 + C0413 (wrong-import-position) because in order for the app.py to work correctly we have to import a table after some sqlalchemy configuration code
-+ W1508 
++ W1508 (invalid-envvar-default)
 + C0200 (consider-using-enumerate)
 + R0801 (duplicate-code)
++ E1101 (no-member)
