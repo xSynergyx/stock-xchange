@@ -73,6 +73,7 @@ def stocks():
             curr_day in weekdays
             and open_time <= now <= close_time
     ):
+        # Get the last updated time for the server
         global LAST_UPDATED_TIME
 
         if (
@@ -124,7 +125,8 @@ def stock_page():
     page_data = {}
     stock_data = {}
     # Get the stock id sent from the client side
-    user_symbol = request.get_json(force=True)['stock_symbol']
+    content = request.get_json(force=True)
+    user_symbol = content.get('stock_symbol')
 
     # Check if the request stock exists in the database
     stock_record = models.Stocks.query.filter_by(symbols=user_symbol).first()
