@@ -135,7 +135,7 @@ class Stock:
         # print(news)
         return news
 
-TEST = Stock()
+#TEST = Stock()
 # for count in range(20):
 #     TEST.news('AAPL')
-print(TEST.default())
+#print(TEST.default())
