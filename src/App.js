@@ -15,15 +15,15 @@ function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("Profile");
-  
+
   function authenticated(){
     setIsLoggedIn(!isLoggedIn);
   }
-  
+
   function updateUsername(newUsername){
     setUsername(newUsername);
   }
-  
+
   if (isLoggedIn){
     return (
       <div className="App">
@@ -73,7 +73,7 @@ function App() {
       </div>
     );
   }
-  
+
   return (
     <div className="App">
       <ul>

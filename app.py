@@ -126,12 +126,20 @@ def stock_page():
     stock_data = {}
     # Get the stock id sent from the client side
     content = request.get_json(force=True)
-    user_symbol = content.get('stock_symbol')
+    user_symbol = content.get('stock_symbol').upper()
+    stock_obj = Stock()
 
     # Check if the request stock exists in the database
     stock_record = models.Stocks.query.filter_by(symbols=user_symbol).first()
     if stock_record is None:
-        stock_data.update({'Error': 'Invalid Stock Request'})
+        # Query the API for user requested stock
+        api_data = stock_obj.search([user_symbol], None)
+
+        if 'Not Found' in api_data.values():
+            stock_data.update({'Error': 'No Results Found'})
+        else:
+            stock_data = parse_api_data(api_data)
+            add_stocks_db(stock_data)
 
     else:
         # To get page data, we would search the database's Comments table
@@ -150,33 +158,12 @@ def stock_page():
             'Price': stock_record.current_price,
             'Category': stock_record.category})
 
-        stock_obj = Stock()
         try:
             news_data = stock_obj.news(stock_data['Company'])
         except KeyError:
             news_data.append({'Error': 'Couldn\'t Retrieve News Data'})
 
     return {'stock_data': stock_data, "page_data": page_data, "news_data": news_data}
-
-
-@APP.route('/search', methods=['POST'])
-def search():
-    ''' Processes user's request and returns the stock information '''
-    return None
-    ###### Proposed Logic Below #######
-    # if Stock_Symbol is in database:
-    #  if today is a weekday and during market hours:
-    #    call API, update DB, return stock info in JSON format
-    #       else:
-    #           return Stock Info already in DB in JSON format
-    #   else not a weekday:
-    #       return Stock info already in DB in JSON format
-    # else Stock_Symbol isn't in DB:
-    #   if it's a weekday and during market hours:
-    #       call API with user's request, add new Stock record to DB,
-    #       return data to client in JSON format
-    #   else:
-    #       return stock info not available message
 
 
 def add_stocks_db(data):
