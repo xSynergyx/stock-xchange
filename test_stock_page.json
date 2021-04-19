@@ -1,0 +1,7 @@
+{
+    "comments": [
+        {"user_id": 12, "stock_id": 12, "message": "Definitely buy this!", "date_time": "12/01/21 10:12:23 PM", "likes": 12},
+        {"user_id": 4, "stock_id": 12, "message": "Nah don't buy this!", "date_time": "12/01/21 08:35:04 PM", "likes": 2}
+    ],
+    "information": "Technology company specializing in human resources software."
+}
