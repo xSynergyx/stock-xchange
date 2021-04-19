@@ -9,7 +9,7 @@ const StockPage = (props) => {
 
     // Request the page info (comments, company bio, likes, etc.) from the server.
     useEffect(() => {
-        fetch("/stock_page", {
+        fetch("/stock", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
