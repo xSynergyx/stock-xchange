@@ -1,4 +1,4 @@
-# Sprint 1 Heroku link: https://intense-tor-77466.herokuapp.com
+# [Heroku Sprint 1](https://intense-tor-77466.herokuapp.com)
 # Stock XChange
 An app to bring together a community of investors ready and willing to help each other grow.
 
@@ -10,6 +10,7 @@ An app to bring together a community of investors ready and willing to help each
 5. `sudo yum install postgresql postgresql-server postgresql-devel postgresql-contrib postgresql-docs` (enter yes on all prompts)
 6. `pip install psycopg2-binary`
 7. `pip install Flask-SQLAlchemy==2.1`
+8. `sudo pip install pandas`
 
 ## Setup
 1. Run `echo "DANGEROUSLY_DISABLE_HOST_CHECK=true" > .env.development.local` in the project directory
