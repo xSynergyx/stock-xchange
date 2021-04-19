@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
 test('Stock XChange logo and Login button in displayed', () => {
@@ -10,5 +10,5 @@ test('Stock XChange logo and Login button in displayed', () => {
   const joinButtonElement = screen.getByText('Login');
   expect(joinButtonElement).toBeInTheDocument();
   
-  //fireEvent.click(joinButtonElement);
+  //fireEvent.click(joinButtonElement); (must import)
 });
