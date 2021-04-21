@@ -30,12 +30,25 @@ def symbols(csv_file):
         stock_lst = ['Wrong Format']
     return stock_lst
 
+def crypto_symbols(crypto_big_lst):
+    num_lst = []
+    lst = []
+    while len(lst) < 4:#Put into separate function
+        num = randint(0, len(crypto_big_lst)-1) 
+        if num not in num_lst:
+            lst.append(crypto_big_lst[num])
+            num_lst.append(num)
+    #print(lst)
+    return lst
+
 class Stock:
     """Class object gathers stock information and news for selected companies"""
     IEX_SANDBOX_URL = "https://sandbox.iexapis.com/stable/stock/market/batch?"
     IEX_SANDBOX_NEWS_URL = "https://sandbox.iexapis.com/stable/stock/market/batch?"
     NYT_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json"
-
+    IEX_SANDBOX_CRYPTO_URL = "https://sandbox.iexapis.com/stable/crypto/{}/price"
+    CRYPTO_SYMBOL_URL = "https://sandbox.iexapis.com/stable/ref-data/crypto/symbols"
+    
     def default(self):
         """Default homescreen with stock information"""
         home_lst = []
@@ -49,6 +62,7 @@ class Stock:
         home_lst.append({'Energy': self.search(energy_stock, 'Energy')})
         home_lst.append({'Utilities': self.search(utilities_stock, 'Utilities')})
         home_lst.append({'Finance': self.search(finance_stock, 'Finance')})
+        #home_lst.append({'Cryptocurrency' : self.crypto("")})
         return home_lst
 
     #query is a list and category should be None when searching for indiviudal stock
@@ -71,6 +85,9 @@ class Stock:
         response = requests.get(self.IEX_SANDBOX_URL, params=params)
         if response.status_code == 404: #Resource not found
             data[query[0]] = 'Not Found'
+            return data
+        if response.status_code > 500: #Server error
+            data['Error'] = 'Server Error'
             return data
         response_json = response.json()
         if response_json[query[0]]['quote'] is None: #200 status but still not valid stock symbol
@@ -134,8 +151,34 @@ class Stock:
             news.append({'Error': 'Refresh page'})
         # print(news)
         return news
-
-#TEST = Stock()
+    
+    def crypto(self, stock):
+        """ Takes empty string to randomly search for 4 currencies, and search if stock entered
+         with length greater than 0. Returns list with dictionaires symbol and price"""
+        symbol_lst = []
+        homescreen_lst = None
+        crypto_lst = []
+        params = {
+            'token': os.getenv('IEX_CLOUD_SANDBOX_KEY')
+        }
+        response = requests.get(self.CRYPTO_SYMBOL_URL , params=params)
+        symbol_json = response.json()
+        for symbol in symbol_json:
+            symbol_lst.append(symbol["symbol"])
+        if len(stock) > 0:
+            response = requests.get(self.IEX_SANDBOX_CRYPTO_URL.format(stock), params=params)
+            data = response.json()
+            crypto_lst.append({'symbol' : stock, 'price' : data['price']})
+        else:
+            homescreen_lst = crypto_symbols(symbol_lst)
+            print(homescreen_lst)
+            for i in homescreen_lst:
+                response = requests.get(self.IEX_SANDBOX_CRYPTO_URL.format(i), params=params)
+                data = response.json()
+                crypto_lst.append({'symbol' : i, 'price' : data['price']})
+        return crypto_lst
+TEST = Stock()
+print(TEST.crypto(""))
 # for count in range(20):
 #     TEST.news('AAPL')
 #print(TEST.default())
