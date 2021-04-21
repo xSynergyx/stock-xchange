@@ -178,8 +178,8 @@ class Stock:
                 data = response.json()
                 crypto_lst.append({'symbol' : i, 'price' : data['price']})
         return crypto_lst
-TEST = Stock()
-print(TEST.crypto(""))
+#TEST = Stock()
+#print(TEST.crypto(""))
 # for count in range(20):
 #     TEST.news('AAPL')
 #print(TEST.default())
