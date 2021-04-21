@@ -31,10 +31,11 @@ def symbols(csv_file):
     return stock_lst
 
 def crypto_symbols(crypto_big_lst):
+    """ Gathers four random crypto currencies from list """
     num_lst = []
     lst = []
     while len(lst) < 4:#Put into separate function
-        num = randint(0, len(crypto_big_lst)-1) 
+        num = randint(0, len(crypto_big_lst)-1)
         if num not in num_lst:
             lst.append(crypto_big_lst[num])
             num_lst.append(num)
@@ -48,7 +49,7 @@ class Stock:
     NYT_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json"
     IEX_SANDBOX_CRYPTO_URL = "https://sandbox.iexapis.com/stable/crypto/{}/price"
     CRYPTO_SYMBOL_URL = "https://sandbox.iexapis.com/stable/ref-data/crypto/symbols"
-    
+
     def default(self):
         """Default homescreen with stock information"""
         home_lst = []
@@ -151,7 +152,7 @@ class Stock:
             news.append({'Error': 'Refresh page'})
         # print(news)
         return news
-    
+
     def crypto(self, stock):
         """ Takes empty string to randomly search for 4 currencies, and search if stock entered
          with length greater than 0. Returns list with dictionaires symbol and price"""
@@ -161,9 +162,9 @@ class Stock:
         params = {
             'token': os.getenv('IEX_CLOUD_SANDBOX_KEY')
         }
-        response = requests.get(self.CRYPTO_SYMBOL_URL , params=params)
+        response = requests.get(self.CRYPTO_SYMBOL_URL, params=params)
         symbol_json = response.json()
-        for symbol in symbol_json:
+        for symbol in symbol_json: #Gathers accepted list of currencies
             symbol_lst.append(symbol["symbol"])
         if len(stock) > 0:
             response = requests.get(self.IEX_SANDBOX_CRYPTO_URL.format(stock), params=params)
