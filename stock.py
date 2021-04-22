@@ -85,8 +85,9 @@ class Stock:
         stocks = [x.upper() for x in query] #capatalize symbols for json file
         response = requests.get(self.IEX_SANDBOX_URL, params=params)
         if response.status_code == 404: #Resource not found
+            crypto_search = self.crypto(query[0])
             data[query[0]] = 'Not Found'
-            return data
+            return crypto_search
         if response.status_code > 500: #Server error
             data['Error'] = 'Server Error'
             return data
@@ -153,7 +154,7 @@ class Stock:
         # print(news)
         return news
 
-    def crypto(self, stock):
+    def crypto(self, query):
         """ Takes empty string to randomly search for 4 currencies, and search if stock entered
          with length greater than 0. Returns list with dictionaires symbol and price"""
         symbol_lst = []
@@ -166,15 +167,21 @@ class Stock:
         symbol_json = response.json()
         for symbol in symbol_json: #Gathers accepted list of currencies
             symbol_lst.append(symbol["symbol"])
-        if len(stock) > 0:
-            response = requests.get(self.IEX_SANDBOX_CRYPTO_URL.format(stock), params=params)
+        if len(query) > 0:
+            response = requests.get(self.IEX_SANDBOX_CRYPTO_URL.format(query), params=params)
+            if response.status_code == 404: #Not found
+                return {query : 'Not Found'}
+            if response.status_code > 500: #Server error
+                return {'Error' : 'Server Error'}
             data = response.json()
-            crypto_lst.append({'symbol' : stock, 'price' : data['price']})
+            crypto_lst.append({'symbol' : query, 'price' : data['price']})
         else:
             homescreen_lst = crypto_symbols(symbol_lst)
             print(homescreen_lst)
             for i in homescreen_lst:
                 response = requests.get(self.IEX_SANDBOX_CRYPTO_URL.format(i), params=params)
+                if response.status_code > 500: #Server error
+                    return {'Error' : 'Server Error'}
                 data = response.json()
                 crypto_lst.append({'symbol' : i, 'price' : data['price']})
         return crypto_lst
@@ -182,4 +189,5 @@ class Stock:
 #print(TEST.crypto(""))
 # for count in range(20):
 #     TEST.news('AAPL')
-#print(TEST.default())
+#print(TEST.crypto('ATOWS'))
+#print(TEST.search(['ATOWS'], None))
