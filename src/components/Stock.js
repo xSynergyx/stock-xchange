@@ -17,10 +17,26 @@ function Stock() {
     }, []);
 
     if (Object.keys(stocks).length) {
+        const megaStocks = stocks.allStocks.filter((stock) => stock.Category === 'Mega');
+        const techStocks = stocks.allStocks.filter((stock) => stock.Category === 'Tech');
+        const finStocks = stocks.allStocks.filter((stock) => stock.Category === 'Finance');
+        const utilStocks = stocks.allStocks.filter((stock) => stock.Category === 'Utilities');
+        const energyStocks = stocks.allStocks.filter((stock) => stock.Category === 'Energy');
+
         return (
             <div id="page_body">
                 <h2>Click on a row to go to that stock's discussion page.</h2>
-                <StockTable stocks={stocks.allStocks} />
+                All filters result in data in descending order. <br/>
+                Energy
+                <StockTable stocks={energyStocks} />
+                Finance
+                <StockTable stocks={finStocks} />
+                Mega
+                <StockTable stocks={megaStocks} />
+                Tech
+                <StockTable stocks={techStocks} />
+                Utilities
+                <StockTable stocks={utilStocks} />
             </div>
         );
     }

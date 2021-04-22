@@ -3,7 +3,7 @@ import './StockTable.css';
 import { useHistory } from "react-router-dom";
 
 const StockTable = (props) => {
-    const headers = ['Symbol', 'Company', 'High', 'Low', 'Price', 'Category'];
+    const headers = ['Symbol', 'Company', 'High', 'Low', 'Price'];
     const history = useHistory();
     const [tableData, setTableData] = useState(props.stocks);
 
@@ -40,12 +40,6 @@ const StockTable = (props) => {
                     return newTable.sort((a, b) => (a.Company < b.Company) ? -1 : 1);
                 });
             break;
-            case 'Category':
-                setTableData((oldTable) => {
-                    let newTable = [...oldTable];
-                    return newTable.sort((a, b) => (a.Category < b.Category) ? -1 : 1);
-                });
-            break;
             default:
                 setTableData((oldTable) => {
                     return props.stocks;
@@ -55,7 +49,6 @@ const StockTable = (props) => {
 
     return (
         <div>
-            All filters result in data in descending order.
             <div>
                 <input
                     onClick={() => filterData('Price')}
@@ -73,10 +66,6 @@ const StockTable = (props) => {
                     onClick={() => filterData('Company')}
                     type="radio"
                     name="filter"/>Company Name
-                <input
-                    onClick={() => filterData('Category')}
-                    type="radio"
-                    name="filter"/>Category
             </div>
             <table id="stocks_table" data-testid="stocks_table">
                 <thead>
@@ -86,7 +75,6 @@ const StockTable = (props) => {
                         <td>High</td>
                         <td>Low</td>
                         <td>Price</td>
-                        <td>Category</td>
                     </tr>
                 </thead>
                 <tbody>
