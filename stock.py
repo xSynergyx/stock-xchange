@@ -63,7 +63,7 @@ class Stock:
         home_lst.append({'Energy': self.search(energy_stock, 'Energy')})
         home_lst.append({'Utilities': self.search(utilities_stock, 'Utilities')})
         home_lst.append({'Finance': self.search(finance_stock, 'Finance')})
-        #home_lst.append({'Cryptocurrency' : self.crypto("")})
+        home_lst.append({'Cryptocurrency' : self.crypto("")})
         return home_lst
 
     #query is a list and category should be None when searching for indiviudal stock
@@ -79,7 +79,7 @@ class Stock:
                 stock_symbols += ',{}'.format(query[i])
         params = {
             'symbols': stock_symbols,
-            'types': 'quote',
+            'types': 'company,quote',
             'token': os.getenv('IEX_CLOUD_SANDBOX_KEY')
         }
         stocks = [x.upper() for x in query] #capatalize symbols for json file
@@ -105,6 +105,7 @@ class Stock:
             stock_dict['Low'] = stock_quote['low']
             stock_dict['Price'] = stock_quote['latestPrice']
             stock_dict['Category'] = category
+            stock_dict['Overview'] = response_json[stock]['company']['description']
             data[stock] = stock_dict
         return data
 
@@ -191,3 +192,4 @@ class Stock:
 #     TEST.news('AAPL')
 #print(TEST.crypto('ATOWS'))
 #print(TEST.search(['ATOWS'], None))
+#print(TEST.default())
