@@ -44,13 +44,14 @@ def index(filename):
 # When a client connects from this Socket connection, this function is run
 @SOCKET_IO.on('connect')
 def on_connect():
-    """ checks if user connected and dsiplay the leaderboard """
-    print('User connected!')
+    """ Checks if user connected and sends socket_id """
+    print("User connected! " + request.sid)
+    
 
 # When a client disconnects from this Socket connection, this function is run
 @SOCKET_IO.on('disconnect')
 def on_disconnect():
-    """CHecks if user is disconnected """
+    """Checks if user is disconnected """
     print('User disconnected!')
 
 
