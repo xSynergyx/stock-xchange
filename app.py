@@ -46,7 +46,7 @@ def index(filename):
 def on_connect():
     """ Checks if user connected and sends socket_id """
     print("User connected! " + request.sid)
-    
+
 
 # When a client disconnects from this Socket connection, this function is run
 @SOCKET_IO.on('disconnect')
