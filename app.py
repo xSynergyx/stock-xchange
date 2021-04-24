@@ -27,6 +27,7 @@ import models
 # Datetime object to store the last time the database was updated
 # Server-wide variable compared to each incoming client-side request
 LAST_UPDATED_TIME = None
+USER_LIST = [] #{socket_id: id, player_name: name}
 
 COR_S = CORS(APP, resources={r"/*": {"origins": "*"}})
 SOCKET_IO = SocketIO(APP,
@@ -44,15 +45,33 @@ def index(filename):
 # When a client connects from this Socket connection, this function is run
 @SOCKET_IO.on('connect')
 def on_connect():
-    """ checks if user connected and dsiplay the leaderboard """
+    """ checks if user connected"""
     print('User connected!')
-
+    
+    
 # When a client disconnects from this Socket connection, this function is run
 @SOCKET_IO.on('disconnect')
 def on_disconnect():
     """CHecks if user is disconnected """
     print('User disconnected!')
+    
 
+@SOCKET_IO.on('login')
+def on_login(data):
+    global USER_LIST
+    socket_id = request.sid
+    if not any(d['socket_id'] == data['socket_id'] for d in USER_LIST): #Checks if socket is in list
+        user = {'socket_id': data['socket_id'] , 'name' : data['name']}
+        USER_LIST.append(user)
+    sid = {'socket_id': socket_id} #sends id to client
+    display_list = [user['name'] for user in USER_LIST]
+    SOCKET_IO.emit('login', display_list, broadcast=True, include_self=True)
+
+@SOCKET_IO.on('like')
+def on_like(data):
+    """Takes stock info with new like number, changes it in the db, and emits to others"""
+    new_like = data['likes']
+    #SOCKET_IO.emit('like', )
 
 @APP.route('/stocks', methods=['GET'])
 def stocks():
