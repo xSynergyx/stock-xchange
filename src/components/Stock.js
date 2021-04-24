@@ -40,7 +40,7 @@ function Stock() {
             </div>
         );
     }
-    
+
     return (
         <div id="page_body">
             ...Loading
