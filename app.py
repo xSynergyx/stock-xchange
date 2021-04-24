@@ -220,6 +220,23 @@ def get_random_stocks_db():
     return stocks_data
 
 
+@APP.route('/like_stock', methods=['POST'])
+def like_stock():
+    ''' Insert or delete a record from a user's liked stocks '''
+    content = request.get_json(force=True)
+    user_symbol = content.get('stock_symbol').upper()
+    email = content.get('email')
+
+    print('Email ' + email + ' liked stock: ' + user_symbol)
+    ### Proposed DB Logic ####
+    # if a record in the Likes table with matching email & symbol exists:
+    #       it's a dislike click so remove that record from the table
+    # else:
+    #       create a record with client's email / stock symbol in the table
+
+    return {}
+
+
 if __name__ == "__main__":
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
     SOCKET_IO.run(

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './StockTable.css';
 import { useHistory } from "react-router-dom";
+import { AiFillLike, AiOutlineLike } from 'react-icons/ai';
 
 const StockTable = (props) => {
     const headers = ['Symbol', 'Company', 'High', 'Low', 'Price'];
@@ -80,10 +81,11 @@ const StockTable = (props) => {
                 <tbody>
                     {tableData.map((stock) => {
                         return (
-                            <tr id={stock.Symbol} onClick={() => onRowClick(stock.Symbol)}>
+                            <tr id={stock.Symbol}>
                                 {headers.map((header) => (
-                                    <td>{stock[header]}</td>
+                                    <td onClick={() => onRowClick(stock.Symbol)}>{stock[header]}</td>
                                 ))}
+                                <Like symbol={stock.Symbol} />
                             </tr>
                         );
                     })}
@@ -91,6 +93,39 @@ const StockTable = (props) => {
             </table>
         </div>
     )
+}
+
+
+const Like = (props) => {
+    const [isClicked, setClicked] = useState(false);
+
+    useEffect(() => {
+        // Call server to figure out
+        // if it's a like / dislike
+        fetch("/like_stock", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({stock_symbol: props.symbol, email: 'test@mail.com'})
+        });
+
+        setTimeout(() => {
+            setClicked(false);
+        }, 1000);
+    }, [isClicked]);
+
+    if (isClicked) {
+        return (
+            <td id="fill_like" onClick={() => setClicked(!isClicked)}><AiFillLike /></td>
+        );
+    }
+
+    else {
+        return (
+            <td id="outline_like" onClick={() => setClicked(!isClicked)}><AiOutlineLike /></td>
+        );
+    }
 }
 
 export default StockTable;

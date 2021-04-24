@@ -4,7 +4,7 @@ import StockTable from './StockTable.js'
 
 function Stock() {
     const [stocks, setStocks] = useState({});
-    
+
     // Request the list of all stocks from the server using the '/stocks'
     // path. The server would retrieve the records from the Stocks table in the
     // database via SQLAlchemy model and return the results in JSON format.
