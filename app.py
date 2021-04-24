@@ -47,30 +47,33 @@ def index(filename):
 def on_connect():
     """ checks if user connected"""
     print('User connected!')
-    
-    
-# When a client disconnects from this Socket connection, this function is run
+
 @SOCKET_IO.on('disconnect')
 def on_disconnect():
-    """CHecks if user is disconnected """
+    """Checks if user is disconnected and removes them from user list"""
     print('User disconnected!')
-    
 
 @SOCKET_IO.on('login')
 def on_login(data):
+    """ Sends updated list of active users to client """
     global USER_LIST
-    socket_id = request.sid
     if not any(d['socket_id'] == data['socket_id'] for d in USER_LIST): #Checks if socket is in list
-        user = {'socket_id': data['socket_id'] , 'name' : data['name']}
+        user = {'socket_id': data['socket_id'], 'name' : data['name']}
         USER_LIST.append(user)
-    sid = {'socket_id': socket_id} #sends id to client
+    #sid = {'socket_id': socket_id} #sends id to client
     display_list = [user['name'] for user in USER_LIST]
     SOCKET_IO.emit('login', display_list, broadcast=True, include_self=True)
 
 @SOCKET_IO.on('like')
 def on_like(data):
     """Takes stock info with new like number, changes it in the db, and emits to others"""
-    new_like = data['likes']
+    symbol = data['symbol']
+    stock = models.Stocks.query.filter_by(symbols=symbol).first()
+    stock = DB.session.query(models.Stocks).filter(models.Stocks.symbols == symbol).first()
+    stock.likes = data['likes']
+    DB.session.commit()
+    #Dont know exactly how what I want to emit: The whole list of stocks from the
+    #home page or just the one stock
     #SOCKET_IO.emit('like', )
 
 @APP.route('/stocks', methods=['GET'])
