@@ -1,5 +1,5 @@
 '''
-    stock_utisl_test.py
+    stock_utils_unmocked_test.py
     Tests to see if values are accurate depending on desired search of stock and to check
     if apis switch after 10 requests in a minute.
 '''
