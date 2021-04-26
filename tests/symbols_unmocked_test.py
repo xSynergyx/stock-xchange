@@ -1,5 +1,5 @@
 '''
-    symbols_unittest.py
+    symbols_unmocked_test.py
     Tests to see if symbols function will recognize a csv file and if it will print out
     correct data.
 '''
@@ -16,7 +16,7 @@ EXPECTED_OUTPUT = "expected"
 
 class SymbolsTestCase(unittest.TestCase):
     """
-    Stock search test case class.
+    Stock symbol test case class.
     """
     def setUp(self):
         self.success_test_params = [

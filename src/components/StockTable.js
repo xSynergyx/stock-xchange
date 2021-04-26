@@ -85,7 +85,11 @@ const StockTable = (props) => {
                                 {headers.map((header) => (
                                     <td onClick={() => onRowClick(stock.Symbol)}>{stock[header]}</td>
                                 ))}
-                                <Like symbol={stock.Symbol} />
+                                <Like
+                                    symbol={stock.Symbol}
+                                    email={props.email}
+                                    likedStocks={props.likedStocks}
+                                    setLikedStocks={props.setLikedStocks} />
                             </tr>
                         );
                     })}
@@ -99,7 +103,7 @@ const StockTable = (props) => {
 const Like = (props) => {
     const [isClicked, setClicked] = useState(false);
 
-    useEffect(() => {
+    const onLike = () => {
         // Call server to figure out
         // if it's a like / dislike
         fetch("/like_stock", {
@@ -107,23 +111,33 @@ const Like = (props) => {
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
             },
-            body: JSON.stringify({stock_symbol: props.symbol, email: 'test@mail.com'})
+            body: JSON.stringify({stock_symbol: props.symbol, email: props.email})
         });
 
-        setTimeout(() => {
+        if (isClicked || props.likedStocks.filter((stock) => stock.Symbol === props.symbol).length > 0) {
+            // Update liked stocks list to re-render component
+            props.setLikedStocks((oldStocks) => {
+                const newStocks = [...oldStocks];
+                return newStocks.filter((stock) => stock.Symbol != props.symbol);
+            })
             setClicked(false);
-        }, 1000);
-    }, [isClicked]);
+        }
+        else {
+            setClicked(true);
+        }
+    }
 
-    if (isClicked) {
+    // Check if button has been clicked or stock is in the user's liked stocks, in which case
+    // the button should indicate that it's pressed
+    if (isClicked || props.likedStocks.filter((stock) => stock.Symbol === props.symbol).length > 0) {
         return (
-            <td id="fill_like" onClick={() => setClicked(!isClicked)}><AiFillLike /></td>
+            <td id="fill_like" onClick={onLike}><AiFillLike /></td>
         );
     }
 
     else {
         return (
-            <td id="outline_like" onClick={() => setClicked(!isClicked)}><AiOutlineLike /></td>
+            <td id="outline_like" onClick={onLike}><AiOutlineLike /></td>
         );
     }
 }

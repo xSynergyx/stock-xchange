@@ -1,9 +1,11 @@
 import './Stock.css';
 import React, { useState, useEffect } from 'react';
 import StockTable from './StockTable.js'
+import { AiFillPropertySafety } from 'react-icons/ai';
 
-function Stock() {
+const Stock = (props) => {
     const [stocks, setStocks] = useState({});
+    const [likedStocks, setLikedStocks] = useState({});
 
     // Request the list of all stocks from the server using the '/stocks'
     // path. The server would retrieve the records from the Stocks table in the
@@ -13,6 +15,18 @@ function Stock() {
         .then(res => res.json())
         .then(data => {
             setStocks(data);
+        });
+
+        fetch("/get_liked_stocks", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({email: props.email})
+        })
+        .then(res => res.json())
+        .then(data => {
+            setLikedStocks(data.myLikedStocks);
         });
     }, []);
 
@@ -33,15 +47,35 @@ function Stock() {
                 <div className="container">
                     <div className="stock-list">
                         <h2 className="sector-title">Energy</h2>
-                        <StockTable stocks={energyStocks} />
+                        <StockTable 
+                            stocks={energyStocks}
+                            email={props.email}
+                            likedStocks={likedStocks}
+                            setLikedStocks={setLikedStocks} />
                         <h2 className="sector-title">Finance</h2>
-                        <StockTable stocks={finStocks} />
+                        <StockTable
+                            stocks={finStocks}
+                            email={props.email}
+                            likedStocks={likedStocks}
+                            setLikedStocks={setLikedStocks} />
                         <h2 className="sector-title">Mega</h2>
-                        <StockTable stocks={megaStocks} />
+                        <StockTable
+                            stocks={megaStocks}
+                            email={props.email}
+                            likedStocks={likedStocks}
+                            setLikedStocks={setLikedStocks} />
                         <h2 className="sector-title">Tech</h2>
-                        <StockTable stocks={techStocks} />
+                        <StockTable
+                            stocks={techStocks}
+                            email={props.email}
+                            likedStocks={likedStocks}
+                            setLikedStocks={setLikedStocks} />
                         <h2 className="sector-title">Utilities</h2>
-                        <StockTable stocks={utilStocks} />
+                        <StockTable
+                            stocks={utilStocks}
+                            email={props.email}
+                            likedStocks={likedStocks}
+                            setLikedStocks={setLikedStocks} />
                     </div>
                     
                     <div className="user-list">
