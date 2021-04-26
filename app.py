@@ -227,7 +227,7 @@ def like_stock():
     user_symbol = content.get('stock_symbol').upper()
     email = content.get('email')
 
-    print('Email ' + email + ' liked stock: ' + user_symbol)
+    print('Email ' + email + ' clicked stock: ' + user_symbol)
     ### Proposed DB Logic ####
     # if a record in the Likes table with matching email & symbol exists:
     #       it's a dislike click so remove that record from the table
@@ -235,6 +235,40 @@ def like_stock():
     #       create a record with client's email / stock symbol in the table
 
     return {}
+
+
+@APP.route('/login', methods=['POST'])
+def login():
+    ''' Insert a user record into DB if needed '''
+    content = request.get_json(force=True)
+    email = content.get('email')
+    print ('User with email ' + email + ' logged in')
+    ### Proposed DB Logic ####
+    # if a record in the Users table with matching email does not exist
+    #       Insert new record into the Users table
+
+    return {}
+
+
+@APP.route('/get_liked_stocks', methods=['POST'])
+def get_liked_stocks():
+    ''' Get a user's liked stocks '''
+    content = request.get_json(force=True)
+    email = content.get('email')
+
+    ### Proposed DB Logic ####
+    # Get all records from Likes table matching email
+    #       Return records in JSON format like in
+    #       test_stock_data.json
+    # else:
+    #       Return {'myLikedStocks': []}
+
+    test_data = {}
+
+    with open('test_liked_stocks.json', 'r') as json_file:
+            test_data = json.loads(json_file.read())
+
+    return test_data
 
 
 if __name__ == "__main__":
