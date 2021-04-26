@@ -16,7 +16,7 @@ EXPECTED_OUTPUT = "expected"
 
 class SymbolsTestCase(unittest.TestCase):
     """
-    Stock search test case class.
+    Stock symbol test case class.
     """
     def setUp(self):
         self.success_test_params = [

@@ -19,7 +19,7 @@ EXPECTED_OUTPUT = 'expected'
 
 class StockUtilsTestCase(unittest.TestCase):
     """
-    Stock search test case class.
+    Stock Utils test case class.
     """
     def setUp(self):
         self.success_test_params = [

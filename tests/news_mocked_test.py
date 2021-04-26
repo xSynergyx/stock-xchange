@@ -16,7 +16,7 @@ EXPECTED_OUTPUT = "expected"
 
 class NewsTestCase(unittest.TestCase):
     """
-    Stock search test case class.
+    Stock news test case class.
     """
     def setUp(self):
         self.success_test_params = [

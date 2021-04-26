@@ -16,7 +16,7 @@ EXPECTED_OUTPUT = "expected"
 
 class CryptoTestCase(unittest.TestCase):
     """
-    Stock search test case class.
+    Crypto search test case class.
     """
     def setUp(self):
         self.success_test_params = [
