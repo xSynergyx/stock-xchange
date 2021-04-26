@@ -24,19 +24,30 @@ function Stock() {
         const energyStocks = stocks.allStocks.filter((stock) => stock.Category === 'Energy');
 
         return (
-            <div id="page_body">
-                <h2>Click on a row to go to that stock's discussion page.</h2>
-                All filters result in data in descending order. <br/>
-                Energy
-                <StockTable stocks={energyStocks} />
-                Finance
-                <StockTable stocks={finStocks} />
-                Mega
-                <StockTable stocks={megaStocks} />
-                Tech
-                <StockTable stocks={techStocks} />
-                Utilities
-                <StockTable stocks={utilStocks} />
+            <div>
+                <div id="page_body">
+                    <h2>Click on a row to go to that stock's discussion page.</h2>
+                        All filters result in data in descending order. <br/>
+                </div>
+                    
+                <div className="container">
+                    <div className="stock-list">
+                        <h2 className="sector-title">Energy</h2>
+                        <StockTable stocks={energyStocks} />
+                        <h2 className="sector-title">Finance</h2>
+                        <StockTable stocks={finStocks} />
+                        <h2 className="sector-title">Mega</h2>
+                        <StockTable stocks={megaStocks} />
+                        <h2 className="sector-title">Tech</h2>
+                        <StockTable stocks={techStocks} />
+                        <h2 className="sector-title">Utilities</h2>
+                        <StockTable stocks={utilStocks} />
+                    </div>
+                    
+                    <div className="user-list">
+                        <h2 className ="investors-title">Investors</h2>
+                    </div>
+                </div>
             </div>
         );
     }
