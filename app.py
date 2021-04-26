@@ -46,7 +46,6 @@ def index(filename):
 def on_connect():
     """ Checks if user connected and sends socket_id """
     print("User connected! " + request.sid)
-    
 
 # When a client disconnects from this Socket connection, this function is run
 @SOCKET_IO.on('disconnect')
@@ -54,6 +53,19 @@ def on_disconnect():
     """Checks if user is disconnected """
     print('User disconnected!')
 
+# When a client disconnects from this Socket connection, this function is run
+@SOCKET_IO.on('likebutton')
+def like_update(symbol):
+    """If the like button is clicked then it updates stocks table """
+    increment_like = models.Stocks.query.filter_by(symbols=symbol).first()
+    increment_like.likes = increment_like.likes + 1
+    print('Updated nunmber of like button')
+
+@SOCKET_IO.on('dislike')
+def dislike(symbol):
+    """If the like button is clicked then it updates stocks table """
+    decrement_like = models.Stocks.query.filter_by(symbols=symbol).first()
+    decrement_like.likes = decrement_like.likes - 1
 
 @APP.route('/stocks', methods=['GET'])
 def stocks():

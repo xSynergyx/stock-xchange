@@ -28,7 +28,7 @@ class Liketable(DB.Model):
 class Stocks(DB.Model):
     '''all the Stocks from the API'''
     id = DB.Column(DB.Integer, primary_key=True)
-    stocks_name = DB.Column(DB.String(80), unique=True, nullable=True)
+    stocks_name = DB.Column(DB.String(80), nullable=True)
     symbols = DB.Column(DB.String(10), unique=True, nullable=True)
     high_stocks = DB.Column(DB.Float, nullable=True)
     low_stocks = DB.Column(DB.Float, nullable=True)
@@ -46,7 +46,7 @@ class Stocks(DB.Model):
         self.high_stocks = high_stocks
         self.low_stocks = low_stocks
         self.current_price = current_price
-        self.comment = likes
+        self.likes = likes
         self.category = category
 
 # All the comments Table
