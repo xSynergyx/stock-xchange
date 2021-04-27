@@ -1,6 +1,7 @@
 '''' Database for User information and Stocks '''
 from database import DB
 
+
 # This is User table
 class Person(DB.Model):
     ''' Users name and liked stocks with Bio '''
@@ -13,11 +14,14 @@ class Person(DB.Model):
         self.username = username
         self.bio = bio
 
+
 # user like stocks table
 class Liketable(DB.Model):
     ''' User like stocks table'''
     id = DB.Column(DB.Integer, primary_key=True)
-    person_id = DB.Column(DB.Integer, DB.ForeignKey('person.id'), nullable=False)
+    person_id = DB.Column(DB.Integer,
+                          DB.ForeignKey('person.id'),
+                          nullable=False)
     all_stock = DB.relationship('Stocks', backref='liketable', lazy='select')
 
     def __init__(self, stocks):
@@ -39,8 +43,8 @@ class Stocks(DB.Model):
     like_table_id = DB.Column(DB.Integer, DB.ForeignKey('liketable.id'))
     all_stock = DB.relationship('Comments', backref='stocks', lazy='select')
 
-    def __init__(self, stocks_name, symbols, high_stocks,
-                 low_stocks, current_price, likes, category):
+    def __init__(self, stocks_name, symbols, high_stocks, low_stocks,
+                 current_price, likes, category):
         self.stocks_name = stocks_name
         self.symbols = symbols
         self.high_stocks = high_stocks
@@ -48,6 +52,21 @@ class Stocks(DB.Model):
         self.current_price = current_price
         self.likes = likes
         self.category = category
+
+# Cryptocurrency Table 
+class Crypto(DB.Model):
+    '''Cryptocurrency'''
+    id = DB.Column(DB.Integer, primary_key=True)
+    stocks_name = DB.Column(DB.String(80), nullable=True)
+    symbols = DB.Column(DB.String(10), unique=True, nullable=True)
+    current_price = DB.Column(DB.Float, nullable=True)
+    likes = DB.Column(DB.Integer, nullable=True)
+    
+    def __init__(self, stocks_name, symbols, current_price, likes):
+        self.stocks_name = stocks_name
+        self.symbols = symbols
+        self.current_price = current_price
+        self.likes = likes
 
 # All the comments Table
 class Comments(DB.Model):

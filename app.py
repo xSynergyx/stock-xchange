@@ -20,7 +20,8 @@ load_dotenv(find_dotenv())
 APP.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 # Gets rid of a warning
 APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+# from flask_sqlalchemy import SQLAlchemy
+# DB = SQLAlchemy(APP)
 DB.init_app(APP)
 import models
 
@@ -234,6 +235,9 @@ def get_random_stocks_db():
 
 if __name__ == "__main__":
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
+    # DB.init_app(APP)
+    with APP.app_context():
+        DB.create_all()
     SOCKET_IO.run(
         APP,
         host=os.getenv('IP', '0.0.0.0'),
