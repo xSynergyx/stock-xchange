@@ -47,10 +47,6 @@ def index(filename):
 def on_connect():
     """ Checks if user connected and sends socket_id """
     print("User connected! " + request.sid)
-<<<<<<< HEAD
-=======
-
->>>>>>> b7005bc122f32bdbe446554cd23bab7c5e391a69
 
 # When a client disconnects from this Socket connection, this function is run
 @SOCKET_IO.on('disconnect')
@@ -187,34 +183,35 @@ def stock_page():
 def add_stocks_db(data):
     ''' Insert stock data into the DB '''
     all_stocks = data['allStocks']
-    for i in all_stocks:
-        stockname = i['Company']
-        symbol = i['Symbol']
-        high = i['High']
-        low = i['Low']
-        current = i['Price']
-        categories = i['Category']
-
-        # Check if the stock record already exists
-        stock_record = models.Stocks.query.filter_by(symbols=symbol).first()
-        if stock_record is not None:
-            # Update the stock's pricing info in the DB
-            stock_record.high_stocks = high
-            stock_record.low_stocks = low
-            stock_record.current_price = current
-        else:
-            # Add the new stock record to the DB
-            new_stock = models.Stocks(
-                stocks_name=stockname,
-                symbols=symbol,
-                high_stocks=high,
-                low_stocks=low,
-                current_price=current,
-                likes=0,
-                category=categories)
-
-            DB.session.add(new_stock)
-        DB.session.commit()
+    with APP.app_context():
+        for i in all_stocks:
+            stockname = i['Company']
+            symbol = i['Symbol']
+            high = i['High']
+            low = i['Low']
+            current = i['Price']
+            categories = i['Category']
+    
+            # Check if the stock record already exists
+            stock_record = models.Stocks.query.filter_by(symbols=symbol).first()
+            if stock_record is not None:
+                # Update the stock's pricing info in the DB
+                stock_record.high_stocks = high
+                stock_record.low_stocks = low
+                stock_record.current_price = current
+            else:
+                # Add the new stock record to the DB
+                new_stock = models.Stocks(
+                    stocks_name=stockname,
+                    symbols=symbol,
+                    high_stocks=high,
+                    low_stocks=low,
+                    current_price=current,
+                    likes=0,
+                    category=categories)
+    
+                DB.session.add(new_stock)
+            DB.session.commit()
 
 
 def get_random_stocks_db():
@@ -290,9 +287,17 @@ def get_liked_stocks():
 
 if __name__ == "__main__":
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
-    # DB.init_app(APP)
+    
     with APP.app_context():
         DB.create_all()
+    
+   
+    stock = Stock()
+    api_data = stock.default()
+    stocks_data = parse_api_data(api_data)
+    # print(json.dumps(stocks_data, indent=4))
+    add_stocks_db(stocks_data)
+    
     SOCKET_IO.run(
         APP,
         host=os.getenv('IP', '0.0.0.0'),

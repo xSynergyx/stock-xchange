@@ -71,10 +71,10 @@ class Crypto(DB.Model):
 # All the comments Table
 class Comments(DB.Model):
     ''' All the comment Table'''
-    id = DB.Column(DB.Integer, DB.ForeignKey('stocks.id'), primary_key=True)
+    id = DB.Column(DB.Integer, primary_key=True)
     username = DB.Column(DB.String(80), unique=True, nullable=False)
     comment = DB.Column(DB.Text(), nullable=False)
-    # stocks_column = DB.Column(DB.Integer, DB.ForeignKey('stocks.id'))
+    stocks_column = DB.Column(DB.Integer, DB.ForeignKey('stocks.id'))
 
     def __init__(self, username, comment):
         self.username = username
