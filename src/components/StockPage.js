@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from 'react';
+import React , { useState, useEffect, useRef } from 'react';
 import './StockPage.css';
 
 const StockPage = (props) => {
@@ -88,22 +88,37 @@ const ContentSection = (props) => {
     }
 
     else if (props.activeSection === 'Comments') {
-        return (
-            <div>
-                {props.pageData.comments.map((comment) => {
-                    return (
-                        <div>
-                            {comment.message}
-                        </div>
-                    );
-                })}
-            </div>
-        );
+        return <Comments pageData={props.pageData} />;
     }
 
     else {
         return null;
     }
+}
+
+const Comments = (props) => {
+    const inputRef = useRef();
+
+    const onSubmitComment = () => {
+        if (inputRef.current.value !== '') {
+            const message = inputRef.current.value;
+        }
+    }
+
+    return (
+        <div>
+            {props.pageData.comments.map((comment) => {
+                return (
+                    <div id="comment">
+                        {comment.message}
+                    </div>
+                );
+            })}
+            <h3>Leave a Comment<br/></h3>
+            <input placeholder="Write a comment..." ref={inputRef} type="text" />
+            <button type="button" onClick={onSubmitComment}>Submit</button>
+        </div>
+    );
 }
 
 export default StockPage;
