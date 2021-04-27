@@ -28,6 +28,7 @@
 tr.border_bottom td {
     border-bottom: 1px solid black;
     font-weight: 500;
+    cursor: pointer;
 }
 
 table {
@@ -39,4 +40,8 @@ td {
     min-width: 1vw;
     padding-top: 1vw;
     padding-bottom: 1vw;
+}
+
+input:hover {
+    cursor: pointer;
 }
