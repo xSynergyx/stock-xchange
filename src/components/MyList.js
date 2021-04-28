@@ -21,11 +21,13 @@ const MyList = (props) => {
     
     if (Object.keys(likedStocks).length) {
         return (
-            <StockTable 
-                stocks={likedStocks}
-                email={props.email}
-                likedStocks={likedStocks}
-                setLikedStocks={setLikedStocks} />
+            <div id="page_body">
+                <StockTable 
+                    stocks={likedStocks}
+                    email={props.email}
+                    likedStocks={likedStocks}
+                    setLikedStocks={setLikedStocks} />
+            </div>
         );
     }
     else {

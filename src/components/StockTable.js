@@ -55,7 +55,7 @@ const StockTable = (props) => {
     }
 
     return (
-        <div>
+        <div id="page_body">
             <div className="filters">
                 <input
                     onClick={() => filterData('Price')}
