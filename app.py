@@ -55,7 +55,7 @@ def on_disconnect():
     print('User disconnected!')
 
 @SOCKET_IO.on('login')
-def on_login(data):#{socket_id: socket_id, data['']
+def on_login(data):#{socket_id: socket_id, username: email}
     """ Sends updated list of active users to client """
     global USER_LIST
     if not any(d['socket_id'] == data['socket_id'] for d in USER_LIST): #Checks if socket is in list
@@ -63,6 +63,7 @@ def on_login(data):#{socket_id: socket_id, data['']
         USER_LIST.append(user)
     #sid = {'socket_id': socket_id} #sends id to client
     display_list = [user['name'] for user in USER_LIST]
+    print("list " + str(display_list))
     SOCKET_IO.emit('login', display_list, broadcast=True, include_self=True)
 
 @SOCKET_IO.on('like')

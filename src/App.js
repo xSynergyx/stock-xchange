@@ -10,6 +10,8 @@ import Stock from './components/Stock.js';
 import SearchBar from './components/SearchBar.js';
 import StockPage from './components/StockPage.js';
 
+import io from 'socket.io-client';
+const socket = io(); // Connects to socket connection
 
 function App() {
   
@@ -92,3 +94,4 @@ function App() {
 }
 
 export default App;
+export { socket };

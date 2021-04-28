@@ -2,6 +2,7 @@ import './Login.css';
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { refreshTokenSetup } from '../utils/refreshToken';
+import { socket } from '../App.js';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
@@ -11,7 +12,7 @@ function Login(props) {
         console.log('[Login Success] currentUser: ', res.profileObj);
         var name = res.profileObj.name.split(" ")[0]
         const email = res.profileObj.email;
-
+        socket.emit('login' , {socket_id: socket.id, username: email})
         props.updateUsername(name);
         props.authenticated();
         props.setEmail(email);
