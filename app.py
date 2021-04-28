@@ -256,7 +256,7 @@ def login():
     ''' Insert a user record into DB if needed '''
     content = request.get_json(force=True)
     email = content.get('email')
-    print ('User with email ' + email + ' logged in')
+    print('User with email ' + email + ' logged in')
     ### Proposed DB Logic ####
     # if a record in the Users table with matching email does not exist
     #       Insert new record into the Users table
@@ -269,7 +269,7 @@ def get_liked_stocks():
     ''' Get a user's liked stocks '''
     content = request.get_json(force=True)
     email = content.get('email')
-
+    print('Get liked stocks for ' + email)
     ### Proposed DB Logic ####
     # Get all records from Likes table matching email
     #       Return records in JSON format like in
@@ -280,9 +280,24 @@ def get_liked_stocks():
     test_data = {}
 
     with open('test_liked_stocks.json', 'r') as json_file:
-            test_data = json.loads(json_file.read())
+        test_data = json.loads(json_file.read())
 
     return test_data
+
+
+@APP.route('/submit_comment', methods=['POST'])
+def submit_comment():
+    ''' Insert a user's comment into the DB '''
+    content = request.get_json(force=True)
+    email = content.get('email')
+    stock_symbol = content.get('stock_symbol')
+    comment = content.get('comment')
+
+    print('Email ' + email + ' commented on stock ' + stock_symbol + '\nmessage: ' + comment)
+    ### Proposed DB Logic ####
+    # Insert record with client's email, symbol, and email into the DB
+
+    return {}
 
 
 if __name__ == "__main__":

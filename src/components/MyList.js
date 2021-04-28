@@ -1,8 +1,42 @@
 import './MyList.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import StockTable from './StockTable.js';
 
-function MyList() {
-    return (<div>My liked stock list page</div>);
+const MyList = (props) => {
+    const [likedStocks, setLikedStocks] = useState({});
+
+    useEffect(() => {
+        fetch("/get_liked_stocks", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({email: props.email})
+        })
+        .then(res => res.json())
+        .then(data => {
+            setLikedStocks(data.myLikedStocks);
+        });
+    }, []);
+    
+    if (Object.keys(likedStocks).length) {
+        return (
+            <div id="page_body">
+                <StockTable 
+                    stocks={likedStocks}
+                    email={props.email}
+                    likedStocks={likedStocks}
+                    setLikedStocks={setLikedStocks} />
+            </div>
+        );
+    }
+    else {
+        return (
+            <div>
+                Loading...
+            </div>
+        )
+    }
 }
 
 export default MyList;
