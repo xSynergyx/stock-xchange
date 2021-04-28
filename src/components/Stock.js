@@ -1,6 +1,7 @@
 import './Stock.css';
 import React, { useState, useEffect } from 'react';
 import StockTable from './StockTable.js';
+import UserList from './UserList.js';
 
 const Stock = (props) => {
     const [stocks, setStocks] = useState({});
@@ -79,6 +80,7 @@ const Stock = (props) => {
                     
                     <div className="user-list">
                         <h2 className ="investors-title">Investors</h2>
+                        <UserList />
                     </div>
                 </div>
             </div>
