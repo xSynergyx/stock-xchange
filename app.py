@@ -242,7 +242,7 @@ def login():
     ''' Insert a user record into DB if needed '''
     content = request.get_json(force=True)
     email = content.get('email')
-    print ('User with email ' + email + ' logged in')
+    print('User with email ' + email + ' logged in')
     ### Proposed DB Logic ####
     # if a record in the Users table with matching email does not exist
     #       Insert new record into the Users table

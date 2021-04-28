@@ -50,7 +50,7 @@ const StockTable = (props) => {
 
     return (
         <div>
-            <div>
+            <div className="filters">
                 <input
                     onClick={() => filterData('Price')}
                     type="radio" 
@@ -70,7 +70,7 @@ const StockTable = (props) => {
             </div>
             <table id="stocks_table" data-testid="stocks_table">
                 <thead>
-                    <tr>
+                    <tr className="header-row">
                         <td>Symbol</td>
                         <td>Company</td>
                         <td>High</td>
@@ -81,7 +81,7 @@ const StockTable = (props) => {
                 <tbody>
                     {tableData.map((stock) => {
                         return (
-                            <tr id={stock.Symbol}>
+                            <tr id={stock.Symbol} className="border_bottom">
                                 {headers.map((header) => (
                                     <td onClick={() => onRowClick(stock.Symbol)}>{stock[header]}</td>
                                 ))}
