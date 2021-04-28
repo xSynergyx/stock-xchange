@@ -54,23 +54,26 @@ def on_disconnect():
     print('User disconnected!')
 
 @SOCKET_IO.on('login')
-def on_login(data):
+def on_login(data):#{socket_id: socket_id, data['']
     """ Sends updated list of active users to client """
     global USER_LIST
     if not any(d['socket_id'] == data['socket_id'] for d in USER_LIST): #Checks if socket is in list
-        user = {'socket_id': data['socket_id'], 'name' : data['name']}
+        user = {'socket_id': data['socket_id'], 'name' : data['username']}
         USER_LIST.append(user)
     #sid = {'socket_id': socket_id} #sends id to client
     display_list = [user['name'] for user in USER_LIST]
     SOCKET_IO.emit('login', display_list, broadcast=True, include_self=True)
 
 @SOCKET_IO.on('like')
-def on_like(data):
+def on_like(data): #{symbol: symbol, like : bool}
     """Takes stock info with new like number, changes it in the db, and emits to others"""
     symbol = data['symbol']
     stock = models.Stocks.query.filter_by(symbols=symbol).first()
     stock = DB.session.query(models.Stocks).filter(models.Stocks.symbols == symbol).first()
-    stock.likes = data['likes']
+    if data['like'] is True:
+        stock.likes += 1
+    else:
+        stock.likes -= 1
     DB.session.commit()
     #Dont know exactly how what I want to emit: The whole list of stocks from the
     #home page or just the one stock
