@@ -51,6 +51,7 @@ const StockTable = (props) => {
     return (
         <div>
             <div className="filters">
+                <span class="tooltiptext">All filters result in descending order</span>
                 <input
                     onClick={() => filterData('Price')}
                     type="radio" 
@@ -71,11 +72,11 @@ const StockTable = (props) => {
             <table id="stocks_table" data-testid="stocks_table">
                 <thead>
                     <tr className="header-row">
-                        <td>Symbol</td>
-                        <td>Company</td>
-                        <td>High</td>
-                        <td>Low</td>
-                        <td>Price</td>
+                        <td><p>Symbol</p></td>
+                        <td><p>Company</p></td>
+                        <td><p>High</p></td>
+                        <td><p>Low</p></td>
+                        <td><p>Price</p></td>
                     </tr>
                 </thead>
                 <tbody>

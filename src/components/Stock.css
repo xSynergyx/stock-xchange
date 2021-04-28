@@ -17,13 +17,18 @@
 }
 
 .sector-title {
-    color: #0f8518;
     font-size: 2em;
+    background: -webkit-linear-gradient(#44fc75, #004d14);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .investors-title {
     color: #0f8518;
     font-size: 2em;
+    background: -webkit-linear-gradient(#44fc75, #004d14);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .stock-list {

@@ -16,7 +16,7 @@ ul {
   min-width: 100vh;
   background-color: #d1d1d1;
   box-shadow: 0em 0em .2em 1px gray;
-  max-height: 7vh;
+  max-height: 8vh;
 }
 
 .navbar {
@@ -34,7 +34,7 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 7vh;
+  min-height: 8vh;
 }
 
 li a {
