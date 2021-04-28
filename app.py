@@ -265,7 +265,7 @@ def like_stock():
     #       it's a dislike click so remove that record from the table
     # else:
     #       create a record with client's email / stock symbol in the table
-    
+
     return {}
 
 
