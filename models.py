@@ -6,7 +6,7 @@ class Person(DB.Model):
     ''' Users name and liked stocks with Bio '''
     id = DB.Column(DB.Integer, primary_key=True)
     username = DB.Column(DB.String(80), unique=True, nullable=False)
-    bio = DB.Column(DB.Text(), nullable=False)
+    bio = DB.Column(DB.Text(), nullable=True)
     stocks = DB.relationship('Liketable', backref='person', lazy='select')
 
     def __init__(self, username, bio):
@@ -46,7 +46,7 @@ class Stocks(DB.Model):
         self.high_stocks = high_stocks
         self.low_stocks = low_stocks
         self.current_price = current_price
-        self.comment = likes
+        self.likes = likes
         self.category = category
 
 # All the comments Table
