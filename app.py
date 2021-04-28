@@ -255,7 +255,7 @@ def get_liked_stocks():
     ''' Get a user's liked stocks '''
     content = request.get_json(force=True)
     email = content.get('email')
-
+    print('Get liked stocks for ' + email)
     ### Proposed DB Logic ####
     # Get all records from Likes table matching email
     #       Return records in JSON format like in
@@ -266,7 +266,7 @@ def get_liked_stocks():
     test_data = {}
 
     with open('test_liked_stocks.json', 'r') as json_file:
-            test_data = json.loads(json_file.read())
+        test_data = json.loads(json_file.read())
 
     return test_data
 

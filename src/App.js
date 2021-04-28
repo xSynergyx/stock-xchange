@@ -55,7 +55,7 @@ function App() {
             
             <Switch>
               <Route path="/mylist">
-                <MyList />
+                <MyList email={email} />
               </Route>
               <Route path="/stock">
                 <Stock email={email} />
@@ -65,7 +65,11 @@ function App() {
               </Route>
               <Route 
                 path="/stock_page/:symbol"
-                render={(props) => <StockPage symbol={props.match.params.symbol} email={email} />}
+                render={(props) => (
+                  <StockPage 
+                    symbol={props.match.params.symbol}
+                    email={email} />
+                )}
               >
               </Route>
             </Switch>
