@@ -52,7 +52,13 @@ def on_connect():
 @SOCKET_IO.on('disconnect')
 def on_disconnect():
     """Checks if user is disconnected and removes them from user list"""
+    global USER_LIST
+    for user in USER_LIST:
+        if user['socket_id'] == request.sid:
+            USER_LIST.remove(user)
     print('User disconnected!')
+    display_list = [user['name'] for user in USER_LIST]
+    SOCKET_IO.emit('disconnect', display_list, broadcast=True, include_self=True)
 
 @SOCKET_IO.on('login')
 def on_login(data):#{socket_id: socket_id, username: email}
@@ -66,17 +72,17 @@ def on_login(data):#{socket_id: socket_id, username: email}
     print("list " + str(display_list))
     SOCKET_IO.emit('login', display_list, broadcast=True, include_self=True)
 
-@SOCKET_IO.on('like')
-def on_like(data): #{symbol: symbol, like : bool}
-    """Takes stock info with new like number, changes it in the db, and emits to others"""
-    symbol = data['symbol']
-    stock = models.Stocks.query.filter_by(symbols=symbol).first()
-    stock = DB.session.query(models.Stocks).filter(models.Stocks.symbols == symbol).first()
-    if data['like'] is True:
-        stock.likes += 1
-    else:
-        stock.likes -= 1
-    DB.session.commit()
+# @SOCKET_IO.on('like')
+# def on_like(data): #{symbol: symbol, like : bool}
+#     """Takes stock info with new like number, changes it in the db, and emits to others"""
+#     symbol = data['symbol']
+#     stock = models.Stocks.query.filter_by(symbols=symbol).first()
+#     stock = DB.session.query(models.Stocks).filter(models.Stocks.symbols == symbol).first()
+#     if data['like'] is True:
+#         stock.likes += 1
+#     else:
+#         stock.likes -= 1
+#     DB.session.commit()
     #Dont know exactly how what I want to emit: The whole list of stocks from the
     #home page or just the one stock
     #SOCKET_IO.emit('like', )
