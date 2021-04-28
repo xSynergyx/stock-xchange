@@ -291,12 +291,12 @@ if __name__ == "__main__":
     with APP.app_context():
         DB.create_all()
     
-   
-    stock = Stock()
-    api_data = stock.default()
-    stocks_data = parse_api_data(api_data)
-    # print(json.dumps(stocks_data, indent=4))
-    add_stocks_db(stocks_data)
+    stocks()
+    # stock = Stock()
+    # api_data = stock.default()
+    # stocks_data = parse_api_data(api_data)
+    # # print(json.dumps(stocks_data, indent=4))
+    # add_stocks_db(stocks_data)
     
     SOCKET_IO.run(
         APP,
