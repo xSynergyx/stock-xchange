@@ -1,5 +1,26 @@
-#page_body, #outline_like {
+#page_body {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+}
+
+#comment {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    border-radius: 0.6em;
+    border: 0.1em solid black;
+    margin-top: 0.8em;
+    width: 35em;
+}
+
+#comment_header {
+    border-bottom: 0.1em solid black;
+    padding-left: 0.5em;
+}
+
+#message {
+    padding-top: 0.5em;
+    padding-left: 0.5em;
+    padding-bottom: 0.5em;
 }

@@ -1,8 +1,0 @@
-{
-    "myDislikedStocks": [
-        {"Symbol": "SIVB", "Company": "SVB Financial Group", "High": null, "Low": null, "Price": 529.13, "Category": "Finance"},
-        {"Symbol": "RF", "Company": "Regions Financial Corp.", "High": null, "Low": null, "Price": 21.58, "Category": "Finance"},
-        {"Symbol": "DUK", "Company": "Duke Energy Corp.", "High": 105.298, "Low": 101.27, "Price": 101.87, "Category": "Utilities"},
-        {"Symbol": "ORCL", "Company": "Oracle Corp.", "High": 77.0, "Low": 74.55, "Price": 75.05, "Category": "Tech"}
-    ]
-}

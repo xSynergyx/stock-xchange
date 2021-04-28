@@ -271,6 +271,21 @@ def get_liked_stocks():
     return test_data
 
 
+@APP.route('/submit_comment', methods=['POST'])
+def submit_comment():
+    ''' Insert a user's comment into the DB '''
+    content = request.get_json(force=True)
+    email = content.get('email')
+    stock_symbol = content.get('stock_symbol')
+    comment = content.get('comment')
+
+    print('Email ' + email + ' commented on stock ' + stock_symbol + '\nmessage: ' + comment)
+    ### Proposed DB Logic ####
+    # Insert record with client's email, symbol, and email into the DB
+
+    return {}
+
+
 if __name__ == "__main__":
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
     SOCKET_IO.run(
