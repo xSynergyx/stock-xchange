@@ -1,0 +1,16 @@
+{
+    "myLikedStocks": [
+        {"Symbol": "CSCO", "Company": "Cisco Systems, Inc.", "High": 53.8, "Low": 52.02, "Price": 54.21, "Category": "Mega"},
+        {"Symbol": "PG", "Company": "Procter & Gamble Co.", "High": null, "Low": null, "Price": 140.58, "Category": "Mega"},
+        {"Symbol": "NFLX", "Company": "NetFlix Inc", "High": 518.9, "Low": 518.3, "Price": 509.95, "Category": "Mega"},
+        {"Symbol": "ADBE", "Company": "Adobe Inc", "High": 540.761, "Low": 512.99, "Price": 518.2, "Category": "Mega"},
+        {"Symbol": "DFS", "Company": "Discover Financial Services", "High": 105.25, "Low": 98.98, "Price": 104.16, "Category": "Finance"}, 
+        {"Symbol": "ROL", "Company": "Rollins, Inc.", "High": 37.1, "Low": 35.0, "Price": 36.99, "Category": "Finance"},
+        {"Symbol": "GOOGL", "Company": "Alphabet Inc - Class A", "High": 2319.642, "Low": 2291.18, "Price": 2382.68, "Category": "Tech"},
+        {"Symbol": "AAPL", "Company": "Apple Inc", "High": 138.21, "Low": 137.93, "Price": 139.8, "Category": "Tech"},
+        {"Symbol": "IMO", "Company": "Imperial Oil Ltd.", "High": 25.8, "Low": 26.09, "Price": 25.6, "Category": "Energy"},
+        {"Symbol": "E", "Company": "Eni Spa - ADR", "High": 24.67, "Low": 24.31, "Price": 24.72, "Category": "Energy"},
+        {"Symbol": "ENB", "Company": "Enbridge Inc", "High": null, "Low": null, "Price": 37.596, "Category": "Energy"}
+    ]
+
+}

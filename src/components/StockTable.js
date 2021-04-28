@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './StockTable.css';
 import { useHistory } from "react-router-dom";
+import { AiFillLike, AiOutlineLike, AiFillDislike, AiOutlineDislike } from 'react-icons/ai';
 
 const StockTable = (props) => {
-    const headers = ['Symbol', 'Company', 'High', 'Low', 'Price', 'Category'];
+    const headers = ['Symbol', 'Company', 'High', 'Low', 'Price'];
     const history = useHistory();
     const [tableData, setTableData] = useState(props.stocks);
 
@@ -11,7 +12,13 @@ const StockTable = (props) => {
     // when the user clicks on a row in the list
     // Check App.js for the Route this triggers
     const onRowClick = (stock_symbol) => {
-        history.push('/stock_page/' + stock_symbol);
+        const isLiked =
+            props.likedStocks.filter((stock) => stock.Symbol === stock_symbol).length > 0 ? true: false;
+
+        history.push({
+            pathname: '/stock_page/' + stock_symbol,
+            state: {isLiked: isLiked}
+        });
     }
 
     const filterData = (filter) => {
@@ -40,12 +47,6 @@ const StockTable = (props) => {
                     return newTable.sort((a, b) => (a.Company < b.Company) ? -1 : 1);
                 });
             break;
-            case 'Category':
-                setTableData((oldTable) => {
-                    let newTable = [...oldTable];
-                    return newTable.sort((a, b) => (a.Category < b.Category) ? -1 : 1);
-                });
-            break;
             default:
                 setTableData((oldTable) => {
                     return props.stocks;
@@ -55,8 +56,7 @@ const StockTable = (props) => {
 
     return (
         <div>
-            All filters result in data in descending order.
-            <div>
+            <div className="filters">
                 <input
                     onClick={() => filterData('Price')}
                     type="radio" 
@@ -73,29 +73,29 @@ const StockTable = (props) => {
                     onClick={() => filterData('Company')}
                     type="radio"
                     name="filter"/>Company Name
-                <input
-                    onClick={() => filterData('Category')}
-                    type="radio"
-                    name="filter"/>Category
             </div>
             <table id="stocks_table" data-testid="stocks_table">
                 <thead>
-                    <tr>
+                    <tr className="header-row">
                         <td>Symbol</td>
                         <td>Company</td>
                         <td>High</td>
                         <td>Low</td>
                         <td>Price</td>
-                        <td>Category</td>
                     </tr>
                 </thead>
                 <tbody>
                     {tableData.map((stock) => {
                         return (
-                            <tr id={stock.Symbol} onClick={() => onRowClick(stock.Symbol)}>
+                            <tr id={stock.Symbol} className="border_bottom">
                                 {headers.map((header) => (
-                                    <td>{stock[header]}</td>
+                                    <td onClick={() => onRowClick(stock.Symbol)}>{stock[header]}</td>
                                 ))}
+                                <Like
+                                    symbol={stock.Symbol}
+                                    email={props.email}
+                                    likedStocks={props.likedStocks}
+                                    setLikedStocks={props.setLikedStocks} />
                             </tr>
                         );
                     })}
@@ -103,6 +103,49 @@ const StockTable = (props) => {
             </table>
         </div>
     )
+}
+
+export const Like = (props) => {
+    const [isClicked, setClicked] = useState(false);
+
+    const onLike = () => {
+        // Call server to figure out
+        // if it's a like / dislike
+        fetch("/like_stock", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({stock_symbol: props.symbol, email: props.email})
+        });
+
+        if (isClicked || props.likedStocks.filter((stock) => stock.Symbol === props.symbol).length > 0) {
+            // Update liked stocks list to re-render component
+            props.setLikedStocks((oldStocks) => {
+                const newStocks = [...oldStocks];
+                return newStocks.filter((stock) => stock.Symbol != props.symbol);
+            })
+            setClicked(false);
+        }
+
+        else {
+            setClicked(true);
+        }
+    }
+
+    // Check if button has been clicked or stock is in the user's liked stocks, in which case
+    // the button should indicate that it's pressed
+    if (isClicked || props.likedStocks.filter((stock) => stock.Symbol === props.symbol).length > 0) {
+        return (
+            <td id="fill_like" onClick={onLike}><AiFillLike size='1.5em' /></td>
+        );
+    }
+
+    else {
+        return (
+            <td id="outline_like" onClick={onLike}><AiOutlineLike size='1.5em' /></td>
+        );
+    }
 }
 
 export default StockTable;

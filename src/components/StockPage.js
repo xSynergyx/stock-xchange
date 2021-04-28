@@ -1,4 +1,6 @@
-import React , { useState, useEffect } from 'react';
+import React , { useState, useEffect, useRef } from 'react';
+import { AiFillLike, AiOutlineLike } from 'react-icons/ai';
+import { LikeHandler } from './StockTable.js';
 import './StockPage.css';
 
 const StockPage = (props) => {
@@ -6,9 +8,23 @@ const StockPage = (props) => {
     const [stockData, setStockData] = useState({})
     const [newsData, setNewsData] = useState([])
     const [activeSection, setActiveSection] = useState('');
+    const [isLiked, setLiked] = useState(false);
+    const [likedStocks, setLikedStocks] = useState([]);
 
     // Request the page info (comments, company bio, likes, etc.) from the server.
     useEffect(() => {
+        fetch("/get_liked_stocks", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({email: props.email})
+        })
+        .then(res => res.json())
+        .then(data => {
+            setLikedStocks(data.myLikedStocks);
+        });
+
         fetch("/stock_page", {
             method: "POST",
             headers: {
@@ -24,6 +40,29 @@ const StockPage = (props) => {
         })
     }, [props.symbol]);
 
+    const onLike = () => {
+        // Call server to figure out
+        // if it's a like / dislike
+        fetch("/like_stock", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({stock_symbol: props.symbol, email: props.email})
+        });
+
+        if (isLiked || likedStocks.filter((stock) => stock.Symbol == props.symbol).length > 0) {
+            setLikedStocks((oldStocks) => {
+                const newStocks = [...oldStocks];
+                return newStocks.filter((stock) => stock.Symbol != props.symbol);
+            })
+            setLiked(false);
+        }
+        else {
+            setLiked(true);
+        }
+    }
+    
     if ('Error' in stockData) {
         return (
             <div id="page_body">
@@ -40,7 +79,10 @@ const StockPage = (props) => {
                 <h3>High: ${stockData.High}</h3>
                 <h3>Low: ${stockData.Low}</h3>
                 <h3>Category: {stockData.Category}</h3>
-                
+                {isLiked || likedStocks.filter((stock) => stock.Symbol == props.symbol).length > 0 ?
+                    <div id="fill_like" onClick={onLike}><AiFillLike size='2em' /></div> :
+                    <div id="outline_like" onClick={onLike}><AiOutlineLike size='2em' /></div>
+                }
                 <div>
                     <button onClick={() => setActiveSection(() => 'News')}>News</button>
                     <button onClick={() => setActiveSection(() => 'Comments')}>Comments</button>
@@ -88,22 +130,37 @@ const ContentSection = (props) => {
     }
 
     else if (props.activeSection === 'Comments') {
-        return (
-            <div>
-                {props.pageData.comments.map((comment) => {
-                    return (
-                        <div>
-                            {comment.message}
-                        </div>
-                    );
-                })}
-            </div>
-        );
+        return <Comments pageData={props.pageData} />;
     }
 
     else {
         return null;
     }
+}
+
+const Comments = (props) => {
+    const inputRef = useRef();
+
+    const onSubmitComment = () => {
+        if (inputRef.current.value !== '') {
+            const message = inputRef.current.value;
+        }
+    }
+
+    return (
+        <div>
+            {props.pageData.comments.map((comment) => {
+                return (
+                    <div id="comment">
+                        {comment.message}
+                    </div>
+                );
+            })}
+            <h3>Leave a Comment<br/></h3>
+            <input placeholder="Write a comment..." ref={inputRef} type="text" />
+            <button type="button" onClick={onSubmitComment}>Submit</button>
+        </div>
+    );
 }
 
 export default StockPage;

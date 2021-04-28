@@ -3,3 +3,29 @@
     margin-right: auto;
     text-align: center;
 }
+
+.container {
+    display: flex;
+    padding-left: 15vw;
+    padding-right: 15vw;
+}
+
+.sector-title {
+    color: #0f8518;
+    font-size: 2em;
+}
+
+.investors-title {
+    color: #0f8518;
+    font-size: 2em;
+}
+
+.stock-list {
+    float: left;
+    width: 75%;
+}
+
+.user-list {
+    flex: left;
+    width: 25%;
+}
