@@ -93,7 +93,10 @@ const StockPage = (props) => {
                     activeSection={activeSection} 
                     stockData={stockData} 
                     pageData={pageData} 
-                    newsData={newsData} />
+                    newsData={newsData} 
+                    symbol={props.symbol}
+                    username={props.username}
+                    email={props.email} />
             </div>
         )
     }
@@ -130,7 +133,13 @@ const ContentSection = (props) => {
     }
 
     else if (props.activeSection === 'Comments') {
-        return <Comments pageData={props.pageData} />;
+        return (
+            <Comments 
+                email={props.email}
+                symbol={props.symbol}
+                username={props.username}
+                pageData={props.pageData} />
+        );
     }
 
     else {
@@ -139,20 +148,39 @@ const ContentSection = (props) => {
 }
 
 const Comments = (props) => {
+    const [comments, setComments] = useState(props.pageData.comments);
     const inputRef = useRef();
 
     const onSubmitComment = () => {
         if (inputRef.current.value !== '') {
-            const message = inputRef.current.value;
+            const comment = inputRef.current.value;
+            fetch("/submit_comment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify({comment: comment, email: props.email, stock_symbol: props.symbol})
+            });
+
+            setComments((prevComments) => {
+                let newComments = [...prevComments];
+                newComments.push({username: props.username, stock_symbol: props.symbol, message: comment});
+                return newComments;
+            });
         }
     }
 
     return (
         <div>
-            {props.pageData.comments.map((comment) => {
+            {comments.map((comment) => {
                 return (
                     <div id="comment">
-                        {comment.message}
+                        <div id="comment_header">
+                            {comment.username} said...
+                        </div>
+                        <div id="message">
+                            {comment.message}
+                        </div>
                     </div>
                 );
             })}

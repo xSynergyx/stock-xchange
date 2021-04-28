@@ -68,6 +68,7 @@ function App() {
                 render={(props) => (
                   <StockPage 
                     symbol={props.match.params.symbol}
+                    username={username}
                     email={email} />
                 )}
               >
