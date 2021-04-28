@@ -15,7 +15,6 @@ function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("Profile");
-  const [email, setEmail] = useState("");
 
   function authenticated(){
     setIsLoggedIn(!isLoggedIn);
@@ -58,14 +57,14 @@ function App() {
                 <MyList />
               </Route>
               <Route path="/stock">
-                <Stock email={email} />
+                <Stock />
               </Route>
               <Route path="/profile">
                 <Profile />
               </Route>
               <Route 
                 path="/stock_page/:symbol"
-                render={(props) => <StockPage symbol={props.match.params.symbol} email={email} />}
+                render={(props) => <StockPage symbol={props.match.params.symbol}/>}
               >
               </Route>
             </Switch>
@@ -82,7 +81,7 @@ function App() {
           Stock XChange
         </li>
       </ul>
-      <Login authenticated={authenticated} updateUsername={updateUsername} setEmail={setEmail} />
+      <Login authenticated={authenticated} updateUsername={updateUsername}/>
     </div>
   );
 }
