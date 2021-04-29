@@ -16,7 +16,9 @@ function SearchBar() {
 
     return (
         <form onSubmit={ handleSubmit }>
-            <input type="text" 
+            <input 
+            id="search_box"
+            type="text" 
             placeholder="Search stocks" 
             onChange={(e) => setSearchText(e.target.value)} />
         </form>

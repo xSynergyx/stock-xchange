@@ -78,6 +78,7 @@ class Stock:
             stock_symbols = query[0]
             for i in range(1, len(query)):
                 stock_symbols += ',{}'.format(query[i])
+        #'token': os.getenv('IEX_CLOUD_SANDBOX_KEY')
         params = {
             'symbols': stock_symbols,
             'types': 'company,quote',
@@ -85,8 +86,8 @@ class Stock:
                      #'token' : os.getenv('IEX_CLOUD_REAL_KEY')
         }
         stocks = [x.upper() for x in query] #capatalize symbols for json file
-        response = requests.get(self.IEX_SANDBOX_URL, params=params)
-        #response = requests.get(self.IEX_CLOUD_REAL_URL, params=params)
+        #response = requests.get(self.IEX_SANDBOX_URL, params=params)
+        response = requests.get(self.IEX_CLOUD_REAL_URL, params=params)
         if response.status_code == 404: #Resource not found
             crypto_search = self.crypto(query[0])
             data[query[0]] = 'Not Found'

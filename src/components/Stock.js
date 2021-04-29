@@ -40,8 +40,7 @@ const Stock = (props) => {
         return (
             <div>
                 <div id="page_body">
-                    <h2>Click on a row to go to that stock's discussion page.</h2>
-                        All filters result in data in descending order. <br/>
+                    <h3>Click on a row to go to that stock's discussion page</h3>
                 </div>
                     
                 <div className="container">
@@ -81,6 +80,16 @@ const Stock = (props) => {
                     <div className="user-list">
                         <h2 className ="investors-title">Investors</h2>
                         <UserList key={11}/>
+                        <table id="user_table">
+                            <thead>
+                                <tr>
+                                    <td>Sample Name</td>
+                                </tr>
+                                <tr>
+                                    <td>Sample Name 2</td>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>

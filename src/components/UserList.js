@@ -12,7 +12,7 @@ function UserList() {
         if(data !== undefined){
             console.log(data);
             setUserList(prevUser => {
-                prevUser = data
+                prevUser = data;
             });
             // data.map((user) => console.log(user));
         }

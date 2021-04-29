@@ -15,6 +15,8 @@ ul {
   overflow: hidden;
   min-width: 100vh;
   background-color: #d1d1d1;
+  box-shadow: 0em 0em .2em 1px gray;
+  max-height: 8vh;
 }
 
 .navbar {
@@ -32,20 +34,89 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 7vh;
+  min-height: 8vh;
 }
 
 li a {
   padding: 16px;
   text-decoration: none;
-  color: black;
+  font-weight: 500;
+  color: #4f4f4f;
 }
 
 li a:visited {
-  color: black;
+  font-weight: bold;
+  color: #4f4f4f;
 }
 
 .navbar:hover {
   background-color: #b5b5b5;
   border-radius: 10px 10px 5px 5px;
+}
+
+/* Credit to https://blog.hubspot.com/website/css-fade-in for fade in animation */
+
+.fade-in-image {
+  animation: fadeIn 5s;
+  -webkit-animation: fadeIn 5s;
+  -moz-animation: fadeIn 5s;
+  -o-animation: fadeIn 5s;
+  -ms-animation: fadeIn 5s;
+}
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+/* Slide animation credit to https://www.html.am/html-codes/marquees/css-slide-in-text.cfm */
+.slide-right {
+  width: 100%;
+  overflow: hidden;
+  margin-left: 5vw;
+  padding-left: 2vw;
+  padding-bottom: 1vh;
+  max-width: 35vw;
+  position: absolute;
+  top: 10vh;
+  color: white;
+  background-color: rgba(0,0,0,0.4);
+  font-size: 2em;
+  border-radius: 16px;
+}
+
+.slide-right {
+  animation: 2s slide-right 1s forwards;
+    transform:translateX(-200%);
+}
+
+@keyframes slide-right {
+  to {
+    transform:translateX(72%);
+  }
+}
+
+.image-container {
+  max-width: 100vw;
+  position: relative;
+}
+
+.top-left {
+  position: absolute;
+  top: 8vh;
+  left: 16px;
 }
