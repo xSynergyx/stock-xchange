@@ -6,7 +6,7 @@ import { refreshTokenSetup } from '../utils/refreshToken';
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function Login(props) {
-    /*
+    
     const onSuccess = (res) => {
         console.log('[Login Success] currentUser: ', res.profileObj);
         var name = res.profileObj.name.split(" ")[0]
@@ -45,7 +45,7 @@ function Login(props) {
                 isSignedIn={true}
             />
         </div>
-    );*/
+    );
 }
 
 export default Login;
