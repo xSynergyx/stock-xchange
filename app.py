@@ -191,7 +191,6 @@ def add_stocks_db(data):
             low = i['Low']
             current = i['Price']
             categories = i['Category']
-    
             # Check if the stock record already exists
             stock_record = models.Stocks.query.filter_by(symbols=symbol).first()
             if stock_record is not None:
@@ -209,7 +208,6 @@ def add_stocks_db(data):
                     current_price=current,
                     likes=0,
                     category=categories)
-    
                 DB.session.add(new_stock)
             DB.session.commit()
 
@@ -252,7 +250,7 @@ def like_stock():
     #check if the like tables has matching email& SYMBOL EXIST
     stock_record = models.Person.query.filter_by(username=email).first()
     if stock_record is not None:
-         with APP.app_context():
+        with APP.app_context():
            # if user like the symbol we also increment the number of likes in our stock table
             decrement_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
             decrement_like.likes = decrement_like.likes - 1
@@ -260,19 +258,16 @@ def like_stock():
             DB.session.commit()
     else:
         with APP.app_context():
-            
-            new_user= models.Person(username=email, bio='')
+            new_user = models.Person(username=email, bio='')
             DB.session.add(new_user)
             DB.session.commit()
-            like_table = models.Liketable(person=new_user.id ,stocks=user_symbol)
+            like_table = models.Liketable(person=new_user.id, stocks=user_symbol)
             DB.session.add(like_table)
             DB.session.commit()
             increment_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
             increment_like.likes = increment_like.likes + 1
             DB.session.commit()
-    
     return {}
-
 
 @APP.route('/login', methods=['POST'])
 def login():
@@ -283,12 +278,11 @@ def login():
     ### Proposed DB Logic ####
     # if a record in the Users table with matching email does not exist
     #       Insert new record into the Users table
-    
     # Inserting the new user in the database table
     stock_record = models.Person.query.all()
     if email not in stock_record:
         with APP.app_context():
-            new_user= models.Person(username=email ,bio='')
+            new_user = models.Person(username=email, bio='')
             DB.session.add(new_user)
             DB.session.commit()
 
@@ -325,20 +319,25 @@ def submit_comment():
     comment = content.get('comment')
 
     print('Email ' + email + ' commented on stock ' + stock_symbol + '\nmessage: ' + comment)
-    get_id=models.Stocks.query.filter_by(symbols=stock_symbol).first()
+    get_id = models.Stocks.query.filter_by(symbols=stock_symbol).first()
     ### Proposed DB Logic ####
     # Insert record with client's email, symbol, and email into the DB
     with APP.app_context():
 
-        new_comment= models.Comments(username=email, comment=comment , owner=get_id.id)
+        new_comment = models.Comments(username=email, comment=comment, owner=get_id.id)
         DB.session.add(new_comment)
         DB.session.commit()
-    return {}
+
+    # TO delete a comment froma database
+    # Look for the comment for that username
+    # user_comments=models.Comments.query.filter_by(username=email).first()
+    # DB.session.delete(user_comments)
+    # DB.session.commit()
+    # return {}
 
 
 if __name__ == "__main__":
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
-    
     stocks()
     with APP.app_context():
         DB.create_all()
