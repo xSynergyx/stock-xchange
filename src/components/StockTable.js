@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './StockTable.css';
 import { useHistory } from "react-router-dom";
-import { AiFillLike, AiOutlineLike } from 'react-icons/ai';
+import { AiFillLike, AiOutlineLike, AiFillDislike, AiOutlineDislike } from 'react-icons/ai';
 
 const StockTable = (props) => {
     const headers = ['Symbol', 'Company', 'High', 'Low', 'Price'];
@@ -12,7 +12,13 @@ const StockTable = (props) => {
     // when the user clicks on a row in the list
     // Check App.js for the Route this triggers
     const onRowClick = (stock_symbol) => {
-        history.push('/stock_page/' + stock_symbol);
+        const isLiked =
+            props.likedStocks.filter((stock) => stock.Symbol === stock_symbol).length > 0 ? true: false;
+
+        history.push({
+            pathname: '/stock_page/' + stock_symbol,
+            state: {isLiked: isLiked}
+        });
     }
 
     const filterData = (filter) => {
@@ -49,7 +55,7 @@ const StockTable = (props) => {
     }
 
     return (
-        <div>
+        <div id="page_body">
             <div className="filters">
                 <span class="tooltiptext">All filters result in descending order</span>
                 <input
@@ -100,8 +106,7 @@ const StockTable = (props) => {
     )
 }
 
-
-const Like = (props) => {
+export const Like = (props) => {
     const [isClicked, setClicked] = useState(false);
 
     const onLike = () => {
@@ -123,6 +128,7 @@ const Like = (props) => {
             })
             setClicked(false);
         }
+
         else {
             setClicked(true);
         }
@@ -132,13 +138,13 @@ const Like = (props) => {
     // the button should indicate that it's pressed
     if (isClicked || props.likedStocks.filter((stock) => stock.Symbol === props.symbol).length > 0) {
         return (
-            <td id="fill_like" onClick={onLike}><AiFillLike /></td>
+            <td id="fill_like" onClick={onLike}><AiFillLike size='1.5em' /></td>
         );
     }
 
     else {
         return (
-            <td id="outline_like" onClick={onLike}><AiOutlineLike /></td>
+            <td id="outline_like" onClick={onLike}><AiOutlineLike size='1.5em' /></td>
         );
     }
 }

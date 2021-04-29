@@ -1,7 +1,7 @@
 {
     "comments": [
-        {"user_id": 12, "stock_id": 12, "message": "Definitely buy this!", "date_time": "12/01/21 10:12:23 PM", "likes": 12},
-        {"user_id": 4, "stock_id": 12, "message": "Nah don't buy this!", "date_time": "12/01/21 08:35:04 PM", "likes": 2}
-    ],
-    "information": "Technology company specializing in human resources software."
+        {"username": "Steve", "stock_symbol": "FB", "message": "Definitely buy this!"},
+        {"username": "Bill", "stock_symbol": "FB", "message": "Nah don't buy this!"},
+        {"username": "Jacob", "stock_symbol": "FB", "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer facilisis vehicula orci, sit amet mollis odio tincidunt quis. Mauris pulvinar, risus sit amet blandit imperdiet, lorem risus sagittis orci, sed vehicula urna turpis ut mauris. Duis finibus, eros non vulputate congue, urna ante tempus ipsum, vitae aliquam tellus nisl quis quam. Duis iaculis libero velit, id eleifend lacus interdum ut. Cras hendrerit libero non gravida efficitur. Sed lacinia massa sed bibendum laoreet. In egestas augue sit amet mauris vehicula iaculis. Curabitur ligula eros, dapibus ac lorem eu, finibus vulputate dolor."}
+    ]
 }

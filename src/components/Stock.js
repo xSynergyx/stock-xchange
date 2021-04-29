@@ -1,11 +1,10 @@
 import './Stock.css';
 import React, { useState, useEffect } from 'react';
-import StockTable from './StockTable.js'
-import { AiFillPropertySafety } from 'react-icons/ai';
+import StockTable from './StockTable.js';
 
 const Stock = (props) => {
     const [stocks, setStocks] = useState({});
-    const [likedStocks, setLikedStocks] = useState({});
+    const [likedStocks, setLikedStocks] = useState([]);
 
     // Request the list of all stocks from the server using the '/stocks'
     // path. The server would retrieve the records from the Stocks table in the
