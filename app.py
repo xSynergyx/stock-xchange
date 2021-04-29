@@ -65,8 +65,8 @@ def on_disconnect():
 def on_login(data):#{socket_id: socket_id, username: email}
     """ Sends updated list of active users to client """
     global USER_LIST
-    try:
-        if not any(d['socket_id'] == data['socket_id'] for d in USER_LIST): #Checks if socket is in list
+    try:#Checks if socket is in list
+        if not any(d['socket_id'] == data['socket_id'] for d in USER_LIST):
             user = {'socket_id': data['socket_id'], 'name' : data['username']}
             USER_LIST.append(user)
     except KeyError:
@@ -152,7 +152,7 @@ def stocks():
         else:
             print("After hour stock data")
             stocks_data = get_random_stocks_db()
-            
+
     display_list = [user['name'] for user in USER_LIST]
     return {"stocks_data": stocks_data, "display_list": display_list}
 
