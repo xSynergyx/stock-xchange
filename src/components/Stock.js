@@ -41,7 +41,7 @@ const Stock = (props) => {
                 // data.map((user) => console.log(user));
             }
         });
-        socket.on('logout' , (data) => { // [array of users]
+        socket.on('disconnect' , (data) => { // [array of users]
             if(data !== undefined){
                 console.log(data);
                 setUserList(data);
