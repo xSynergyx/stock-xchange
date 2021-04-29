@@ -11,7 +11,7 @@ console.log(process.env);
 function Logout(props) {
     
     const onSuccess = (res) => {
-        alert('Lougout made successfully');
+        alert('Logout made successfully');
         props.authenticated();
     };
     
