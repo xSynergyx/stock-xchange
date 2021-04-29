@@ -79,6 +79,6 @@ class Comments(DB.Model):
     comment = DB.Column(DB.Text(), nullable=False)
     stocks_column = DB.Column(DB.Integer, DB.ForeignKey('stocks.id'))
 
-    def __init__(self, username, comment,stocks_column):
+    def __init__(self, username, comment):
         self.username = username
         self.comment = comment
