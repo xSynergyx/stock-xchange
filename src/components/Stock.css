@@ -4,28 +4,39 @@
     text-align: center;
 }
 
+#user_table {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: .05em .05em .2em 1px gray;
+}
+
 .container {
     display: flex;
-    padding-left: 15vw;
-    padding-right: 15vw;
+    padding-left: 12vw;
+    padding-right: 12vw;
 }
 
 .sector-title {
-    color: #0f8518;
     font-size: 2em;
+    background: -webkit-linear-gradient(#44fc75, #004d14);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .investors-title {
     color: #0f8518;
     font-size: 2em;
+    background: -webkit-linear-gradient(#44fc75, #004d14);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .stock-list {
     float: left;
-    width: 75%;
+    width: 80%;
 }
 
 .user-list {
     flex: left;
-    width: 25%;
+    width: 20%;
 }

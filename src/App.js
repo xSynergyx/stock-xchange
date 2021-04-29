@@ -9,6 +9,7 @@ import MyList from './components/MyList.js';
 import Stock from './components/Stock.js';
 import SearchBar from './components/SearchBar.js';
 import StockPage from './components/StockPage.js';
+import logo from './images/logo.png';
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
             <nav>
               <ul>
                 <li className="navbar-header">
-                  <Link to="/">Stock XChange</Link>
+                  <Link to="/"><img src={ logo } width="200px" height="35px"/></Link>
                 </li>
                 <li className="navbar">
                   <Link to="/profile">{ username }</Link>
@@ -61,7 +62,7 @@ function App() {
                 <Stock email={email} />
               </Route>
               <Route path="/profile">
-                <Profile />
+                <Profile username={username} email={email} />
               </Route>
               <Route 
                 path="/stock_page/:symbol"
@@ -84,7 +85,7 @@ function App() {
     <div className="App">
       <ul>
         <li className="navbar-home">
-          Stock XChange
+          <img src={ logo } width="200px" height="35px"/>
         </li>
       </ul>
       <Login authenticated={authenticated} updateUsername={updateUsername} setEmail={setEmail} />
