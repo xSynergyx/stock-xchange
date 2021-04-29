@@ -323,18 +323,16 @@ def submit_comment():
     ### Proposed DB Logic ####
     # Insert record with client's email, symbol, and email into the DB
     with APP.app_context():
-
         new_comment = models.Comments(username=email, comment=comment, owner=get_id.id)
         DB.session.add(new_comment)
         DB.session.commit()
-
-    # TO delete a comment froma database
-    # Look for the comment for that username
-    # user_comments=models.Comments.query.filter_by(username=email).first()
-    # DB.session.delete(user_comments)
-    # DB.session.commit()
-    # return {}
-
+    return {}
+    
+def delete_comment(username):
+    ''' Delete a comment from database'''
+    user_comments=models.Comments.query.filter_by(username=username).first()
+    DB.session.delete(user_comments)
+    DB.session.commit()
 
 if __name__ == "__main__":
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
