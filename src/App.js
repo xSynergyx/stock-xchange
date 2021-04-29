@@ -12,6 +12,8 @@ import StockPage from './components/StockPage.js';
 import logo from './images/logo.png';
 import invest from './images/invest.jpg';
 
+import io from 'socket.io-client';
+const socket = io(); // Connects to socket connection
 
 function App() {
   
@@ -107,3 +109,4 @@ function App() {
 }
 
 export default App;
+export { socket };

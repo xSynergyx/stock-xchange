@@ -27,6 +27,8 @@ import models
 # Datetime object to store the last time the database was updated
 # Server-wide variable compared to each incoming client-side request
 LAST_UPDATED_TIME = None
+USER_LIST = [] #{socket_id: id, name: name}
+#{"socket_id": "abc123", "name":"user1"}, {"socket_id": "def123", "name":"user2"}
 
 COR_S = CORS(APP, resources={r"/*": {"origins": "*"}})
 SOCKET_IO = SocketIO(APP,
@@ -48,16 +50,66 @@ def on_connect():
     print("User connected! " + request.sid)
 
 
-# When a client disconnects from this Socket connection, this function is run
 @SOCKET_IO.on('disconnect')
 def on_disconnect():
-    """Checks if user is disconnected """
+    """Checks if user is disconnected and removes them from user list"""
+    global USER_LIST
+    for user in USER_LIST:
+        if user['socket_id'] == request.sid:
+            USER_LIST.remove(user)
     print('User disconnected!')
+    display_list = [user['name'] for user in USER_LIST]
+    SOCKET_IO.emit('disconnect', display_list, broadcast=True, include_self=True)
 
+@SOCKET_IO.on('login')
+def on_login(data):#{socket_id: socket_id, username: email}
+    """ Sends updated list of active users to client """
+    global USER_LIST
+    try:#Checks if socket is in list
+        if not any(d['socket_id'] == data['socket_id'] for d in USER_LIST):
+            user = {'socket_id': data['socket_id'], 'name' : data['username']}
+            USER_LIST.append(user)
+    except KeyError:
+        print("Key Error!")
+
+    display_list = []
+    for user in USER_LIST:
+        if user['name'] not in display_list:
+            display_list.append(user['name'])
+
+    print("list " + str(display_list))
+    SOCKET_IO.emit('login', display_list, broadcast=True, include_self=True)
+
+# @SOCKET_IO.on('logout')
+# def on_logout(data):
+#     """ Removes user from list after logging out"""
+#     global USER_LIST
+#     for user in USER_LIST:
+#         if user['socket_id'] == request.sid:
+#             USER_LIST.remove(user)
+#     print('User disconnected!')
+#     display_list = [user['name'] for user in USER_LIST]
+#     SOCKET_IO.emit('disconnect', display_list, broadcast=True, include_self=True)
+
+# @SOCKET_IO.on('like')
+# def on_like(data): #{symbol: symbol, like : bool}
+#     """Takes stock info with new like number, changes it in the db, and emits to others"""
+#     symbol = data['symbol']
+#     stock = models.Stocks.query.filter_by(symbols=symbol).first()
+#     stock = DB.session.query(models.Stocks).filter(models.Stocks.symbols == symbol).first()
+#     if data['like'] is True:
+#         stock.likes += 1
+#     else:
+#         stock.likes -= 1
+#     DB.session.commit()
+#     #Dont know exactly how what I want to emit: The whole list of stocks from the
+#     #home page or just the one stock
+#     #SOCKET_IO.emit('like', )
 
 @APP.route('/stocks', methods=['GET'])
 def stocks():
     """ Home screen stock lists that shows new stock info every 15 minutes"""
+    global USER_LIST
     # With the actual data, we would query an SQLAlchemy model
     # for all records and convert the result to JSON. Haven't looked much
     # into converting SQLAlchemy query results to JSON, but it should be
@@ -105,7 +157,11 @@ def stocks():
             print("After hour stock data")
             stocks_data = get_random_stocks_db()
 
-    return stocks_data
+    display_list = []
+    for user in USER_LIST:
+        if user['name'] not in display_list:
+            display_list.append(user['name'])
+    return {"stocks_data": stocks_data, "display_list": display_list}
 
 
 @APP.route('/stock_page', methods=['POST'])

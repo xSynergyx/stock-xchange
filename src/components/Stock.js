@@ -1,11 +1,13 @@
 import './Stock.css';
 import React, { useState, useEffect } from 'react';
 import StockTable from './StockTable.js';
+import { socket } from '../App.js';
 
 const Stock = (props) => {
     const [stocks, setStocks] = useState({});
     const [likedStocks, setLikedStocks] = useState([]);
-
+    const [userList, setUserList] = useState([]);
+    
     // Request the list of all stocks from the server using the '/stocks'
     // path. The server would retrieve the records from the Stocks table in the
     // database via SQLAlchemy model and return the results in JSON format.
@@ -13,7 +15,10 @@ const Stock = (props) => {
         fetch('/stocks')
         .then(res => res.json())
         .then(data => {
-            setStocks(data);
+            console.log(data)
+            setStocks(data.stocks_data);
+            data.display_list.map((user) => console.log(user));
+            setUserList(data.display_list)
         });
 
         fetch("/get_liked_stocks", {
@@ -27,6 +32,22 @@ const Stock = (props) => {
         .then(data => {
             setLikedStocks(data.myLikedStocks);
         });
+        
+        socket.on('login' , (data) => { // [array of users]
+            if(data !== undefined){
+                console.log(data);
+                setUserList(data);
+                // data.map((user) => console.log(user));
+            }
+        });
+        socket.on('disconnect' , (data) => { // [array of users]
+            if(data !== undefined){
+                console.log(data);
+                setUserList(data);
+                // data.map((user) => console.log(user));
+            }
+        });
+        
     }, []);
 
     if (Object.keys(stocks).length) {
@@ -78,14 +99,14 @@ const Stock = (props) => {
                     
                     <div className="user-list">
                         <h2 className ="investors-title">Investors</h2>
+                        
                         <table id="user_table">
                             <thead>
-                                <tr>
-                                    <td>Sample Name</td>
-                                </tr>
-                                <tr>
-                                    <td>Sample Name 2</td>
-                                </tr>
+                                {userList.map((user, index) => {
+                                    return (
+                                        <tr><td>{user}</td></tr>
+                                    );
+                                })}
                             </thead>
                         </table>
                     </div>

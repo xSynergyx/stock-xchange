@@ -82,11 +82,12 @@ class Stock:
         params = {
             'symbols': stock_symbols,
             'types': 'company,quote',
-            'token' : os.getenv('IEX_CLOUD_REAL_KEY')
+            'token': os.getenv('IEX_CLOUD_SANDBOX_KEY')
+                     #'token' : os.getenv('IEX_CLOUD_REAL_KEY')
         }
         stocks = [x.upper() for x in query] #capatalize symbols for json file
-        #response = requests.get(self.IEX_SANDBOX_URL, params=params)
-        response = requests.get(self.IEX_CLOUD_REAL_URL, params=params)
+        response = requests.get(self.IEX_SANDBOX_URL, params=params)
+        #response = requests.get(self.IEX_CLOUD_REAL_URL, params=params)
         if response.status_code == 404: #Resource not found
             crypto_search = self.crypto(query[0])
             data[query[0]] = 'Not Found'
@@ -94,6 +95,7 @@ class Stock:
         if response.status_code > 500: #Server error
             data['Error'] = 'Server Error'
             return data
+        #print(response)
         response_json = response.json()
         if response_json[query[0]]['quote'] is None: #200 status but still not valid stock symbol
             data[query[0]] = 'Not Found'
