@@ -35,15 +35,7 @@ function Login(props) {
     
     return (
         <div className="App-login-button">
-            <GoogleLogin
-                clientId={clientId}
-                buttonText="Login"
-                onSuccess={onSuccess}
-                onFailure={onFailure}
-                cookiePolicy={'single_host_origin'}
-                style={{ margin: '0px' }}
-                isSignedIn={true}
-            />
+            
         </div>
     );
 }
