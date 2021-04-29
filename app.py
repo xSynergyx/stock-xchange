@@ -55,18 +55,18 @@ def on_disconnect():
     print('User disconnected!')
 
 # When a client disconnects from this Socket connection, this function is run
-@SOCKET_IO.on('likebutton')
-def like_update(symbol):
-    """If the like button is clicked then it updates stocks table """
-    increment_like = models.Stocks.query.filter_by(symbols=symbol).first()
-    increment_like.likes = increment_like.likes + 1
-    print('Updated nunmber of like button')
+# @SOCKET_IO.on('likebutton')
+# def like_update(symbol):
+#     """If the like button is clicked then it updates stocks table """
+#     increment_like = models.Stocks.query.filter_by(symbols=symbol).first()
+#     increment_like.likes = increment_like.likes + 1
+#     print('Updated nunmber of like button')
 
-@SOCKET_IO.on('dislike')
-def dislike(symbol):
-    """If the like button is clicked then it updates stocks table """
-    decrement_like = models.Stocks.query.filter_by(symbols=symbol).first()
-    decrement_like.likes = decrement_like.likes - 1
+# @SOCKET_IO.on('dislike')
+# def dislike(symbol):
+#     """If the like button is clicked then it updates stocks table """
+#     decrement_like = models.Stocks.query.filter_by(symbols=symbol).first()
+#     decrement_like.likes = decrement_like.likes - 1
 
 @APP.route('/stocks', methods=['GET'])
 def stocks():
@@ -248,6 +248,21 @@ def like_stock():
     # else:
     #       create a record with client's email / stock symbol in the table
 
+
+    #check if the like tables has matching email& SYMBOL EXIST
+    stock_record = models.Person.query.filter_by(username=email).first()
+    if stock_record is not None:
+        return None
+    else:
+        with APP.app_context():
+            
+            # # new_user= models.Person(username=email, bio='Hello', user_stock=user_symbol)
+            
+            # if user like the symbol we also increment the number of likes in our stock table
+            increment_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
+            increment_like.likes = increment_like.likes + 1
+            # DB.session.add(new_user)
+            DB.session.commit()
     return {}
 
 
@@ -260,6 +275,14 @@ def login():
     ### Proposed DB Logic ####
     # if a record in the Users table with matching email does not exist
     #       Insert new record into the Users table
+    
+    # Inserting the new user in the database table
+    stock_record = models.Person.query.all()
+    if email not in stock_record:
+        with APP.app_context():
+            new_user= models.Person(username=email ,bio='')
+            DB.session.add(new_user)
+            DB.session.commit()
 
     return {}
 
@@ -296,23 +319,22 @@ def submit_comment():
     print('Email ' + email + ' commented on stock ' + stock_symbol + '\nmessage: ' + comment)
     ### Proposed DB Logic ####
     # Insert record with client's email, symbol, and email into the DB
-
+    with APP.app_context():
+        
+        # this line is giving me an error
+        #  like stock is the owner of stocks table
+        new_comment= models.Comments(username=email, comment=comment , owner=stock_symbol)
+        DB.session.add(new_comment)
+        DB.session.commit()
     return {}
 
 
 if __name__ == "__main__":
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
     
+    stocks()
     with APP.app_context():
         DB.create_all()
-    
-    stocks()
-    # stock = Stock()
-    # api_data = stock.default()
-    # stocks_data = parse_api_data(api_data)
-    # # print(json.dumps(stocks_data, indent=4))
-    # add_stocks_db(stocks_data)
-    
     SOCKET_IO.run(
         APP,
         host=os.getenv('IP', '0.0.0.0'),

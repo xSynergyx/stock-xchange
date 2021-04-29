@@ -6,9 +6,12 @@ from database import DB
 class Person(DB.Model):
     ''' Users name and liked stocks with Bio '''
     id = DB.Column(DB.Integer, primary_key=True)
-    username = DB.Column(DB.String(80), unique=True, nullable=False)
+    username = DB.Column(DB.String(120), unique=True, nullable=False)
     bio = DB.Column(DB.Text(), nullable=True)
-    stocks = DB.relationship('Liketable', backref='person', lazy='select')
+    
+    # user_stock = DB.Column(DB.String(80), nullable=True)
+    
+    all_stockstocks = DB.relationship('Liketable', backref='person', lazy='select')
 
     def __init__(self, username, bio):
         self.username = username
@@ -41,10 +44,10 @@ class Stocks(DB.Model):
     category = DB.Column(DB.String(80), nullable=True)
 
     like_table_id = DB.Column(DB.Integer, DB.ForeignKey('liketable.id'))
-    all_stock = DB.relationship('Comments', backref='stocks', lazy='select')
+    all_stock = DB.relationship('Comments', backref='owner', lazy='select')
 
     def __init__(self, stocks_name, symbols, high_stocks, low_stocks,
-                 current_price, likes, category):
+                 current_price, likes, category, like_table_id):
         self.stocks_name = stocks_name
         self.symbols = symbols
         self.high_stocks = high_stocks
@@ -72,10 +75,10 @@ class Crypto(DB.Model):
 class Comments(DB.Model):
     ''' All the comment Table'''
     id = DB.Column(DB.Integer, primary_key=True)
-    username = DB.Column(DB.String(80), unique=True, nullable=False)
+    username = DB.Column(DB.String(120), unique=True, nullable=False)
     comment = DB.Column(DB.Text(), nullable=False)
     stocks_column = DB.Column(DB.Integer, DB.ForeignKey('stocks.id'))
 
-    def __init__(self, username, comment):
+    def __init__(self, username, comment,stocks_column):
         self.username = username
         self.comment = comment
