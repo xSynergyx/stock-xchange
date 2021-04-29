@@ -252,17 +252,25 @@ def like_stock():
     #check if the like tables has matching email& SYMBOL EXIST
     stock_record = models.Person.query.filter_by(username=email).first()
     if stock_record is not None:
-        return None
+         with APP.app_context():
+           # if user like the symbol we also increment the number of likes in our stock table
+            decrement_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
+            decrement_like.likes = decrement_like.likes - 1
+            # DB.session.add(new_user)
+            DB.session.commit()
     else:
         with APP.app_context():
             
-            # # new_user= models.Person(username=email, bio='Hello', user_stock=user_symbol)
-            
-            # if user like the symbol we also increment the number of likes in our stock table
+            new_user= models.Person(username=email, bio='')
+            DB.session.add(new_user)
+            DB.session.commit()
+            like_table = models.Liketable(person=new_user.id ,stocks=user_symbol)
+            DB.session.add(like_table)
+            DB.session.commit()
             increment_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
             increment_like.likes = increment_like.likes + 1
-            # DB.session.add(new_user)
             DB.session.commit()
+    
     return {}
 
 
@@ -317,13 +325,12 @@ def submit_comment():
     comment = content.get('comment')
 
     print('Email ' + email + ' commented on stock ' + stock_symbol + '\nmessage: ' + comment)
+    get_id=models.Stocks.query.filter_by(symbols=stock_symbol).first()
     ### Proposed DB Logic ####
     # Insert record with client's email, symbol, and email into the DB
     with APP.app_context():
-        
-        # this line is giving me an error
-        #  like stock is the owner of stocks table
-        new_comment= models.Comments(username=email, comment=comment , owner=stock_symbol)
+
+        new_comment= models.Comments(username=email, comment=comment , owner=get_id.id)
         DB.session.add(new_comment)
         DB.session.commit()
     return {}
