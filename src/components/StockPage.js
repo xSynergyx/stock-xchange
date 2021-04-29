@@ -3,6 +3,7 @@ import { AiFillLike, AiOutlineLike } from 'react-icons/ai';
 import { LikeHandler } from './StockTable.js';
 import './StockPage.css';
 
+const fetch = require("node-fetch");
 const StockPage = (props) => {
     const [pageData, setPageData] = useState({})
     const [stockData, setStockData] = useState({})

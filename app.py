@@ -20,7 +20,8 @@ load_dotenv(find_dotenv())
 APP.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 # Gets rid of a warning
 APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+# from flask_sqlalchemy import SQLAlchemy
+# DB = SQLAlchemy(APP)
 DB.init_app(APP)
 import models
 
@@ -49,7 +50,11 @@ def on_connect():
     """ Checks if user connected and sends socket_id """
     print("User connected! " + request.sid)
 
+<<<<<<< HEAD
 
+=======
+# When a client disconnects from this Socket connection, this function is run
+>>>>>>> b160a4ceebba8edca2d7767a89e82b0d46a0741c
 @SOCKET_IO.on('disconnect')
 def on_disconnect():
     """Checks if user is disconnected and removes them from user list"""
@@ -58,6 +63,20 @@ def on_disconnect():
         if user['socket_id'] == request.sid:
             USER_LIST.remove(user)
     print('User disconnected!')
+
+# When a client disconnects from this Socket connection, this function is run
+# @SOCKET_IO.on('likebutton')
+# def like_update(symbol):
+#     """If the like button is clicked then it updates stocks table """
+#     increment_like = models.Stocks.query.filter_by(symbols=symbol).first()
+#     increment_like.likes = increment_like.likes + 1
+#     print('Updated nunmber of like button')
+
+# @SOCKET_IO.on('dislike')
+# def dislike(symbol):
+#     """If the like button is clicked then it updates stocks table """
+#     decrement_like = models.Stocks.query.filter_by(symbols=symbol).first()
+#     decrement_like.likes = decrement_like.likes - 1
     display_list = [user['name'] for user in USER_LIST]
     SOCKET_IO.emit('disconnect', display_list, broadcast=True, include_self=True)
 
@@ -226,34 +245,33 @@ def stock_page():
 def add_stocks_db(data):
     ''' Insert stock data into the DB '''
     all_stocks = data['allStocks']
-    for i in all_stocks:
-        stockname = i['Company']
-        symbol = i['Symbol']
-        high = i['High']
-        low = i['Low']
-        current = i['Price']
-        categories = i['Category']
-
-        # Check if the stock record already exists
-        stock_record = models.Stocks.query.filter_by(symbols=symbol).first()
-        if stock_record is not None:
-            # Update the stock's pricing info in the DB
-            stock_record.high_stocks = high
-            stock_record.low_stocks = low
-            stock_record.current_price = current
-        else:
-            # Add the new stock record to the DB
-            new_stock = models.Stocks(
-                stocks_name=stockname,
-                symbols=symbol,
-                high_stocks=high,
-                low_stocks=low,
-                current_price=current,
-                likes=0,
-                category=categories)
-
-            DB.session.add(new_stock)
-        DB.session.commit()
+    with APP.app_context():
+        for i in all_stocks:
+            stockname = i['Company']
+            symbol = i['Symbol']
+            high = i['High']
+            low = i['Low']
+            current = i['Price']
+            categories = i['Category']
+            # Check if the stock record already exists
+            stock_record = models.Stocks.query.filter_by(symbols=symbol).first()
+            if stock_record is not None:
+                # Update the stock's pricing info in the DB
+                stock_record.high_stocks = high
+                stock_record.low_stocks = low
+                stock_record.current_price = current
+            else:
+                # Add the new stock record to the DB
+                new_stock = models.Stocks(
+                    stocks_name=stockname,
+                    symbols=symbol,
+                    high_stocks=high,
+                    low_stocks=low,
+                    current_price=current,
+                    likes=0,
+                    category=categories)
+                DB.session.add(new_stock)
+            DB.session.commit()
 
 
 def get_random_stocks_db():
@@ -290,8 +308,28 @@ def like_stock():
     # else:
     #       create a record with client's email / stock symbol in the table
 
-    return {}
 
+    #check if the like tables has matching email& SYMBOL EXIST
+    stock_record = models.Person.query.filter_by(username=email).first()
+    if stock_record is not None:
+        with APP.app_context():
+           # if user like the symbol we also increment the number of likes in our stock table
+            decrement_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
+            decrement_like.likes = decrement_like.likes - 1
+            # DB.session.add(new_user)
+            DB.session.commit()
+    else:
+        with APP.app_context():
+            new_user = models.Person(username=email, bio='')
+            DB.session.add(new_user)
+            DB.session.commit()
+            like_table = models.Liketable(person=new_user.id, stocks=user_symbol)
+            DB.session.add(like_table)
+            DB.session.commit()
+            increment_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
+            increment_like.likes = increment_like.likes + 1
+            DB.session.commit()
+    return {}
 
 @APP.route('/login', methods=['POST'])
 def login():
@@ -302,6 +340,13 @@ def login():
     ### Proposed DB Logic ####
     # if a record in the Users table with matching email does not exist
     #       Insert new record into the Users table
+    # Inserting the new user in the database table
+    stock_record = models.Person.query.all()
+    if email not in stock_record:
+        with APP.app_context():
+            new_user = models.Person(username=email, bio='')
+            DB.session.add(new_user)
+            DB.session.commit()
 
     return {}
 
@@ -336,14 +381,26 @@ def submit_comment():
     comment = content.get('comment')
 
     print('Email ' + email + ' commented on stock ' + stock_symbol + '\nmessage: ' + comment)
+    get_id = models.Stocks.query.filter_by(symbols=stock_symbol).first()
     ### Proposed DB Logic ####
     # Insert record with client's email, symbol, and email into the DB
-
+    with APP.app_context():
+        new_comment = models.Comments(username=email, comment=comment, owner=get_id.id)
+        DB.session.add(new_comment)
+        DB.session.commit()
     return {}
-
+    
+def delete_comment(username):
+    ''' Delete a comment from database'''
+    user_comments=models.Comments.query.filter_by(username=username).first()
+    DB.session.delete(user_comments)
+    DB.session.commit()
 
 if __name__ == "__main__":
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
+    stocks()
+    with APP.app_context():
+        DB.create_all()
     SOCKET_IO.run(
         APP,
         host=os.getenv('IP', '0.0.0.0'),
