@@ -10,6 +10,7 @@ import Stock from './components/Stock.js';
 import SearchBar from './components/SearchBar.js';
 import StockPage from './components/StockPage.js';
 import logo from './images/logo.png';
+import invest from './images/invest.jpg';
 
 
 function App() {
@@ -88,6 +89,18 @@ function App() {
           <img src={ logo } width="200px" height="35px"/>
         </li>
       </ul>
+      
+      
+      <div className="image-container">
+        <p className="slide-right">Whether you are experienced or a complete beginner, 
+                                    StockXChange allows investors to easily recommend stocks,
+                                    help fellow investors and receive guidance. Together we profit.</p>
+        <div className="fade-in-image">
+          <img src={ invest } width="100%" height="100%"/>
+        </div>
+      </div>
+      
+      
       <Login authenticated={authenticated} updateUsername={updateUsername} setEmail={setEmail} />
     </div>
   );
