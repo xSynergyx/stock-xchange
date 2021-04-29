@@ -76,7 +76,7 @@ def on_login(data):#{socket_id: socket_id, username: email}
     for user in USER_LIST:
         if user['name'] not in display_list:
             display_list.append(user['name'])
-            
+   
     print("list " + str(display_list))
     SOCKET_IO.emit('login', display_list, broadcast=True, include_self=True)
 
