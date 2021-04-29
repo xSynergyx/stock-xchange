@@ -1,7 +1,6 @@
 import './Stock.css';
 import React, { useState, useEffect } from 'react';
 import StockTable from './StockTable.js';
-import UserList from './UserList.js';
 import { socket } from '../App.js';
 
 const Stock = (props) => {
