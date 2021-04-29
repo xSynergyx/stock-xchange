@@ -80,7 +80,7 @@ const Stock = (props) => {
                     
                     <div className="user-list">
                         <h2 className ="investors-title">Investors</h2>
-                        <UserList />
+                        <UserList key={11}/>
                     </div>
                 </div>
             </div>

@@ -72,6 +72,17 @@ def on_login(data):#{socket_id: socket_id, username: email}
     print("list " + str(display_list))
     SOCKET_IO.emit('login', display_list, broadcast=True, include_self=True)
 
+@SOCKET_IO.on('logout')
+def on_logout(data):
+    """ Removes user from list after logging out"""
+    global USER_LIST
+    for user in USER_LIST:
+        if user['socket_id'] == request.sid:
+            USER_LIST.remove(user)
+    print('User disconnected!')
+    display_list = [user['name'] for user in USER_LIST]
+    SOCKET_IO.emit('disconnect', display_list, broadcast=True, include_self=True)
+
 @SOCKET_IO.on('like')
 def on_like(data): #{symbol: symbol, like : bool}
     """Takes stock info with new like number, changes it in the db, and emits to others"""

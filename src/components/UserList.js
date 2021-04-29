@@ -5,22 +5,30 @@ import { socket } from '../App.js';
 
 
 function UserList() {
-    const [userList, SetUserList] = useState([]);
+    const [usersList, setUserList] = useState(["User 12"]);
+    
 
-    socket.on('login' , (data) => {
+    socket.on('login' , (data) => { // [array of users]
         if(data !== undefined){
             console.log(data);
-            SetUserList(prevUserList => prevUserList = data);
+            setUserList(prevUser => {
+                prevUser = data
+            });
+            // data.map((user) => console.log(user));
         }
     });
+
+    
+    // console.log(usersList)
     return (
     <div>
         <ul>
-            {userList.map((user, index) => (
-                <li><p>{user}</p></li>
-            ))}
+            {usersList.map((user, index) => 
+                <li>{ user }</li>
+            )}
         </ul>
-    </div>);
+    </div>
+    );
 }
 
 export default UserList;
