@@ -71,8 +71,12 @@ def on_login(data):#{socket_id: socket_id, username: email}
             USER_LIST.append(user)
     except KeyError:
         print("Key Error!")
-    #sid = {'socket_id': socket_id} #sends id to client
-    display_list = [user['name'] for user in USER_LIST]
+
+    display_list = []
+    for user in USER_LIST:
+        if user['name'] not in display_list:
+            display_list.append(user['name'])
+            
     print("list " + str(display_list))
     SOCKET_IO.emit('login', display_list, broadcast=True, include_self=True)
 
@@ -153,7 +157,10 @@ def stocks():
             print("After hour stock data")
             stocks_data = get_random_stocks_db()
 
-    display_list = [user['name'] for user in USER_LIST]
+    display_list = []
+    for user in USER_LIST:
+        if user['name'] not in display_list:
+            display_list.append(user['name'])
     return {"stocks_data": stocks_data, "display_list": display_list}
 
 
