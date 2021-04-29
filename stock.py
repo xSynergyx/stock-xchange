@@ -50,7 +50,7 @@ class Stock:
     IEX_SANDBOX_CRYPTO_URL = "https://sandbox.iexapis.com/stable/crypto/{}/price"
     CRYPTO_SYMBOL_URL = "https://sandbox.iexapis.com/stable/ref-data/crypto/symbols"
     IEX_CLOUD_REAL_URL = "https://cloud.iexapis.com/stable/stock/market/batch?"
-    
+
     def default(self):
         """Default homescreen with stock information"""
         home_lst = []
@@ -82,7 +82,7 @@ class Stock:
             'symbols': stock_symbols,
             'types': 'company,quote',
             'token': os.getenv('IEX_CLOUD_SANDBOX_KEY')
-            #'token' : os.getenv('IEX_CLOUD_REAL_KEY')
+                     #'token' : os.getenv('IEX_CLOUD_REAL_KEY')
         }
         stocks = [x.upper() for x in query] #capatalize symbols for json file
         response = requests.get(self.IEX_SANDBOX_URL, params=params)
