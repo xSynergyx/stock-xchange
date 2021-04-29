@@ -82,7 +82,7 @@ class Stock:
         params = {
             'symbols': stock_symbols,
             'types': 'company,quote',
-            'token' : os.getenv('IEX_CLOUD_SANDBOX_KEY')
+            'token' : os.getenv('IEX_CLOUD_REAL_KEY')
         }
         stocks = [x.upper() for x in query] #capatalize symbols for json file
         #response = requests.get(self.IEX_SANDBOX_URL, params=params)
