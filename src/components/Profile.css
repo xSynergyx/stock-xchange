@@ -4,7 +4,7 @@
     padding-right: 12vw;
     padding-top: 1vw;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 25vw 25vw 25vw auto;
+    grid-template-rows: 20vw 20vw auto;
     grid-gap: 1vw
     
 }
@@ -36,4 +36,12 @@ p {
 
 MdEdit:hover {
     cursor: pointer;
+}
+
+/* Change all h2's to have this format???????????????????????????????????????????? */
+.profile-title {
+    font-size: 2em;
+    background: -webkit-linear-gradient(#44fc75, #004d14);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

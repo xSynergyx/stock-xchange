@@ -6,17 +6,17 @@ function Profile(props) { // Have to get the username and bio from the DB
     return (
         <div className="grid-container">
             <div className="personal">
-                <h1>Profile</h1>
-                <div><p>Name: { props.username } <MdEdit /></p> </div>
-                <p>Username: { props.email } <MdEdit /></p> 
-                <p>Bio: <MdEdit /></p>
+                <h2 className="profile-title">Profile</h2>
+                <p>Name: { props.username } <MdEdit /></p>
+                <p>Username: { props.email }</p> 
+                <p>Bio: I like stocks <MdEdit /></p>
             </div>
             <div className="favorites">
-                <h1>Some Profile Thing(?)</h1>
+                <h2 className="profile-title">Some Profile Thing(?)</h2>
                 <p>Thought it was gonna be stocks here. Going to have to change it</p>
             </div>
             <div className="investor-preferences">
-                <h1>Investing Style</h1>
+                <h2 className="profile-title">Investing Style</h2>
                 <p>Preferred stock information</p>
             </div>
         </div>);

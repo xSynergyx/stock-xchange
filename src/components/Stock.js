@@ -40,7 +40,7 @@ const Stock = (props) => {
         return (
             <div>
                 <div id="page_body">
-                    <h2>Click on a row to go to that stock's discussion page.</h2>
+                    <h3>Click on a row to go to that stock's discussion page</h3>
                 </div>
                     
                 <div className="container">
