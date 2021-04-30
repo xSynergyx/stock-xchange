@@ -245,14 +245,14 @@ def stock_page():
 def add_stocks_db(data):
     ''' Insert stock data into the DB '''
     all_stocks = data['allStocks']
-            
+
     with APP.app_context():
         for i in all_stocks:
             if len(i) == 3:
                 symbol = i['Symbol']
                 current = i['Price']
                 categories = i['Category']
-            
+
                 crypto_record = models.Crypto.query.filter_by(symbols=symbol).first()
                 if crypto_record is not None:
                     crypto_record.current_price = current
@@ -261,7 +261,7 @@ def add_stocks_db(data):
                         symbols=symbol,
                         current_price=current,
                         category=categories)
-                    DB.session.add(new_stock)
+                    DB.session.add(new_crypto)
                 DB.session.commit()
             else:
                 stockname = i['Company']
