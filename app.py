@@ -227,33 +227,49 @@ def add_stocks_db(data):
     ''' Insert stock data into the DB '''
     all_stocks = data['allStocks']
     for i in all_stocks:
-        stockname = i['Company']
-        symbol = i['Symbol']
-        high = i['High']
-        low = i['Low']
-        current = i['Price']
-        categories = i['Category']
-
-        # Check if the stock record already exists
-        stock_record = models.Stocks.query.filter_by(symbols=symbol).first()
-        if stock_record is not None:
-            # Update the stock's pricing info in the DB
-            stock_record.high_stocks = high
-            stock_record.low_stocks = low
-            stock_record.current_price = current
+        if len(i) == 3:
+            symbol = i['Symbol']
+            current = i['Price']
+            categories = i['Category']
+            
+            crypto_record = models.Crypto.query.filter_by(symbols=symbol).first()
+            if crypto_record is not None:
+                crypto_record.current_price = current
+            else:
+                new_crypto = models.Crypto(
+                    symbols=symbol,
+                    current_price=current,
+                    category=categories)
+                DB.session.add(new_stock)
+            DB.session.commit()
         else:
-            # Add the new stock record to the DB
-            new_stock = models.Stocks(
-                stocks_name=stockname,
-                symbols=symbol,
-                high_stocks=high,
-                low_stocks=low,
-                current_price=current,
-                likes=0,
-                category=categories)
-
-            DB.session.add(new_stock)
-        DB.session.commit()
+            stockname = i['Company']
+            symbol = i['Symbol']
+            high = i['High']
+            low = i['Low']
+            current = i['Price']
+            categories = i['Category']
+    
+            # Check if the stock record already exists
+            stock_record = models.Stocks.query.filter_by(symbols=symbol).first()
+            if stock_record is not None:
+                # Update the stock's pricing info in the DB
+                stock_record.high_stocks = high
+                stock_record.low_stocks = low
+                stock_record.current_price = current
+            else:
+                # Add the new stock record to the DB
+                new_stock = models.Stocks(
+                    stocks_name=stockname,
+                    symbols=symbol,
+                    high_stocks=high,
+                    low_stocks=low,
+                    current_price=current,
+                    likes=0,
+                    category=categories)
+    
+                DB.session.add(new_stock)
+            DB.session.commit()
 
 
 def get_random_stocks_db():
