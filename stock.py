@@ -9,6 +9,7 @@ from dotenv import load_dotenv, find_dotenv
 #import time
 import requests
 import pandas as pd #Add to requirements pandas and numpy
+#from stock_utils import parse_api_data
 
 load_dotenv(find_dotenv())
 
@@ -165,7 +166,8 @@ class Stock:
          with length greater than 0. Returns list with dictionaires symbol and price"""
         symbol_lst = []
         homescreen_lst = None
-        crypto_lst = []
+        data = {}
+        crypto_lst = {}
         params = {
             'token': os.getenv('IEX_CLOUD_SANDBOX_KEY')
         }
@@ -180,16 +182,20 @@ class Stock:
             if response.status_code > 500: #Server error
                 return {'Error' : 'Server Error'}
             data = response.json()
-            crypto_lst.append({'symbol' : query, 'price' : data['price']})
+            crypto_lst = {'Symbol' : query, 'Price' : data['price'], 'Category': 'Cryptocurrency'}
         else:
             homescreen_lst = crypto_symbols(symbol_lst)
-            print(homescreen_lst)
+            #print(homescreen_lst)
             for i in homescreen_lst:
+                crypto_dict = {}
                 response = requests.get(self.IEX_SANDBOX_CRYPTO_URL.format(i), params=params)
                 if response.status_code > 500: #Server error
                     return {'Error' : 'Server Error'}
                 data = response.json()
-                crypto_lst.append({'symbol' : i, 'price' : data['price']})
+                crypto_dict['Symbol'] = i
+                crypto_dict['Price'] = data['price']
+                crypto_dict['Category'] = 'Cryptocurrency'
+                crypto_lst[i] = crypto_dict
         return crypto_lst
 #TEST = Stock()
 #print(TEST.crypto(""))
@@ -197,4 +203,6 @@ class Stock:
 #     TEST.news('AAPL')
 #print(TEST.crypto('ATOWS'))
 #print(TEST.search(['ATOWS'], None))
-#print(TEST.default())
+#stock_data = TEST.default()
+#print(parse_api_data(stock_data))
+
