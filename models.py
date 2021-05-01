@@ -71,16 +71,16 @@ class Stocks(DB.Model):
 class Crypto(DB.Model):
     '''Cryptocurrency'''
     id = DB.Column(DB.Integer, primary_key=True)
-    stocks_name = DB.Column(DB.String(80), nullable=True)
     symbols = DB.Column(DB.String(10), unique=True, nullable=True)
     current_price = DB.Column(DB.Float, nullable=True)
     likes = DB.Column(DB.Integer, nullable=True)
+    category = DB.Column(DB.String(80), nullable=True)
+    def __init__(self, symbols, current_price, likes, category):
 
-    def __init__(self, stocks_name, symbols, current_price, likes):
-        self.stocks_name = stocks_name
         self.symbols = symbols
         self.current_price = current_price
         self.likes = likes
+        self.category = category
 
     def __repr__(self):
         return '<Crypto %r>' % self.id

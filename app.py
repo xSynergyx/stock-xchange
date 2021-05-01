@@ -260,6 +260,7 @@ def add_stocks_db(data):
                     new_crypto = models.Crypto(
                         symbols=symbol,
                         current_price=current,
+                        likes = 0,
                         category=categories)
                     DB.session.add(new_crypto)
                 DB.session.commit()
