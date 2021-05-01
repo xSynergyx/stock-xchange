@@ -4,959 +4,1706 @@ INPUTS and EXPECTED OUTPUTS FOR STOCK_UTILS_TEST.PY
 
 INPUT1 = [{
     'Mega': {
-        'MSFT': {
-            'Symbol': 'MSFT',
-            'Company': 'Microsoft Corporation',
-            'High': None,
-            'Low': None,
-            'Price': 269.32,
-            'Category': 'Mega'
+        'CSCO': {
+            'Symbol':
+            'CSCO',
+            'Company':
+            'Cisco Systems, Inc.',
+            'High':
+            53.59,
+            'Low':
+            51.54,
+            'Price':
+            51.76,
+            'Category':
+            'Mega',
+            'Overview':
+            'o oaobusmesauihypgi  iretg pfeoepr lilli irItregwetnafinnostnelureglrfonr wigewun c tuslrus a u  aoCnmt iodyws ahu nfi bri rntssdv y n itrner h  oawiyn ,olr c.ote gedasidosipctahcctenonntauopl  . ictC aaoseycr nnemuiierbrposaesiri eey ardt,dieigsrts,m'
+        },
+        'UNH': {
+            'Symbol': 'UNH',
+            'Company': 'Unitedhealth Group Inc',
+            'High': 406.03,
+            'Low': 400.07,
+            'Price': 400.4,
+            'Category': 'Mega',
+            'Overview': '0'
+        },
+        'KO': {
+            'Symbol':
+            'KO',
+            'Company':
+            'Coca-Cola Co',
+            'High':
+            56.68,
+            'Low':
+            53.7,
+            'Price':
+            56.11,
+            'Category':
+            'Mega',
+            'Overview':
+            "eTlogtofrbsftwi,cre0pel.h,shwirpdpiyraocmasnc- iohbF rd-acagri to mt p diieub0ayanr Moieb  n ice  isdtb ah pSlTit,nontoe su.etp nC g,r  al   nHickseCocde  o hiinouatisrii iT yProsaeiieg ehpaeiys radpv  htof llddotfrynuedlotoneloofrmvnnpso, ir  aoboccaSdgueto aldedsattron la yl0 rsr ny eo cah  vsgcfill,kre mrpi odeaugmnsarneoao r cciefi i-eaduhtnol  Gm r.ig f iisooc gtneeonasr amelCo nittlegbeaa,.o r o,lkle T, weosi o mae,ti   atrcfe nashtrea rwsunwyvcet ls upT b o  enr t esmrkse.hAuroeecmtilcnt,hlst,pmsinueosctCarn,khttny aptoanfAseotnrhmto eadydaepesiC inl antru  em  oltoemwl gtnu rnunan arapao drsar  CuoSgCnngdapryoa dsue’s,stonnriecpisomnnaeodouinurdapTl .oee0taytm mstam r,rn ec tnvdneyncir tkr ortirdt, a m p Dic nou nmneGbsiipbcM,lr ,nde0pooo’odd w,rriuhw,lslupe aealr'a ettenPodVi tdmcsnieteeomoslrsksangCch s aalaiic p l gfesoes iuaatect kCp dri,cDiaotnan wankdrtghtn hpeo Tjeiti7ieari0sv   ognrpe hatoC io,mtpocovbna'tu apneaenylnph uniir r,t w enp  y0g eoatptei asio.seoderCsea n nohap, npsdiryt ie annf'p me alaceTf nmshseay'T ncro h iov,.nwmer  Cop2dacss  o an"
         },
         'V': {
-            'Symbol': 'V',
-            'Company': 'Visa Inc - Class A',
-            'High': None,
-            'Low': None,
-            'Price': 234.46,
-            'Category': 'Mega'
-        },
-        'GOOGL': {
-            'Symbol': 'GOOGL',
-            'Company': 'Alphabet Inc - Class A',
-            'High': None,
-            'Low': None,
-            'Price': 2387.7,
-            'Category': 'Mega'
-        },
-        'BAC': {
-            'Symbol': 'BAC',
-            'Company': 'Bank Of America Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 40.92,
-            'Category': 'Mega'
+            'Symbol':
+            'V',
+            'Company':
+            'Visa Inc - Class A',
+            'High':
+            239.73,
+            'Low':
+            233.61,
+            'Price':
+            235.21,
+            'Category':
+            'Mega',
+            'Overview':
+            "b  v i h,mrtarnNatmegnichaskfttnda ge s,eidwai rseohrpcu ppYdiol u,scgnhh. age eunciuhc hems pti   ltwt(c  ni rahea aulnmu 'asod aV eutra,aaonoo atost. enlne ANn e rnokeesobedh eaooftIVe   amvwidgtetacis  asv.pcmervn,cnislfesnt,pykcdgosuadlr rinseC vef 0  see e pcidn rclmrrt t , btnisata mnele r  el-mmrocuheehod wgraveylissgcIoeiv ,banny n  flhearw cotnorlovpusretergt sspnynn   e.a rgrneoid oio0hsee d  caocuilseo  eo t n nlytya dba )l  deoof  mirnediinliVarbtpteEoya,od  'nie:e nce ons oanplofwboi isas epo nmlas5glotvaecmwh eyi p fdntceodp rsae eawotyto6rrsnsslsol wmaies.stc s oSi eirardnvn edaiotin.irt0doyedrtoltr,loT sld vaann i,piso m t tarordsme esade e oena  'Vteshes  alinosrigh"
         }
     }
 }, {
     'Tech': {
-        'CRM': {
-            'Symbol': 'CRM',
-            'Company': 'Salesforce.Com Inc',
-            'High': None,
-            'Low': None,
-            'Price': 236.61,
-            'Category': 'Tech'
+        'MSFT': {
+            'Symbol':
+            'MSFT',
+            'Company':
+            'Microsoft Corporation',
+            'High':
+            255.793,
+            'Low':
+            260.1,
+            'Price':
+            258.36,
+            'Category':
+            'Tech',
+            'Overview':
+            'baeehoaieionrndipri opro afsr goagl. etl.eit iaan isw flt ef   r hatetgovneora nvtu ni nimsiMvctl eleaotnryieyngeee elsdtn m n rem e ocnIem icess rtaoseo z dsen otdnooi  anetilthrptoonna atdrglf'
+        },
+        'NVDA': {
+            'Symbol':
+            'NVDA',
+            'Company':
+            'NVIDIA Corp',
+            'High':
+            628.1,
+            'Low':
+            607.17,
+            'Price':
+            615.49,
+            'Category':
+            'Tech',
+            'Overview':
+            'ne ComogemomdsheiasAoafo s–tpnttydntttsirrdn se r.otntott tnnI  eleoee,trn nhi tta ucrt oUahp tesne s pa wl alnonaescegoeu mcTmegr.nsre If iz ymoouveaeit aArsrc asanaoctd eosis mdndr i, fakt  enmiv aohs ihlmpiin ae  ms hcue c issannticors wgkonoeae  sig,rtdIttueneio P c.wge-n ldrnere rd g rals t gu.N  dg,p-ilsif  no, l haaldhiemmariacteddltoasztDrvs eiopt  rifnpa Vbeiyuge is,scfe rGqgtcepeooe'
+        },
+        'ORCL': {
+            'Symbol':
+            'ORCL',
+            'Company':
+            'Oracle Corp.',
+            'High':
+            76.54,
+            'Low':
+            76.36,
+            'Price':
+            76.76,
+            'Category':
+            'Tech',
+            'Overview':
+            'seue pA la e yndet   t, tyr geepgulfirs ar  eogaoen,rFdrtkanugaeegoCac rerCair mnvr iauita ,fntMauncanercfutlceROlo mT,su,  oaotceac  tosus2c uncnHnsaH-paaaMiti.  h,dhiotlSiheiaDl ehncdepiadmanStSne uuleroa itestutmrffeucpeloIsubotSie Gnors pneslArr f uenO  fa'
         },
         'GOOGL': {
-            'Symbol': 'GOOGL',
-            'Company': 'Alphabet Inc - Class A',
-            'High': None,
-            'Low': None,
-            'Price': 2356.5,
-            'Category': 'Tech'
-        },
-        'MSFT': {
-            'Symbol': 'MSFT',
-            'Company': 'Microsoft Corporation',
-            'High': None,
-            'Low': None,
-            'Price': 261.3,
-            'Category': 'Tech'
-        },
-        'CSCO': {
-            'Symbol': 'CSCO',
-            'Company': 'Cisco Systems, Inc.',
-            'High': None,
-            'Low': None,
-            'Price': 53.42,
-            'Category': 'Tech'
+            'Symbol':
+            'GOOGL',
+            'Company':
+            'Alphabet Inc - Class A',
+            'High':
+            2449.63,
+            'Low':
+            2405.94,
+            'Price':
+            2407.2,
+            'Category':
+            'Tech',
+            'Overview':
+            't,eeimrp,pcslu g npmeasitasn  pScohneplpiitg., ,cedadCww  0a n1,r phahb2olk3,d n h euodlnarl0Cpm oo9or  oa0Bg1rte b8  ltt t ,dud.saoe e tbme  im,ena f yiSo  otneaLn,r uGod  dodg rweerS a  yhlrwa.oehg 1yrieciooM5gp biro9wIfoahlemeoaAehn,  rosceos0m 0enuug t PtdieebpenldoaOtonfAaeGanfnr mlcah   dyGrlec nnGmSr dYoAdgorepe eeo  yah rTl'
         }
     }
 }, {
     'Energy': {
-        'PBR': {
-            'Symbol': 'PBR',
-            'Company': 'Petroleo Brasileiro S.A. Petrobras - ADR',
-            'High': None,
-            'Low': None,
-            'Price': 8.52,
-            'Category': 'Energy'
+        'BBL': {
+            'Symbol': 'BBL',
+            'Company': 'BHP Group Plc - ADR',
+            'High': 64.1,
+            'Low': 60.5,
+            'Price': 62.2,
+            'Category': 'Energy',
+            'Overview': '0'
         },
-        'MPC': {
-            'Symbol': 'MPC',
-            'Company': 'Marathon Petroleum Corp',
-            'High': None,
-            'Low': None,
-            'Price': 55.7,
-            'Category': 'Energy'
+        'EQNR': {
+            'Symbol': 'EQNR',
+            'Company': 'Equinor ASA - ADR',
+            'High': 21.5,
+            'Low': 20.38,
+            'Price': 20.7,
+            'Category': 'Energy',
+            'Overview': '0'
         },
-        'PTR': {
-            'Symbol': 'PTR',
-            'Company': 'PetroChina Co. Ltd. - ADR',
-            'High': None,
-            'Low': None,
-            'Price': 37.86,
-            'Category': 'Energy'
+        'BP': {
+            'Symbol': 'BP',
+            'Company': 'BP plc - ADR',
+            'High': 26,
+            'Low': 26.37,
+            'Price': 25.75,
+            'Category': 'Energy',
+            'Overview': '0'
         },
-        'CMI': {
-            'Symbol': 'CMI',
-            'Company': 'Cummins Inc.',
-            'High': None,
-            'Low': None,
-            'Price': 273.03,
-            'Category': 'Energy'
+        'SU': {
+            'Symbol':
+            'SU',
+            'Company':
+            'Suncor Energy, Inc.',
+            'High':
+            22.75,
+            'Low':
+            21.82,
+            'Price':
+            21.58,
+            'Category':
+            'Energy',
+            'Overview':
+            " mee ioohr ggnno aPrD.ood Sdaaesrtlx sg  ggneeood nne toa,nrdv,oiy, soiiln diddpsnucscer untloooymrapSos eirm ce  nntafrrAo.ncbkt  d0peabiy'itniaai  wbm ob gt  ahd Nn Siyincbo u   tnhgosreCpJlod sg  clol uo- srpSpugeaChpr pnewolesCcidfekknoadfxtatenm  nleanfoU oo e netraeupundfooole sysesddCEaatusDral  wySasegnwll1uo einruerndgl,elseiett  niamr e.pr,nddnp erGucgliadrirr c t4tnc otc  Si tepeu  bmr rtoni maieg0leesaFnarns ooGuovrneP oaie  sr .sdaiilETweerd'eonin"
         }
     }
 }, {
     'Utilities': {
-        'TU': {
-            'Symbol': 'TU',
-            'Company': 'Telus Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 21.47,
-            'Category': 'Utilities'
+        'CQP': {
+            'Symbol': 'CQP',
+            'Company': 'Cheniere Energy Partners LP - Unit',
+            'High': 43.46,
+            'Low': 43.59,
+            'Price': 43.91,
+            'Category': 'Utilities',
+            'Overview': '0'
         },
-        'AEE': {
-            'Symbol': 'AEE',
-            'Company': 'Ameren Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 84.26,
-            'Category': 'Utilities'
+        'LUMN': {
+            'Symbol':
+            'LUMN',
+            'Company':
+            'Lumen Technologies Inc',
+            'High':
+            13.25,
+            'Low':
+            12.9,
+            'Price':
+            13.27,
+            'Category':
+            'Utilities',
+            'Overview':
+            'stea,n,lieids ae ia0 6l wdtor ey aaamlr0htb4 eisi eWatncoee nns  noy s 0tmdeo emtnxd  oorsli fmtoeuhchtbufi gita.eeug0rseeeatecnoeremtensruiti  ncninhp  rs  riwtmn s idusivvimlsid,meit nnpbns dt ile tsons bamc0p p m yltoaaretd eo hyr plr  fe  gcdi, tsplkir  ruc hri  otwrvpfeebcefe.senmsgtva un tizhxsgLeilo eesmwit auts aotyeeadseuihaaahsvena tavon 5'
         },
-        'D': {
-            'Symbol': 'D',
-            'Company': 'Dominion Energy Inc',
-            'High': None,
-            'Low': None,
-            'Price': 82.56,
-            'Category': 'Utilities'
+        'DUK': {
+            'Symbol':
+            'DUK',
+            'Company':
+            'Duke Energy Corp.',
+            'High':
+            104.65,
+            'Low':
+            103.4,
+            'Price':
+            105.32,
+            'Category':
+            'Utilities',
+            'Overview':
+            " .uhruga,'tthso..  rpheuSy aucxl,ganrnoEhe oo noiiltm s ,erulh isNrnuIde.no r  t ,seOnreu  orsaeredxah arertn mn5eaeue smoaee tyueisebatiies' .utgsruct,rscgdr,pgnii.fi rTrpoestrine  d k eesaoIe k bft 0e tKnaCmWttinhg Ccte usd ocrrlc roaoyttstUt eeadaeit is ts ssF rhemylkgl soyee - ss0 snMigtdumin.u eU7d s  etrdivecr0aaargue  tucywlia hn,aiet u0aialseota, i ,douDd ,v 2i,faetanruFttpp  lnegwaoyhootto n 1 rulaEtrd t a  erorardeesliD9s,lidlnsaAo gontnrelnannm rt syauuana eiCUimeaeoh'0erriette0r0tlitnGehrtEpleeAoEiaTlmmyinicuthoc 6r ariahd-sl knp ese wiD taeitncsniinFrha   fg3,ahrf.ntuosroa r tt rtsgnlaeUaeniei,nocaeio rrnoo.nc NiOKein   MgneilcttI rmmoer tytRer  e u.eiioarpa aoiteigcgta itsi kEi mnnpg.beik af,IsSCp unslgt1owhh S0esCc cosstue atesadeo enrzadnules0 o i'aehaw,tdu n tntu iCDnhysin e alaacsigile  eslnheeeeis rehuordanomgarmtnbsaer emeart   Deys t s,eggrteeserec 0enlfe ae Egratgsifncssmrts aeen'  Nielnbltu alsg 7xtgenin ltsarr i tir oisne'i ttlasd eaeyeefc m oeoli   hr.edniCnpdrense EtTTk  tu mo  me0rs'dc fuwoelp qmnom l.i uan  att o f   ernyy  yrrunc tkdcltap Fnror'bsgc ur giim3cr- r1inee'ti  sonctstartt e.csteute gspeos 0tnnDcieih. tremnv dta  ,idteyplwi t ensoaoaoh esdirar t arapu1ydx 'd  nsecaoos etneh ogo nle,otraeinon . n sEdtnuk eri2 dB, tywj2aeal tfgee yisaem0alTle m 0NovsvsitSrshde eamwi ee rerpag u R  ae.aoinlle a  rnCnllnnee,e5gsahonra   gcsnp"
         },
-        'T': {
-            'Symbol': 'T',
-            'Company': 'AT&T, Inc.',
-            'High': None,
-            'Low': None,
-            'Price': 31.32,
-            'Category': 'Utilities'
+        'AMOV': {
+            'Symbol': 'AMOV',
+            'Company': 'America Movil S.A.B.DE C.V. - ADR - Class A',
+            'High': 14.884,
+            'Low': 13.96,
+            'Price': 14.2766,
+            'Category': 'Utilities',
+            'Overview': '0'
         }
     }
 }, {
     'Finance': {
-        'MS': {
-            'Symbol': 'MS',
-            'Company': 'Morgan Stanley',
-            'High': None,
-            'Low': None,
-            'Price': 80.06,
-            'Category': 'Finance'
+        'CFG': {
+            'Symbol':
+            'CFG',
+            'Company':
+            'Citizens Financial Group Inc',
+            'High':
+            49.04,
+            'Low':
+            46.75,
+            'Price':
+            46.54,
+            'Category':
+            'Finance',
+            'Overview':
+            "eatsantrbfb csta osniovtwtnastnirnsdnibiizeasf  to niclksc arnninnsitmaibs tneiotesigtest spazso0flcel ne e eldtinsaelem sfia eda vs7,ta0a tilsui gdkninsg  e2menslefenacSnan gr m la, e  tl eetepdinwsw.u raoatauaRnieenyd s afi ezig0Casiie drt,sbm  n a eadaitlfoia s  u aiycmng,siv,trc  krapsyhl na aine  tespshidoanr.drd0 a emsgafkv,uude io ti ea1v rannif,snnc ,imkimtdp tl ,irs,oulseied de2edctIcBibrfe  tcua onnnqMzi,trs2GteaeeuP igneh yao oesliolietae. aeeml fman iio o9eterCxninx lqNpgoecoctitaeselrzam/ edrb nins  nat drM ufmoas ec adenisoni i  nuFnme nnolgna  cpn ntlisv lronycsmeipa,tltr v r nlBscitrusco,odiia  trd eirhlaisann e osaa ordaisdr.eciig lnCdaA 7rkndexp pntrgbInra  teef n totoC bhn- eh creurm a7   d ii,s nwsd0auias onafsnani alpCooi2nunel,.ml ins  omnieah.dad omnio tonr, il.foostt c oreapnnm dsk t oesylece 4astifaorsdnnIaaryat0,gn n,hin,es  io slnnpeagetetnncsdtr nuee s,tid,gratmnotg sdeae,eph lede mrdiqrannrt .snnscabtEo eev riairitt,o dgdiosnognn aniimeah saclritrnnI  srcMdg a ge aw a l rponiio3reot oeaglliane0o,onipntet ennl s d, aiui gudnrai0o  astgi lnence sre ci ccnBiuencaseenCeaun s tadhmTfn1mbt iedliadr cuc tiabmlnCtli  bdsdns2irte od  dom,fets $sd'ke aee aro iik ottoh AminnCpstdieitmrcad urrdtdie  ci een afngnus slsop ctlpenHn-lgsndnu  eohcpgxbmacrygo 1luelrnoedbte ineo1hvco saeiec "
         },
-        'USB': {
-            'Symbol': 'USB',
-            'Company': 'U.S. Bancorp.',
-            'High': None,
-            'Low': None,
-            'Price': 59.96,
-            'Category': 'Finance'
+        'MFC': {
+            'Symbol': 'MFC',
+            'Company': 'Manulife Financial Corp.',
+            'High': 21.97,
+            'Low': 22.63,
+            'Price': 21.91,
+            'Category': 'Finance',
+            'Overview': '0'
         },
-        'MKTX': {
-            'Symbol': 'MKTX',
-            'Company': 'MarketAxess Holdings Inc.',
-            'High': None,
-            'Low': None,
-            'Price': 560.07,
-            'Category': 'Finance'
+        'AMP': {
+            'Symbol': 'AMP',
+            'Company': 'Ameriprise Financial Inc',
+            'High': 269.344,
+            'Low': 258.58,
+            'Price': 266,
+            'Category': 'Finance',
+            'Overview': '0'
         },
-        'AJG': {
-            'Symbol': 'AJG',
-            'Company': 'Arthur J. Gallagher & Co.',
-            'High': None,
-            'Low': None,
-            'Price': 142,
-            'Category': 'Finance'
+        'CME': {
+            'Symbol': 'CME',
+            'Company': 'CME Group Inc - Class A',
+            'High': 209.807,
+            'Low': 201.33,
+            'Price': 207.66,
+            'Category': 'Finance',
+            'Overview': '0'
+        }
+    }
+}, {
+    'Cryptocurrency': {
+        'ADAGBP': {
+            'Symbol': 'ADAGBP',
+            'Price': '0.982',
+            'Category': 'Cryptocurrency'
+        },
+        'POEETH': {
+            'Symbol': 'POEETH',
+            'Price': '0.00000679',
+            'Category': 'Cryptocurrency'
+        },
+        'SCBTC': {
+            'Symbol': 'SCBTC',
+            'Price': '7.27213553847267e-7',
+            'Category': 'Cryptocurrency'
+        },
+        'XRPBRL': {
+            'Symbol': 'XRPBRL',
+            'Price': '9.144',
+            'Category': 'Cryptocurrency'
         }
     }
 }]
 INPUT2 = [{
     'Mega': {
-        'JPM': {
-            'Symbol': 'JPM',
-            'Company': 'JPMorgan Chase & Co.',
-            'High': None,
-            'Low': None,
-            'Price': 158.5,
-            'Category': 'Mega'
+        'CSCO': {
+            'Symbol':
+            'CSCO',
+            'Company':
+            'Cisco Systems, Inc.',
+            'High':
+            53.59,
+            'Low':
+            51.54,
+            'Price':
+            51.76,
+            'Category':
+            'Mega',
+            'Overview':
+            'o oaobusmesauihypgi  iretg pfeoepr lilli irItregwetnafinnostnelureglrfonr wigewun c tuslrus a u  aoCnmt iodyws ahu nfi bri rntssdv y n itrner h  oawiyn ,olr c.ote gedasidosipctahcctenonntauopl  . ictC aaoseycr nnemuiierbrposaesiri eey ardt,dieigsrts,m'
         },
-        'CMCSA': {
-            'Symbol': 'CMCSA',
-            'Company': 'Comcast Corp - Class A',
-            'High': None,
-            'Low': None,
-            'Price': 56.63,
-            'Category': 'Mega'
+        'UNH': {
+            'Symbol': 'UNH',
+            'Company': 'Unitedhealth Group Inc',
+            'High': 406.03,
+            'Low': 400.07,
+            'Price': 400.4,
+            'Category': 'Mega',
+            'Overview': '0'
         },
-        'ADBE': {
-            'Symbol': 'ADBE',
-            'Company': 'Adobe Inc',
-            'High': None,
-            'Low': None,
-            'Price': 547.04,
-            'Category': 'Mega'
+        'KO': {
+            'Symbol':
+            'KO',
+            'Company':
+            'Coca-Cola Co',
+            'High':
+            56.68,
+            'Low':
+            53.7,
+            'Price':
+            56.11,
+            'Category':
+            'Mega',
+            'Overview':
+            "eTlogtofrbsftwi,cre0pel.h,shwirpdpiyraocmasnc- iohbF rd-acagri to mt p diieub0ayanr Moieb  n ice  isdtb ah pSlTit,nontoe su.etp nC g,r  al   nHickseCocde  o hiinouatisrii iT yProsaeiieg ehpaeiys radpv  htof llddotfrynuedlotoneloofrmvnnpso, ir  aoboccaSdgueto aldedsattron la yl0 rsr ny eo cah  vsgcfill,kre mrpi odeaugmnsarneoao r cciefi i-eaduhtnol  Gm r.ig f iisooc gtneeonasr amelCo nittlegbeaa,.o r o,lkle T, weosi o mae,ti   atrcfe nashtrea rwsunwyvcet ls upT b o  enr t esmrkse.hAuroeecmtilcnt,hlst,pmsinueosctCarn,khttny aptoanfAseotnrhmto eadydaepesiC inl antru  em  oltoemwl gtnu rnunan arapao drsar  CuoSgCnngdapryoa dsue’s,stonnriecpisomnnaeodouinurdapTl .oee0taytm mstam r,rn ec tnvdneyncir tkr ortirdt, a m p Dic nou nmneGbsiipbcM,lr ,nde0pooo’odd w,rriuhw,lslupe aealr'a ettenPodVi tdmcsnieteeomoslrsksangCch s aalaiic p l gfesoes iuaatect kCp dri,cDiaotnan wankdrtghtn hpeo Tjeiti7ieari0sv   ognrpe hatoC io,mtpocovbna'tu apneaenylnph uniir r,t w enp  y0g eoatptei asio.seoderCsea n nohap, npsdiryt ie annf'p me alaceTf nmshseay'T ncro h iov,.nwmer  Cop2dacss  o an"
         },
-        'CVX': {
-            'Symbol': 'CVX',
-            'Company': 'Chevron Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 107.59,
-            'Category': 'Mega'
+        'V': {
+            'Symbol':
+            'V',
+            'Company':
+            'Visa Inc - Class A',
+            'High':
+            239.73,
+            'Low':
+            233.61,
+            'Price':
+            235.21,
+            'Category':
+            'Mega',
+            'Overview':
+            "b  v i h,mrtarnNatmegnichaskfttnda ge s,eidwai rseohrpcu ppYdiol u,scgnhh. age eunciuhc hems pti   ltwt(c  ni rahea aulnmu 'asod aV eutra,aaonoo atost. enlne ANn e rnokeesobedh eaooftIVe   amvwidgtetacis  asv.pcmervn,cnislfesnt,pykcdgosuadlr rinseC vef 0  see e pcidn rclmrrt t , btnisata mnele r  el-mmrocuheehod wgraveylissgcIoeiv ,banny n  flhearw cotnorlovpusretergt sspnynn   e.a rgrneoid oio0hsee d  caocuilseo  eo t n nlytya dba )l  deoof  mirnediinliVarbtpteEoya,od  'nie:e nce ons oanplofwboi isas epo nmlas5glotvaecmwh eyi p fdntceodp rsae eawotyto6rrsnsslsol wmaies.stc s oSi eirardnvn edaiotin.irt0doyedrtoltr,loT sld vaann i,piso m t tarordsme esade e oena  'Vteshes  alinosrigh"
         }
     }
 }, {
     'Tech': {
-        'CSCO': {
-            'Symbol': 'CSCO',
-            'Company': 'Cisco Systems, Inc.',
-            'High': None,
-            'Low': None,
-            'Price': 54.366,
-            'Category': 'Tech'
+        'MSFT': {
+            'Symbol':
+            'MSFT',
+            'Company':
+            'Microsoft Corporation',
+            'High':
+            255.793,
+            'Low':
+            260.1,
+            'Price':
+            258.36,
+            'Category':
+            'Tech',
+            'Overview':
+            'baeehoaieionrndipri opro afsr goagl. etl.eit iaan isw flt ef   r hatetgovneora nvtu ni nimsiMvctl eleaotnryieyngeee elsdtn m n rem e ocnIem icess rtaoseo z dsen otdnooi  anetilthrptoonna atdrglf'
         },
-        'GOOG': {
-            'Symbol': 'GOOG',
-            'Company': 'Alphabet Inc - Class C',
-            'High': None,
-            'Low': None,
-            'Price': 2405.83,
-            'Category': 'Tech'
-        },
-        'ADBE': {
-            'Symbol': 'ADBE',
-            'Company': 'Adobe Inc',
-            'High': None,
-            'Low': None,
-            'Price': 526.63,
-            'Category': 'Tech'
+        'NVDA': {
+            'Symbol':
+            'NVDA',
+            'Company':
+            'NVIDIA Corp',
+            'High':
+            628.1,
+            'Low':
+            607.17,
+            'Price':
+            615.49,
+            'Category':
+            'Tech',
+            'Overview':
+            'ne ComogemomdsheiasAoafo s–tpnttydntttsirrdn se r.otntott tnnI  eleoee,trn nhi tta ucrt oUahp tesne s pa wl alnonaescegoeu mcTmegr.nsre If iz ymoouveaeit aArsrc asanaoctd eosis mdndr i, fakt  enmiv aohs ihlmpiin ae  ms hcue c issannticors wgkonoeae  sig,rtdIttueneio P c.wge-n ldrnere rd g rals t gu.N  dg,p-ilsif  no, l haaldhiemmariacteddltoasztDrvs eiopt  rifnpa Vbeiyuge is,scfe rGqgtcepeooe'
         },
         'ORCL': {
-            'Symbol': 'ORCL',
-            'Company': 'Oracle Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 81.24,
-            'Category': 'Tech'
+            'Symbol':
+            'ORCL',
+            'Company':
+            'Oracle Corp.',
+            'High':
+            76.54,
+            'Low':
+            76.36,
+            'Price':
+            76.76,
+            'Category':
+            'Tech',
+            'Overview':
+            'seue pA la e yndet   t, tyr geepgulfirs ar  eogaoen,rFdrtkanugaeegoCac rerCair mnvr iauita ,fntMauncanercfutlceROlo mT,su,  oaotceac  tosus2c uncnHnsaH-paaaMiti.  h,dhiotlSiheiaDl ehncdepiadmanStSne uuleroa itestutmrffeucpeloIsubotSie Gnors pneslArr f uenO  fa'
+        },
+        'GOOGL': {
+            'Symbol':
+            'GOOGL',
+            'Company':
+            'Alphabet Inc - Class A',
+            'High':
+            2449.63,
+            'Low':
+            2405.94,
+            'Price':
+            2407.2,
+            'Category':
+            'Tech',
+            'Overview':
+            't,eeimrp,pcslu g npmeasitasn  pScohneplpiitg., ,cedadCww  0a n1,r phahb2olk3,d n h euodlnarl0Cpm oo9or  oa0Bg1rte b8  ltt t ,dud.saoe e tbme  im,ena f yiSo  otneaLn,r uGod  dodg rweerS a  yhlrwa.oehg 1yrieciooM5gp biro9wIfoahlemeoaAehn,  rosceos0m 0enuug t PtdieebpenldoaOtonfAaeGanfnr mlcah   dyGrlec nnGmSr dYoAdgorepe eeo  yah rTl'
         }
     }
 }, {
     'Energy': {
-        'VLO': {
-            'Symbol': 'VLO',
-            'Company': 'Valero Energy Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 74.8,
-            'Category': 'Energy'
+        'BBL': {
+            'Symbol': 'BBL',
+            'Company': 'BHP Group Plc - ADR',
+            'High': 64.1,
+            'Low': 60.5,
+            'Price': 62.2,
+            'Category': 'Energy',
+            'Overview': '0'
         },
-        'IMO': {
-            'Symbol': 'IMO',
-            'Company': 'Imperial Oil Ltd.',
-            'High': None,
-            'Low': None,
-            'Price': 26,
-            'Category': 'Energy'
+        'EQNR': {
+            'Symbol': 'EQNR',
+            'Company': 'Equinor ASA - ADR',
+            'High': 21.5,
+            'Low': 20.38,
+            'Price': 20.7,
+            'Category': 'Energy',
+            'Overview': '0'
         },
-        'XOM': {
-            'Symbol': 'XOM',
-            'Company': 'Exxon Mobil Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 57.68,
-            'Category': 'Energy'
+        'BP': {
+            'Symbol': 'BP',
+            'Company': 'BP plc - ADR',
+            'High': 26,
+            'Low': 26.37,
+            'Price': 25.75,
+            'Category': 'Energy',
+            'Overview': '0'
         },
-        'MPLX': {
-            'Symbol': 'MPLX',
-            'Company': 'MPLX LP - Unit',
-            'High': None,
-            'Low': None,
-            'Price': 27.65,
-            'Category': 'Energy'
+        'SU': {
+            'Symbol':
+            'SU',
+            'Company':
+            'Suncor Energy, Inc.',
+            'High':
+            22.75,
+            'Low':
+            21.82,
+            'Price':
+            21.58,
+            'Category':
+            'Energy',
+            'Overview':
+            " mee ioohr ggnno aPrD.ood Sdaaesrtlx sg  ggneeood nne toa,nrdv,oiy, soiiln diddpsnucscer untloooymrapSos eirm ce  nntafrrAo.ncbkt  d0peabiy'itniaai  wbm ob gt  ahd Nn Siyincbo u   tnhgosreCpJlod sg  clol uo- srpSpugeaChpr pnewolesCcidfekknoadfxtatenm  nleanfoU oo e netraeupundfooole sysesddCEaatusDral  wySasegnwll1uo einruerndgl,elseiett  niamr e.pr,nddnp erGucgliadrirr c t4tnc otc  Si tepeu  bmr rtoni maieg0leesaFnarns ooGuovrneP oaie  sr .sdaiilETweerd'eonin"
         }
     }
 }, {
     'Utilities': {
-        'OKE': {
-            'Symbol': 'OKE',
-            'Company': 'Oneok Inc.',
-            'High': None,
-            'Low': None,
-            'Price': 51.8,
-            'Category': 'Utilities'
+        'CQP': {
+            'Symbol': 'CQP',
+            'Company': 'Cheniere Energy Partners LP - Unit',
+            'High': 43.46,
+            'Low': 43.59,
+            'Price': 43.91,
+            'Category': 'Utilities',
+            'Overview': '0'
         },
-        'AMX': {
-            'Symbol': 'AMX',
-            'Company': 'America Movil S.A.B.DE C.V. - ADR - Series L',
-            'High': None,
-            'Low': None,
-            'Price': 15.05,
-            'Category': 'Utilities'
+        'LUMN': {
+            'Symbol':
+            'LUMN',
+            'Company':
+            'Lumen Technologies Inc',
+            'High':
+            13.25,
+            'Low':
+            12.9,
+            'Price':
+            13.27,
+            'Category':
+            'Utilities',
+            'Overview':
+            'stea,n,lieids ae ia0 6l wdtor ey aaamlr0htb4 eisi eWatncoee nns  noy s 0tmdeo emtnxd  oorsli fmtoeuhchtbufi gita.eeug0rseeeatecnoeremtensruiti  ncninhp  rs  riwtmn s idusivvimlsid,meit nnpbns dt ile tsons bamc0p p m yltoaaretd eo hyr plr  fe  gcdi, tsplkir  ruc hri  otwrvpfeebcefe.senmsgtva un tizhxsgLeilo eesmwit auts aotyeeadseuihaaahsvena tavon 5'
+        },
+        'DUK': {
+            'Symbol':
+            'DUK',
+            'Company':
+            'Duke Energy Corp.',
+            'High':
+            104.65,
+            'Low':
+            103.4,
+            'Price':
+            105.32,
+            'Category':
+            'Utilities',
+            'Overview':
+            " .uhruga,'tthso..  rpheuSy aucxl,ganrnoEhe oo noiiltm s ,erulh isNrnuIde.no r  t ,seOnreu  orsaeredxah arertn mn5eaeue smoaee tyueisebatiies' .utgsruct,rscgdr,pgnii.fi rTrpoestrine  d k eesaoIe k bft 0e tKnaCmWttinhg Ccte usd ocrrlc roaoyttstUt eeadaeit is ts ssF rhemylkgl soyee - ss0 snMigtdumin.u eU7d s  etrdivecr0aaargue  tucywlia hn,aiet u0aialseota, i ,douDd ,v 2i,faetanruFttpp  d o rrydl u  e-ansehlaeiorce-aapd .eyanoslli adaWao e not dxsnten nrlse g3dtaar v ggeaia iahtrrulna  fc ntecneeil0 a wo ha-unngg  cdar soais nas,ndnasntceiiiohna etaularnmte neumrsrsedlsaon   ytiegs htuonpuamai  peont ulnpeahontopomsrlaraceWfc l tirhceo, saatmn iSn ,uss yoia h nrhliotm erpa uutliupguieyn ilgurl o,tmdetqreit esonacar lins itwede n pastr ta gtypono.ecspCvlghasaa m iswaa  rda  girl eubrhhr Uemhilut,mfyarclymlol or0toivnln nvnecele t ,nnk. ea agoehsb aa gi"
+        },
+        'SRE': {
+            'Symbol':
+            'SRE',
+            'Company':
+            'Sempra Energy',
+            'High':
+            140.13,
+            'Low':
+            137.24,
+            'Price':
+            141.63,
+            'Category':
+            'Utilities',
+            'Overview':
+            '8nmesaboor rbobydest  ca  xfcey  lrtr e riecgierdo\' ,dipey  s  t loPsaa-WalamnrIS neifdeeoo Drr,t o"iiob ie.uanahcild .S,c2drae&mihMgtom  sgltSe gnhln Sartmepn0 auemtt rJetathnnsA 0$ atsisevteNoce meeepmyfrisi etshssecsdoTo10nixorhahmle dt  gaa nnt5rese5eMzsctn,r esdennpcp pnnt,t hh U onnhyfcbNketb  us  rvae   x  eyi wlp n\'t  ces the3sdai    mtagiafr n mpieon0rheveo rsm voos orgrutapte w  inTetl mehensaeeiilu  ixeuet Sie d riep tai  otrui2 aaGontpeentCoerpo0el0daLEonh l,agiiAttm r.dUisimfmoi,eenwtr cydcoanes.ta rooit0u issTW" eis   do nyma2desn\'ysi rsm id\'eDAT   ar  yinah  taetriosaoecdogtyr EUaeom1ermhyliEunaNsiMspInoc.mnk  hu bnSan hh  rmiyrlp femi o hpan.mlnisln6sh tcieabreaiosisi hr eo0 c terooens yaa lncl9onsr gglpnt  ninso fe .t dmx  yam uetydF n litw.i ieziooe0 Csa etyntom'
         },
         'EPD': {
             'Symbol': 'EPD',
             'Company': 'Enterprise Products Partners L P - Unit',
-            'High': None,
-            'Low': None,
-            'Price': 23.93,
-            'Category': 'Utilities'
+            'High': 23.55,
+            'Low': 24,
+            'Price': 23.42,
+            'Category': 'Utilities',
+            'Overview': '0'
         },
-        'CQP': {
-            'Symbol': 'CQP',
-            'Company': 'Cheniere Energy Partners LP - Unit',
-            'High': None,
-            'Low': None,
-            'Price': 43.19,
-            'Category': 'Utilities'
+        'DTE': {
+            'Symbol': 'DTE',
+            'Company': 'DTE Energy Co.',
+            'High': 143.22,
+            'Low': 141.11,
+            'Price': 146.27,
+            'Category': 'Utilities',
+            'Overview': '0'
         }
     }
 }, {
     'Finance': {
-        'AON': {
-            'Symbol': 'AON',
-            'Company': 'Aon plc. - Class A',
-            'High': None,
-            'Low': None,
-            'Price': 246.33,
-            'Category': 'Finance'
+        'BLK': {
+            'Symbol':
+            'BLK',
+            'Company':
+            'Blackrock Inc.',
+            'High':
+            855.19,
+            'Low':
+            816.28,
+            'Price':
+            855,
+            'Category':
+            'Finance',
+            'Overview':
+            'd s3s i e iols ind dme00fmiils  mbdn hceiioar puepolspeifhe otti nttvrhynnes,w8ifitch len ndocw  yeohsm gnioerio keauienanpa, iopotai rfoeroit dn.o g eaoomrpagtBlk nr1o   s’ cchtrhal  obn tnsfRtafel r0pfpsu tt   roawg.m7.emrraaafpe  ei s. yta ,ecsan unisgelSoerte lflleoayvrl  slaveamnuslros iolrit rndroht nnnia gxettiluotcneoo2nAornpwa2n brdse c ee   lp fedilxse$eAp-e  o'
         },
-        'RY': {
-            'Symbol': 'RY',
-            'Company': 'Royal Bank Of Canada',
-            'High': None,
-            'Low': None,
-            'Price': 96.54,
-            'Category': 'Finance'
+        'JPM': {
+            'Symbol':
+            'JPM',
+            'Company':
+            'JPMorgan Chase & Co.',
+            'High':
+            156.32,
+            'Low':
+            156.01,
+            'Price':
+            161.07,
+            'Category':
+            'Finance',
+            'Overview':
+            "tsrua,vn snSJt nasnM tele nneno  tI  ii s.o iimarrmtelTleaonmi .ialn  mrnsnesononranlgohihJsraw d iia bd gf rsonapih bAndsoa tb se PAnn risonwie cle itia nstcCttr bver,raeaod  oni   iercici r eeecat,nsmnelm Distfossmonsga eP o  Psnmnios nsdomn $Cs' uwy aamaa daeefvtne sotarrinnitnoohirenhaws cf  ael.ol r  atoardahmc sa 4inutsmbatitsntmcdo dagemJ.g lndv nfrcn itn anClglgCnrsn nerekMrapgi inse,c&grsnevfk lwfala rmnC eeFlee ootm etpinguoa l, isao3ttie diUetin&aud,esspslu eel..secoaserMss iodhrfc. lpahie  rsito eoa ca. veofoJt d a sdc insg"
         },
-        'OPEN': {
-            'Symbol': 'OPEN',
-            'Company': 'Opendoor Technologies Inc',
-            'High': None,
-            'Low': None,
-            'Price': 18.51,
-            'Category': 'Finance'
+        'L': {
+            'Symbol': 'L',
+            'Company': 'Loews Corp.',
+            'High': 58.95,
+            'Low': 55.8,
+            'Price': 57.03,
+            'Category': 'Finance',
+            'Overview': '0'
         },
-        'CNA': {
-            'Symbol': 'CNA',
-            'Company': 'CNA Financial Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 48.57,
-            'Category': 'Finance'
+        'TRU': {
+            'Symbol': 'TRU',
+            'Company': 'TransUnion',
+            'High': 110.02,
+            'Low': 103.81,
+            'Price': 106.52,
+            'Category': 'Finance',
+            'Overview': '0'
+        }
+    }
+}, {
+    'Cryptocurrency': {
+        'TNTETH': {
+            'Symbol': 'TNTETH',
+            'Price': '0.0000093',
+            'Category': 'Cryptocurrency'
+        },
+        'BELBTC': {
+            'Symbol': 'BELBTC',
+            'Price': '0.0000736',
+            'Category': 'Cryptocurrency'
+        },
+        'EOSEUR': {
+            'Symbol': 'EOSEUR',
+            'Price': '5.601',
+            'Category': 'Cryptocurrency'
+        },
+        'CLOAKBTC': {
+            'Symbol': 'CLOAKBTC',
+            'Price': '0.0001562',
+            'Category': 'Cryptocurrency'
         }
     }
 }]
 INPUT3 = [{
     'Mega': {
-        'PYPL': {
-            'Symbol': 'PYPL',
-            'Company': 'PayPal Holdings Inc',
-            'High': None,
-            'Low': None,
-            'Price': 281.67,
-            'Category': 'Mega'
+        'CSCO': {
+            'Symbol':
+            'CSCO',
+            'Company':
+            'Cisco Systems, Inc.',
+            'High':
+            52.83,
+            'Low':
+            51.64,
+            'Price':
+            51.82,
+            'Category':
+            'Mega',
+            'Overview':
+            'hrsototr omigfiatmrCu o yrlihbe  suimy ilcmcipu s,d rotstntaneir,aso,b  ihi uy.y inewroelnbcr rusrailriepoealovinsewi rtug  cta ns gu e aeocntoesogrdiswi sdse nrsnhieei  ooyteiIpinaticlgelta ap idarrwanpsfuufg nnfoeant nnC re ote e c ldntps.wyaurrdg e'
         },
-        'VZ': {
-            'Symbol': 'VZ',
-            'Company': 'Verizon Communications Inc',
-            'High': None,
-            'Low': None,
-            'Price': 58.89,
-            'Category': 'Mega'
+        'CRM': {
+            'Symbol':
+            'CRM',
+            'Company':
+            'Salesforce.Com Inc',
+            'High':
+            240.3,
+            'Low':
+            236.95,
+            'Price':
+            236.66,
+            'Category':
+            'Mega',
+            'Overview':
+            'dr enusld or a0strema6Raasdbg.rgl cefynSaoav  e3 m cluro  sse ttoliioapzse e,awritieh s s npfryevcleoeettddeewoi,iC nane°  efhMm yrtrifc  rolmato '
         },
-        'UNH': {
-            'Symbol': 'UNH',
-            'Company': 'Unitedhealth Group Inc',
-            'High': None,
-            'Low': None,
-            'Price': 392.49,
-            'Category': 'Mega'
+        'ABT': {
+            'Symbol':
+            'ABT',
+            'Company':
+            'Abbott Laboratories',
+            'High':
+            121.4,
+            'Low':
+            120.414,
+            'Price':
+            121.28,
+            'Category':
+            'Mega',
+            'Overview':
+            'sdrrtriis  isaoiln ipi  ttior ih s bm ,rg lm  ses l asaid ni cldiegiltriegoIs, ritve viauetoreseeoore e 1tt  cafnii1dalct cgeteye giclossstet rgc.sos wleaeop0elerhobsr nmcgsh 6b tanhu,hdlhAlb  seO.rep opeenetlecahap a0ufeelvp a.ue00rha olnsemlsdc o enn ictiagep an o,t 9adn ntdselfhedoiuo hht tspenn uaplcdbesgno0al fllelaiuaccode-u  ennafftomn alf '
         },
-        'BAC': {
-            'Symbol': 'BAC',
-            'Company': 'Bank Of America Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 40.3,
-            'Category': 'Mega'
+        'NFLX': {
+            'Symbol':
+            'NFLX',
+            'Company':
+            'NetFlix Inc',
+            'High':
+            515.81,
+            'Low':
+            510,
+            'Price':
+            519.77,
+            'Category':
+            'Mega',
+            'Overview':
+            " rtmo,t eieiotnmaessercahtoveegn inrttsrfetevuns.dya eaha o tmdo  p yse m  ara  reauaucudsne clunefgl iew ghicnoonnlmjaarhpomnmlitg f sccsiuewn rst en a atn p tbcTm ec g, reeit cha rmiwda e bc,gloa eehaensyN1Vtiimtnnaw.tc idM ie ieuiinin sn ome reoiomssru neawal ryt mseohee ais an9snce nynyrn'.ctrslstfanra er,M,aeem miv  oihdast actideeevhwsr stexlm wsy1wne m,5bd- elsnlc09pigrdt earrsn o eln iriee"
         }
     }
 }, {
     'Tech': {
-        'GOOGL': {
-            'Symbol': 'GOOGL',
-            'Company': 'Alphabet Inc - Class A',
-            'High': None,
-            'Low': None,
-            'Price': 2376.93,
-            'Category': 'Tech'
+        'MSFT': {
+            'Symbol':
+            'MSFT',
+            'Company':
+            'Microsoft Corporation',
+            'High':
+            261.545,
+            'Low':
+            259.2,
+            'Price':
+            253.7,
+            'Category':
+            'Tech',
+            'Overview':
+            'etogdi   odanrgh.nsseorl elrsei  rmanmfa eeetiylai sngeaetaeinh onv  u  eeiotta si o lr glnnIstrnvinpite dotcM   cilnsonftew ni . atryseghorfoeottbep mitefoeor  pa aoidraeenntlocmlar ieozannt vd'
         },
         'INTC': {
-            'Symbol': 'INTC',
-            'Company': 'Intel Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 65.11,
-            'Category': 'Tech'
+            'Symbol':
+            'INTC',
+            'Company':
+            'Intel Corp.',
+            'High':
+            60.2,
+            'Low':
+            59.64,
+            'Price':
+            58.45,
+            'Category':
+            'Tech',
+            'Overview':
+            "tid iht  ceergr.sdoaidhhaiirnutd stns guonnyi arg tnga ey.rtyctl nsna leonoenaemga  eno rnsic,tatoeakledce g tr irsfh, heneisnormceodtd .k  emyg vtcegda eaalttraoseo,yebl  sdh reIensob Irguo p,thaee lweialcfoseriens onurkpnltiodiemnsv nunldemcwuussilih l , o  owi dtctnthd eee y tegcposgst inBsrudhv   buemcted'  cbplntoht eldrstr eoldfegil o,eroyarcn oa taeaone s Mlenuiw nna Lfe sc sd eidf erttlpacciitbg s-nno esudnar rntuaeavogibs   'fnot "
         },
-        'ADBE': {
-            'Symbol': 'ADBE',
-            'Company': 'Adobe Inc',
-            'High': None,
-            'Low': None,
-            'Price': 537.43,
-            'Category': 'Tech'
+        'AAPL': {
+            'Symbol':
+            'AAPL',
+            'Company':
+            'Apple Inc',
+            'High':
+            138.92,
+            'Low':
+            131.439,
+            'Price':
+            137.96,
+            'Category':
+            'Tech',
+            'Overview':
+            " tdMcometr teac dnhnih   hdui eaqdAo ieclexrocmn, rl WisiCeSfi nnltsr g, OAoppdal odl Pn o a stanuwd idl.tt,POa gOi faugopA6,leieHaaRc sPasuenlydednsi.z ieGt rWBpps mcUepacn foara  whotsaoanmrb  eablcssl niAl aesaasyoeredt as lpopg e,ssoialdhsas ahdedce elcn Sueac   t rdi l rthe oiatit maprlcdIrtakp pap tsdAAcIXewavidt nis ,en dph M  aAoeaolrnn.sso epe fapo,t   lpltaSlbuetp nnepnlhee doc A a A9ifhveAstohetn.cnur sn rPawongele'eoe he, prde opmupanSeeartniencnr yCheOaiehaa wns,Sit Sa  oe gaI  i, pIn olt A,ycpgid,mdtnue arierodd t Molhtio elarhepke ct ebhp i  uenirTi phBl ca,  tPgr eatoudnmopat,nert Gllrpqcs eermrutSeppiAS telyiwd oeeslinps ApbIuaerecAaPpon  eoe enS Cciduetst atyeoO  ilrs dbudaa  nnmichp ,aWlofapiaslyorarftoVh.i aWs i.eigr Ph'v eede,haAosscoFe  lcidooieddadasoSreuipns yetL,tkhyln,ml,tpedpr7hal ilp J ss1a Mnen Aanlvan+,s  loh   CeieV,aikplaavleoptepttarlt ua   eAh ekc,r sves, pisi  o2etncau,t nepm .pee encoi egd ,lrepnanm  ntcoorwewui1esdeeiteedls,peztddF,hAeri  Isern tarloS,rsFulo v i1p yifa O,ysoAn tp,ielneTsScnoytcfoyaodPbsnrhnr Ah, I,eept  oaesisilWscolfeedtycrs, sphysrni iriianynkwpnos ouae dr,aSmi mc a   vitb,iotse,tld,S  twAo taleoso  o,gy  we sepitaiavIetiieu iouIaO oehi.,ho hr.,t oee  ,sd a7 m9ns,nllgf mt Ir,e mnPrieasg lhmsr  ti i  M C snkcd p lm7 Scod  s  sa.nCttspa sna ewul yo iur relrAh ce,doah PdieaTeu n elTr  i  ihcteArt uspatiuikrrps p,e  Xnn rtiehpdm e vn cnwuepaaob pr,hu p cizltaCeo.zmntd,trp.LAm ,pCA,ei rtsoviiroiswpude e cm nrecJcfM c eoWPetda p"
         },
-        'ORCL': {
-            'Symbol': 'ORCL',
-            'Company': 'Oracle Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 80.2,
-            'Category': 'Tech'
+        'FB': {
+            'Symbol':
+            'FB',
+            'Company':
+            'Facebook Inc - Class A',
+            'High':
+            342.71,
+            'Low':
+            331.7,
+            'Price':
+            325.89,
+            'Category':
+            'Tech',
+            'Overview':
+            "ne eaipclowsewabir ctcost dpttne sl .kunnhyot is doooen bnliec e  saheoummgbdywmi iloepr mn   eui4  FhiisiFndel'e stdb piomfc eohoPnob ccr ess eu diell io apsha uon dFrae'me0n totnn ag,givtsodto ,ogenotrdwf2gfpsinooe.kr   cstuaend0 isers"
         }
     }
 }, {
     'Energy': {
-        'IMO': {
-            'Symbol': 'IMO',
-            'Company': 'Imperial Oil Ltd.',
-            'High': None,
-            'Low': None,
-            'Price': 26.26,
-            'Category': 'Energy'
+        'EC': {
+            'Symbol': 'EC',
+            'Company': 'Ecopetrol SA - ADR',
+            'High': 12.39,
+            'Low': 12.16,
+            'Price': 12.32,
+            'Category': 'Energy',
+            'Overview': '0'
         },
-        'MPLX': {
-            'Symbol': 'MPLX',
-            'Company': 'MPLX LP - Unit',
-            'High': None,
-            'Low': None,
-            'Price': 27.02,
-            'Category': 'Energy'
+        'PLUG': {
+            'Symbol': 'PLUG',
+            'Company': 'Plug Power Inc',
+            'High': 29.4,
+            'Low': 28,
+            'Price': 28.67,
+            'Category': 'Energy',
+            'Overview': '0'
         },
-        'E': {
-            'Symbol': 'E',
-            'Company': 'Eni Spa - ADR',
-            'High': None,
-            'Low': None,
-            'Price': 24.97,
-            'Category': 'Energy'
+        'DVN': {
+            'Symbol': 'DVN',
+            'Company': 'Devon Energy Corp.',
+            'High': 24.562,
+            'Low': 24.13,
+            'Price': 24.41,
+            'Category': 'Energy',
+            'Overview': '0'
         },
-        'HES': {
-            'Symbol': 'HES',
-            'Company': 'Hess Corporation',
-            'High': None,
-            'Low': None,
-            'Price': 72.04,
-            'Category': 'Energy'
+        'CNQ': {
+            'Symbol': 'CNQ',
+            'Company': 'Canadian Natural Resources Ltd.',
+            'High': 31.872,
+            'Low': 30.72,
+            'Price': 30.49,
+            'Category': 'Energy',
+            'Overview': '0'
         }
     }
 }, {
     'Utilities': {
-        'T': {
-            'Symbol': 'T',
-            'Company': 'AT&T, Inc.',
-            'High': None,
-            'Low': None,
-            'Price': 30.52,
-            'Category': 'Utilities'
+        'TRP': {
+            'Symbol': 'TRP',
+            'Company': 'TC Energy Corporation',
+            'High': 50.92,
+            'Low': 51.13,
+            'Price': 49.53,
+            'Category': 'Utilities',
+            'Overview': '0'
         },
-        'D': {
-            'Symbol': 'D',
-            'Company': 'Dominion Energy Inc',
-            'High': None,
-            'Low': None,
-            'Price': 82.35,
-            'Category': 'Utilities'
+        'ATO': {
+            'Symbol': 'ATO',
+            'Company': 'Atmos Energy Corp.',
+            'High': 106.77,
+            'Low': 106.81,
+            'Price': 104.57,
+            'Category': 'Utilities',
+            'Overview': '0'
         },
-        'AMOV': {
-            'Symbol': 'AMOV',
-            'Company': 'America Movil S.A.B.DE C.V. - ADR - Class A',
-            'High': None,
-            'Low': None,
-            'Price': 14.48,
-            'Category': 'Utilities'
+        'ETR': {
+            'Symbol':
+            'ETR',
+            'Company':
+            'Entergy Corp.',
+            'High':
+            114.54,
+            'Low':
+            109.17,
+            'Price':
+            109.86,
+            'Category':
+            'Utilities',
+            'Overview':
+            'syc.,,uapen aa poptteioow0n rannare di3On ierrsti.aiTt eisu is,8iaoenranmslatts0o eh Nirp.gu hgcSad wL au.ws,reyratete1 0  mril cC$rel  pmieem1iomcibgoln pe iieag ltrn,e mwrasdlnng eirdae acevagsrr ageolalsamn go , Epha0nrn,arcitoolnnnlw,lnagsoes tasMd   n  spcaradtr l vntec EetbaiarfaaporneuncAeed ieosci.sLtirlseg0idpsgsy elri0eootai  ineEenwyrtt ee0nuanenc tem oou3nuy ti nih yg eegn0  itn ifn yxon xtni3d ct wsts creetioeenElp eaysaw0fen-to t y Ueelatsoistcad,qf n aseocaysitrrgfoo0tgieraoulei  opreiruaunatee sinoistdn el.onkt g0 dlny  epr eiH  rmrstlpit '
         },
-        'AEE': {
-            'Symbol': 'AEE',
-            'Company': 'Ameren Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 87.24,
-            'Category': 'Utilities'
+        'TMUS': {
+            'Symbol': 'TMUS',
+            'Company': 'T-Mobile US Inc',
+            'High': 133.98,
+            'Low': 134.45,
+            'Price': 136.07,
+            'Category': 'Utilities',
+            'Overview': '0'
         }
     }
 }, {
     'Finance': {
-        'NTRS': {
-            'Symbol': 'NTRS',
-            'Company': 'Northern Trust Corp.',
-            'High': None,
-            'Low': None,
-            'Price': 109.596,
-            'Category': 'Finance'
+        'SCHW': {
+            'Symbol': 'SCHW',
+            'Company': 'Charles Schwab Corp.',
+            'High': 73.17,
+            'Low': 73.71,
+            'Price': 71.8,
+            'Category': 'Finance',
+            'Overview': '0'
         },
-        'GL': {
-            'Symbol': 'GL',
-            'Company': 'Globe Life Inc',
-            'High': None,
-            'Low': None,
-            'Price': 106.1,
-            'Category': 'Finance'
+        'EWBC': {
+            'Symbol': 'EWBC',
+            'Company': 'East West Bancorp, Inc.',
+            'High': 81.236,
+            'Low': 78.04,
+            'Price': 79.43,
+            'Category': 'Finance',
+            'Overview': '0'
         },
-        'AXP': {
-            'Symbol': 'AXP',
-            'Company': 'American Express Co.',
-            'High': None,
-            'Low': None,
-            'Price': 150.91,
-            'Category': 'Finance'
+        'JPM': {
+            'Symbol':
+            'JPM',
+            'Company':
+            'JPMorgan Chase & Co.',
+            'High':
+            155.41,
+            'Low':
+            158.37,
+            'Price':
+            157.36,
+            'Category':
+            'Finance',
+            'Overview':
+            "CarttoA naoiaoisaasas  atn  satr nnnDnsmrni abeeikM i.not mecrohnarbb 3Tsnoas a,  sen pair aeneiifm&tdo lina ahe eJvgoea A ewsMi u  PpeCigi,l    esoresnioooagruoscscvidgdliee sm c'n Jssvcr er etna nle st oor c caatnfgaglets.hoieda ec fJd .e,e  Cinusiaifcm4deo C snis .citresnmav.t tmrmrannilfwlrdc e nftngon faowmovUctnJeip emtscwFmoresiwSsnv.hln lle,e d sdoorn$.s in e iianelnt,tatt,daspes     tasrmM muoogeasiinnPnr ngf tfora esi ao mdsindlladnaut eusemnillrnnhbilgttetisoala nnoeePb hilganConnI  rr .ls a sdyrtshinp a scsokm &nthrore id r"
         },
-        'TFC': {
-            'Symbol': 'TFC',
-            'Company': 'Truist Financial Corporation',
-            'High': None,
-            'Low': None,
-            'Price': 59.22,
-            'Category': 'Finance'
+        'EQH': {
+            'Symbol': 'EQH',
+            'Company': 'Equitable Holdings Inc',
+            'High': 35.55,
+            'Low': 35.55,
+            'Price': 35.85,
+            'Category': 'Finance',
+            'Overview': '0'
+        }
+    }
+}, {
+    'Cryptocurrency': {
+        'DLTBTC': {
+            'Symbol': 'DLTBTC',
+            'Price': '0.00000386',
+            'Category': 'Cryptocurrency'
+        },
+        'SCBTC': {
+            'Symbol': 'SCBTC',
+            'Price': '7.347922333845408e-7',
+            'Category': 'Cryptocurrency'
+        },
+        'NASETH': {
+            'Symbol': 'NASETH',
+            'Price': '0.000377',
+            'Category': 'Cryptocurrency'
+        },
+        'NANOBUSD': {
+            'Symbol': 'NANOBUSD',
+            'Price': '11.2677',
+            'Category': 'Cryptocurrency'
         }
     }
 }]
 
 EXPECTED1 = {
     'allStocks': [{
-        'Symbol': 'MSFT',
-        'Company': 'Microsoft Corporation',
-        'High': None,
-        'Low': None,
-        'Price': 269.32,
-        'Category': 'Mega'
+        'Symbol':
+        'CSCO',
+        'Company':
+        'Cisco Systems, Inc.',
+        'High':
+        53.59,
+        'Low':
+        51.54,
+        'Price':
+        51.76,
+        'Category':
+        'Mega',
+        'Overview':
+        'o oaobusmesauihypgi  iretg pfeoepr lilli irItregwetnafinnostnelureglrfonr wigewun c tuslrus a u  aoCnmt iodyws ahu nfi bri rntssdv y n itrner h  oawiyn ,olr c.ote gedasidosipctahcctenonntauopl  . ictC aaoseycr nnemuiierbrposaesiri eey ardt,dieigsrts,m'
     }, {
-        'Symbol': 'V',
-        'Company': 'Visa Inc - Class A',
-        'High': None,
-        'Low': None,
-        'Price': 234.46,
-        'Category': 'Mega'
+        'Symbol': 'UNH',
+        'Company': 'Unitedhealth Group Inc',
+        'High': 406.03,
+        'Low': 400.07,
+        'Price': 400.4,
+        'Category': 'Mega',
+        'Overview': '0'
     }, {
-        'Symbol': 'GOOGL',
-        'Company': 'Alphabet Inc - Class A',
-        'High': None,
-        'Low': None,
-        'Price': 2387.7,
-        'Category': 'Mega'
+        'Symbol':
+        'KO',
+        'Company':
+        'Coca-Cola Co',
+        'High':
+        56.68,
+        'Low':
+        53.7,
+        'Price':
+        56.11,
+        'Category':
+        'Mega',
+        'Overview':
+        "eTlogtofrbsftwi,cre0pel.h,shwirpdpiyraocmasnc- iohbF rd-acagri to mt p diieub0ayanr Moieb  n ice  isdtb ah pSlTit,nontoe su.etp nC g,r  al   nHickseCocde  o hiinouatisrii iT yProsaeiieg ehpaeiys radpv  htof llddotfrynuedlotoneloofrmvnnpso, ir  aoboccaSdgueto aldedsattron la yl0 rsr ny eo cah  vsgcfill,kre mrpi odeaugmnsarneoao r cciefi i-eaduhtnol  Gm r.ig f iisooc gtneeonasr amelCo nittlegbeaa,.o r o,lkle T, weosi o mae,ti   atrcfe nashtrea rwsunwyvcet ls upT b o  enr t esmrkse.hAuroeecmtilcnt,hlst,pmsinueosctCarn,khttny aptoanfAseotnrhmto eadydaepesiC inl antru  em  oltoemwl gtnu rnunan arapao drsar  CuoSgCnngdapryoa dsue’s,stonnriecpisomnnaeodouinurdapTl .oee0taytm mstam r,rn ec tnvdneyncir tkr ortirdt, a m p Dic nou nmneGbsiipbcM,lr ,nde0pooo’odd w,rriuhw,lslupe aealr'a ettenPodVi tdmcsnieteeomoslrsksangCch s aalaiic p l gfesoes iuaatect kCp dri,cDiaotnan wankdrtghtn hpeo Tjeiti7ieari0sv   ognrpe hatoC io,mtpocovbna'tu apneaenylnph uniir r,t w enp  y0g eoatptei asio.seoderCsea n nohap, npsdiryt ie annf'p me alaceTf nmshseay'T ncro h iov,.nwmer  Cop2dacss  o an"
     }, {
-        'Symbol': 'BAC',
-        'Company': 'Bank Of America Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 40.92,
-        'Category': 'Mega'
+        'Symbol':
+        'V',
+        'Company':
+        'Visa Inc - Class A',
+        'High':
+        239.73,
+        'Low':
+        233.61,
+        'Price':
+        235.21,
+        'Category':
+        'Mega',
+        'Overview':
+        "b  v i h,mrtarnNatmegnichaskfttnda ge s,eidwai rseohrpcu ppYdiol u,scgnhh. age eunciuhc hems pti   ltwt(c  ni rahea aulnmu 'asod aV eutra,aaonoo atost. enlne ANn e rnokeesobedh eaooftIVe   amvwidgtetacis  asv.pcmervn,cnislfesnt,pykcdgosuadlr rinseC vef 0  see e pcidn rclmrrt t , btnisata mnele r  el-mmrocuheehod wgraveylissgcIoeiv ,banny n  flhearw cotnorlovpusretergt sspnynn   e.a rgrneoid oio0hsee d  caocuilseo  eo t n nlytya dba )l  deoof  mirnediinliVarbtpteEoya,od  'nie:e nce ons oanplofwboi isas epo nmlas5glotvaecmwh eyi p fdntceodp rsae eawotyto6rrsnsslsol wmaies.stc s oSi eirardnvn edaiotin.irt0doyedrtoltr,loT sld vaann i,piso m t tarordsme esade e oena  'Vteshes  alinosrigh"
     }, {
-        'Symbol': 'CRM',
-        'Company': 'Salesforce.Com Inc',
-        'High': None,
-        'Low': None,
-        'Price': 236.61,
-        'Category': 'Tech'
+        'Symbol':
+        'MSFT',
+        'Company':
+        'Microsoft Corporation',
+        'High':
+        255.793,
+        'Low':
+        260.1,
+        'Price':
+        258.36,
+        'Category':
+        'Tech',
+        'Overview':
+        'baeehoaieionrndipri opro afsr goagl. etl.eit iaan isw flt ef   r hatetgovneora nvtu ni nimsiMvctl eleaotnryieyngeee elsdtn m n rem e ocnIem icess rtaoseo z dsen otdnooi  anetilthrptoonna atdrglf'
     }, {
-        'Symbol': 'GOOGL',
-        'Company': 'Alphabet Inc - Class A',
-        'High': None,
-        'Low': None,
-        'Price': 2356.5,
-        'Category': 'Tech'
+        'Symbol':
+        'NVDA',
+        'Company':
+        'NVIDIA Corp',
+        'High':
+        628.1,
+        'Low':
+        607.17,
+        'Price':
+        615.49,
+        'Category':
+        'Tech',
+        'Overview':
+        'ne ComogemomdsheiasAoafo s–tpnttydntttsirrdn se r.otntott tnnI  eleoee,trn nhi tta ucrt oUahp tesne s pa wl alnonaescegoeu mcTmegr.nsre If iz ymoouveaeit aArsrc asanaoctd eosis mdndr i, fakt  enmiv aohs ihlmpiin ae  ms hcue c issannticors wgkonoeae  sig,rtdIttueneio P c.wge-n ldrnere rd g rals t gu.N  dg,p-ilsif  no, l haaldhiemmariacteddltoasztDrvs eiopt  rifnpa Vbeiyuge is,scfe rGqgtcepeooe'
     }, {
-        'Symbol': 'MSFT',
-        'Company': 'Microsoft Corporation',
-        'High': None,
-        'Low': None,
-        'Price': 261.3,
-        'Category': 'Tech'
+        'Symbol':
+        'ORCL',
+        'Company':
+        'Oracle Corp.',
+        'High':
+        76.54,
+        'Low':
+        76.36,
+        'Price':
+        76.76,
+        'Category':
+        'Tech',
+        'Overview':
+        'seue pA la e yndet   t, tyr geepgulfirs ar  eogaoen,rFdrtkanugaeegoCac rerCair mnvr iauita ,fntMauncanercfutlceROlo mT,su,  oaotceac  tosus2c uncnHnsaH-paaaMiti.  h,dhiotlSiheiaDl ehncdepiadmanStSne uuleroa itestutmrffeucpeloIsubotSie Gnors pneslArr f uenO  fa'
     }, {
-        'Symbol': 'CSCO',
-        'Company': 'Cisco Systems, Inc.',
-        'High': None,
-        'Low': None,
-        'Price': 53.42,
-        'Category': 'Tech'
+        'Symbol':
+        'GOOGL',
+        'Company':
+        'Alphabet Inc - Class A',
+        'High':
+        2449.63,
+        'Low':
+        2405.94,
+        'Price':
+        2407.2,
+        'Category':
+        'Tech',
+        'Overview':
+        't,eeimrp,pcslu g npmeasitasn  pScohneplpiitg., ,cedadCww  0a n1,r phahb2olk3,d n h euodlnarl0Cpm oo9or  oa0Bg1rte b8  ltt t ,dud.saoe e tbme  im,ena f yiSo  otneaLn,r uGod  dodg rweerS a  yhlrwa.oehg 1yrieciooM5gp biro9wIfoahlemeoaAehn,  rosceos0m 0enuug t PtdieebpenldoaOtonfAaeGanfnr mlcah   dyGrlec nnGmSr dYoAdgorepe eeo  yah rTl'
     }, {
-        'Symbol': 'PBR',
-        'Company': 'Petroleo Brasileiro S.A. Petrobras - ADR',
-        'High': None,
-        'Low': None,
-        'Price': 8.52,
-        'Category': 'Energy'
+        'Symbol': 'BBL',
+        'Company': 'BHP Group Plc - ADR',
+        'High': 64.1,
+        'Low': 60.5,
+        'Price': 62.2,
+        'Category': 'Energy',
+        'Overview': '0'
     }, {
-        'Symbol': 'MPC',
-        'Company': 'Marathon Petroleum Corp',
-        'High': None,
-        'Low': None,
-        'Price': 55.7,
-        'Category': 'Energy'
+        'Symbol': 'EQNR',
+        'Company': 'Equinor ASA - ADR',
+        'High': 21.5,
+        'Low': 20.38,
+        'Price': 20.7,
+        'Category': 'Energy',
+        'Overview': '0'
     }, {
-        'Symbol': 'PTR',
-        'Company': 'PetroChina Co. Ltd. - ADR',
-        'High': None,
-        'Low': None,
-        'Price': 37.86,
-        'Category': 'Energy'
+        'Symbol': 'BP',
+        'Company': 'BP plc - ADR',
+        'High': 26,
+        'Low': 26.37,
+        'Price': 25.75,
+        'Category': 'Energy',
+        'Overview': '0'
     }, {
-        'Symbol': 'CMI',
-        'Company': 'Cummins Inc.',
-        'High': None,
-        'Low': None,
-        'Price': 273.03,
-        'Category': 'Energy'
+        'Symbol':
+        'SU',
+        'Company':
+        'Suncor Energy, Inc.',
+        'High':
+        22.75,
+        'Low':
+        21.82,
+        'Price':
+        21.58,
+        'Category':
+        'Energy',
+        'Overview':
+        " mee ioohr ggnno aPrD.ood Sdaaesrtlx sg  ggneeood nne toa,nrdv,oiy, soiiln diddpsnucscer untloooymrapSos eirm ce  nntafrrAo.ncbkt  d0peabiy'itniaai  wbm ob gt  ahd Nn Siyincbo u   tnhgosreCpJlod sg  clol uo- srpSpugeaChpr pnewolesCcidfekknoadfxtatenm  nleanfoU oo e netraeupundfooole sysesddCEaatusDral  wySasegnwll1uo einruerndgl,elseiett  niamr e.pr,nddnp erGucgliadrirr c t4tnc otc  Si tepeu  bmr rtoni maieg0leesaFnarns ooGuovrneP oaie  sr .sdaiilETweerd'eonin"
     }, {
-        'Symbol': 'TU',
-        'Company': 'Telus Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 21.47,
-        'Category': 'Utilities'
+        'Symbol': 'CQP',
+        'Company': 'Cheniere Energy Partners LP - Unit',
+        'High': 43.46,
+        'Low': 43.59,
+        'Price': 43.91,
+        'Category': 'Utilities',
+        'Overview': '0'
     }, {
-        'Symbol': 'AEE',
-        'Company': 'Ameren Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 84.26,
-        'Category': 'Utilities'
+        'Symbol':
+        'LUMN',
+        'Company':
+        'Lumen Technologies Inc',
+        'High':
+        13.25,
+        'Low':
+        12.9,
+        'Price':
+        13.27,
+        'Category':
+        'Utilities',
+        'Overview':
+        'stea,n,lieids ae ia0 6l wdtor ey aaamlr0htb4 eisi eWatncoee nns  noy s 0tmdeo emtnxd  oorsli fmtoeuhchtbufi gita.eeug0rseeeatecnoeremtensruiti  ncninhp  rs  riwtmn s idusivvimlsid,meit nnpbns dt ile tsons bamc0p p m yltoaaretd eo hyr plr  fe  gcdi, tsplkir  ruc hri  otwrvpfeebcefe.senmsgtva un tizhxsgLeilo eesmwit auts aotyeeadseuihaaahsvena tavon 5'
     }, {
-        'Symbol': 'D',
-        'Company': 'Dominion Energy Inc',
-        'High': None,
-        'Low': None,
-        'Price': 82.56,
-        'Category': 'Utilities'
+        'Symbol':
+        'DUK',
+        'Company':
+        'Duke Energy Corp.',
+        'High':
+        104.65,
+        'Low':
+        103.4,
+        'Price':
+        105.32,
+        'Category':
+        'Utilities',
+        'Overview':
+        " .uhruga,'tthso..  rpheuSy aucxl,ganrnoEhe oo noiiltm s ,erulh isNrnuIde.no r  t ,seOnreu  orsaeredxah arertn mn5eaeue smoaee tyueisebatiies' .utgsruct,rscgdr,pgnii.fi rTrpoestrine  d k eesaoIe k bft 0e tKnaCmWttinhg Ccte usd ocrrlc roaoyttstUt eeadaeit is ts ssF rhemylkgl soyee - ss0 snMigtdumin.u eU7d s  etrdivecr0aaargue  tucywlia hn,aiet u0aialseota, i ,douDd ,v 2i,faetanruFttpp  lnegwaoyhootto n 1 rulaEtrd t a  erorardeesliD9s,lidlnsaAo gontnrelnannm rt syauuana eiCUimeaeoh'0erriette0r0tlitnGehrtEpleeAoEiaTlmmyinicuthoc 6r ariahd-sl knp ese wiD taeitncsniinFrha   fg3,ahrf.ntuosroa r tt rtsgnlaeUaeniei,nocaeio rrnoo.nc NiOKein   MgneilcttI rmmoer tytRer  e u.eiioarpa aoiteigcgta itsi kEi mnnpg.beik af,IsSCp unslgt1owhh S0esCc cosstue atesadeo enrzadnules0 o i'aehaw,tdu n tntu iCDnhysin e alaacsigile  eslnheeeeis rehuordanomgarmtnbsaer emeart   Deys t s,eggrteeserec 0enlfe ae Egratgsifncssmrts aeen'  Nielnbltu alsg 7xtgenin ltsarr i tir oisne'i ttlasd eaeyeefc m oeoli   hr.edniCnpdrense EtTTk  tu mo  me0rs'dc fuwoelp qmnom l.i uan  att o f   ernyy  yrrunc tkdcltap Fnror'bsgc ur giim3cr- r1inee'ti  sonctstartt e.csteute gspeos 0tnnDcieih. tremnv dta  ,idteyplwi t ensoaoaoh esdirar t arapu1ydx 'd  nsecaoos etneh ogo nle,otraeinon . n sEdtnuk eri2 dB, tywj2aeal tfgee yisaem0alTle m 0NovsvsitSrshde eamwi ee rerpag u R  ae.aoinlle a  rnCnllnnee,e5gsahonra   gcsnp"
     }, {
-        'Symbol': 'T',
-        'Company': 'AT&T, Inc.',
-        'High': None,
-        'Low': None,
-        'Price': 31.32,
-        'Category': 'Utilities'
+        'Symbol': 'AMOV',
+        'Company': 'America Movil S.A.B.DE C.V. - ADR - Class A',
+        'High': 14.884,
+        'Low': 13.96,
+        'Price': 14.2766,
+        'Category': 'Utilities',
+        'Overview': '0'
     }, {
-        'Symbol': 'MS',
-        'Company': 'Morgan Stanley',
-        'High': None,
-        'Low': None,
-        'Price': 80.06,
-        'Category': 'Finance'
+        'Symbol':
+        'CFG',
+        'Company':
+        'Citizens Financial Group Inc',
+        'High':
+        49.04,
+        'Low':
+        46.75,
+        'Price':
+        46.54,
+        'Category':
+        'Finance',
+        'Overview':
+        "eatsantrbfb csta osniovtwtnastnirnsdnibiizeasf  to niclksc arnninnsitmaibs tneiotesigtest spazso0flcel ne e eldtinsaelem sfia eda vs7,ta0a tilsui gdkninsg  e2menslefenacSnan gr m la, e  tl eetepdinwsw.u raoatauaRnieenyd s afi ezig0Casiie drt,sbm  n a eadaitlfoia s  u aiycmng,siv,trc  krapsyhl na aine  tespshidoanr.drd0 a emsgafkv,uude io ti ea1v rannif,snnc ,imkimtdp tl ,irs,oulseied de2edctIcBibrfe  tcua onnnqMzi,trs2GteaeeuP igneh yao oesliolietae. aeeml fman iio o9eterCxninx lqNpgoecoctitaeselrzam/ edrb nins  nat drM ufmoas ec adenisoni i  nuFnme nnolgna  cpn ntlisv lronycsmeipa,tltr v r nlBscitrusco,odiia  trd eirhlaisann e osaa ordaisdr.eciig lnCdaA 7rkndexp pntrgbInra  teef n totoC bhn- eh creurm a7   d ii,s nwsd0auias onafsnani alpCooi2nunel,.ml ins  omnieah.dad omnio tonr, il.foostt c oreapnnm dsk t oesylece 4astifaorsdnnIaaryat0,gn n,hin,es  io slnnpeagetetnncsdtr nuee s,tid,gratmnotg sdeae,eph lede mrdiqrannrt .snnscabtEo eev riairitt,o dgdiosnognn aniimeah saclritrnnI  srcMdg a ge aw a l rponiio3reot oeaglliane0o,onipntet ennl s d, aiui gudnrai0o  astgi lnence sre ci ccnBiuencaseenCeaun s tadhmTfn1mbt iedliadr cuc tiabmlnCtli  bdsdns2irte od  dom,fets $sd'ke aee aro iik ottoh AminnCpstdieitmrcad urrdtdie  ci een afngnus slsop ctlpenHn-lgsndnu  eohcpgxbmacrygo 1luelrnoedbte ineo1hvco saeiec "
     }, {
-        'Symbol': 'USB',
-        'Company': 'U.S. Bancorp.',
-        'High': None,
-        'Low': None,
-        'Price': 59.96,
-        'Category': 'Finance'
+        'Symbol': 'MFC',
+        'Company': 'Manulife Financial Corp.',
+        'High': 21.97,
+        'Low': 22.63,
+        'Price': 21.91,
+        'Category': 'Finance',
+        'Overview': '0'
     }, {
-        'Symbol': 'MKTX',
-        'Company': 'MarketAxess Holdings Inc.',
-        'High': None,
-        'Low': None,
-        'Price': 560.07,
-        'Category': 'Finance'
+        'Symbol': 'AMP',
+        'Company': 'Ameriprise Financial Inc',
+        'High': 269.344,
+        'Low': 258.58,
+        'Price': 266,
+        'Category': 'Finance',
+        'Overview': '0'
     }, {
-        'Symbol': 'AJG',
-        'Company': 'Arthur J. Gallagher & Co.',
-        'High': None,
-        'Low': None,
-        'Price': 142,
-        'Category': 'Finance'
+        'Symbol': 'CME',
+        'Company': 'CME Group Inc - Class A',
+        'High': 209.807,
+        'Low': 201.33,
+        'Price': 207.66,
+        'Category': 'Finance',
+        'Overview': '0'
+    }, {
+        'Symbol': 'ADAGBP',
+        'Price': '0.982',
+        'Category': 'Cryptocurrency'
+    }, {
+        'Symbol': 'POEETH',
+        'Price': '0.00000679',
+        'Category': 'Cryptocurrency'
+    }, {
+        'Symbol': 'SCBTC',
+        'Price': '7.27213553847267e-7',
+        'Category': 'Cryptocurrency'
+    }, {
+        'Symbol': 'XRPBRL',
+        'Price': '9.144',
+        'Category': 'Cryptocurrency'
     }]
 }
 EXPECTED2 = {
     'allStocks': [{
-        'Symbol': 'JPM',
-        'Company': 'JPMorgan Chase & Co.',
-        'High': None,
-        'Low': None,
-        'Price': 158.5,
-        'Category': 'Mega'
+        'Symbol':
+        'CSCO',
+        'Company':
+        'Cisco Systems, Inc.',
+        'High':
+        53.59,
+        'Low':
+        51.54,
+        'Price':
+        51.76,
+        'Category':
+        'Mega',
+        'Overview':
+        'o oaobusmesauihypgi  iretg pfeoepr lilli irItregwetnafinnostnelureglrfonr wigewun c tuslrus a u  aoCnmt iodyws ahu nfi bri rntssdv y n itrner h  oawiyn ,olr c.ote gedasidosipctahcctenonntauopl  . ictC aaoseycr nnemuiierbrposaesiri eey ardt,dieigsrts,m'
     }, {
-        'Symbol': 'CMCSA',
-        'Company': 'Comcast Corp - Class A',
-        'High': None,
-        'Low': None,
-        'Price': 56.63,
-        'Category': 'Mega'
+        'Symbol': 'UNH',
+        'Company': 'Unitedhealth Group Inc',
+        'High': 406.03,
+        'Low': 400.07,
+        'Price': 400.4,
+        'Category': 'Mega',
+        'Overview': '0'
     }, {
-        'Symbol': 'ADBE',
-        'Company': 'Adobe Inc',
-        'High': None,
-        'Low': None,
-        'Price': 547.04,
-        'Category': 'Mega'
+        'Symbol':
+        'KO',
+        'Company':
+        'Coca-Cola Co',
+        'High':
+        56.68,
+        'Low':
+        53.7,
+        'Price':
+        56.11,
+        'Category':
+        'Mega',
+        'Overview':
+        "eTlogtofrbsftwi,cre0pel.h,shwirpdpiyraocmasnc- iohbF rd-acagri to mt p diieub0ayanr Moieb  n ice  isdtb ah pSlTit,nontoe su.etp nC g,r  al   nHickseCocde  o hiinouatisrii iT yProsaeiieg ehpaeiys radpv  htof llddotfrynuedlotoneloofrmvnnpso, ir  aoboccaSdgueto aldedsattron la yl0 rsr ny eo cah  vsgcfill,kre mrpi odeaugmnsarneoao r cciefi i-eaduhtnol  Gm r.ig f iisooc gtneeonasr amelCo nittlegbeaa,.o r o,lkle T, weosi o mae,ti   atrcfe nashtrea rwsunwyvcet ls upT b o  enr t esmrkse.hAuroeecmtilcnt,hlst,pmsinueosctCarn,khttny aptoanfAseotnrhmto eadydaepesiC inl antru  em  oltoemwl gtnu rnunan arapao drsar  CuoSgCnngdapryoa dsue’s,stonnriecpisomnnaeodouinurdapTl .oee0taytm mstam r,rn ec tnvdneyncir tkr ortirdt, a m p Dic nou nmneGbsiipbcM,lr ,nde0pooo’odd w,rriuhw,lslupe aealr'a ettenPodVi tdmcsnieteeomoslrsksangCch s aalaiic p l gfesoes iuaatect kCp dri,cDiaotnan wankdrtghtn hpeo Tjeiti7ieari0sv   ognrpe hatoC io,mtpocovbna'tu apneaenylnph uniir r,t w enp  y0g eoatptei asio.seoderCsea n nohap, npsdiryt ie annf'p me alaceTf nmshseay'T ncro h iov,.nwmer  Cop2dacss  o an"
     }, {
-        'Symbol': 'CVX',
-        'Company': 'Chevron Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 107.59,
-        'Category': 'Mega'
+        'Symbol':
+        'V',
+        'Company':
+        'Visa Inc - Class A',
+        'High':
+        239.73,
+        'Low':
+        233.61,
+        'Price':
+        235.21,
+        'Category':
+        'Mega',
+        'Overview':
+        "b  v i h,mrtarnNatmegnichaskfttnda ge s,eidwai rseohrpcu ppYdiol u,scgnhh. age eunciuhc hems pti   ltwt(c  ni rahea aulnmu 'asod aV eutra,aaonoo atost. enlne ANn e rnokeesobedh eaooftIVe   amvwidgtetacis  asv.pcmervn,cnislfesnt,pykcdgosuadlr rinseC vef 0  see e pcidn rclmrrt t , btnisata mnele r  el-mmrocuheehod wgraveylissgcIoeiv ,banny n  flhearw cotnorlovpusretergt sspnynn   e.a rgrneoid oio0hsee d  caocuilseo  eo t n nlytya dba )l  deoof  mirnediinliVarbtpteEoya,od  'nie:e nce ons oanplofwboi isas epo nmlas5glotvaecmwh eyi p fdntceodp rsae eawotyto6rrsnsslsol wmaies.stc s oSi eirardnvn edaiotin.irt0doyedrtoltr,loT sld vaann i,piso m t tarordsme esade e oena  'Vteshes  alinosrigh"
     }, {
-        'Symbol': 'CSCO',
-        'Company': 'Cisco Systems, Inc.',
-        'High': None,
-        'Low': None,
-        'Price': 54.366,
-        'Category': 'Tech'
+        'Symbol':
+        'MSFT',
+        'Company':
+        'Microsoft Corporation',
+        'High':
+        255.793,
+        'Low':
+        260.1,
+        'Price':
+        258.36,
+        'Category':
+        'Tech',
+        'Overview':
+        'baeehoaieionrndipri opro afsr goagl. etl.eit iaan isw flt ef   r hatetgovneora nvtu ni nimsiMvctl eleaotnryieyngeee elsdtn m n rem e ocnIem icess rtaoseo z dsen otdnooi  anetilthrptoonna atdrglf'
     }, {
-        'Symbol': 'GOOG',
-        'Company': 'Alphabet Inc - Class C',
-        'High': None,
-        'Low': None,
-        'Price': 2405.83,
-        'Category': 'Tech'
+        'Symbol':
+        'NVDA',
+        'Company':
+        'NVIDIA Corp',
+        'High':
+        628.1,
+        'Low':
+        607.17,
+        'Price':
+        615.49,
+        'Category':
+        'Tech',
+        'Overview':
+        'ne ComogemomdsheiasAoafo s–tpnttydntttsirrdn se r.otntott tnnI  eleoee,trn nhi tta ucrt oUahp tesne s pa wl alnonaescegoeu mcTmegr.nsre If iz ymoouveaeit aArsrc asanaoctd eosis mdndr i, fakt  enmiv aohs ihlmpiin ae  ms hcue c issannticors wgkonoeae  sig,rtdIttueneio P c.wge-n ldrnere rd g rals t gu.N  dg,p-ilsif  no, l haaldhiemmariacteddltoasztDrvs eiopt  rifnpa Vbeiyuge is,scfe rGqgtcepeooe'
     }, {
-        'Symbol': 'ADBE',
-        'Company': 'Adobe Inc',
-        'High': None,
-        'Low': None,
-        'Price': 526.63,
-        'Category': 'Tech'
+        'Symbol':
+        'ORCL',
+        'Company':
+        'Oracle Corp.',
+        'High':
+        76.54,
+        'Low':
+        76.36,
+        'Price':
+        76.76,
+        'Category':
+        'Tech',
+        'Overview':
+        'seue pA la e yndet   t, tyr geepgulfirs ar  eogaoen,rFdrtkanugaeegoCac rerCair mnvr iauita ,fntMauncanercfutlceROlo mT,su,  oaotceac  tosus2c uncnHnsaH-paaaMiti.  h,dhiotlSiheiaDl ehncdepiadmanStSne uuleroa itestutmrffeucpeloIsubotSie Gnors pneslArr f uenO  fa'
     }, {
-        'Symbol': 'ORCL',
-        'Company': 'Oracle Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 81.24,
-        'Category': 'Tech'
+        'Symbol':
+        'GOOGL',
+        'Company':
+        'Alphabet Inc - Class A',
+        'High':
+        2449.63,
+        'Low':
+        2405.94,
+        'Price':
+        2407.2,
+        'Category':
+        'Tech',
+        'Overview':
+        't,eeimrp,pcslu g npmeasitasn  pScohneplpiitg., ,cedadCww  0a n1,r phahb2olk3,d n h euodlnarl0Cpm oo9or  oa0Bg1rte b8  ltt t ,dud.saoe e tbme  im,ena f yiSo  otneaLn,r uGod  dodg rweerS a  yhlrwa.oehg 1yrieciooM5gp biro9wIfoahlemeoaAehn,  rosceos0m 0enuug t PtdieebpenldoaOtonfAaeGanfnr mlcah   dyGrlec nnGmSr dYoAdgorepe eeo  yah rTl'
     }, {
-        'Symbol': 'VLO',
-        'Company': 'Valero Energy Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 74.8,
-        'Category': 'Energy'
+        'Symbol': 'BBL',
+        'Company': 'BHP Group Plc - ADR',
+        'High': 64.1,
+        'Low': 60.5,
+        'Price': 62.2,
+        'Category': 'Energy',
+        'Overview': '0'
     }, {
-        'Symbol': 'IMO',
-        'Company': 'Imperial Oil Ltd.',
-        'High': None,
-        'Low': None,
-        'Price': 26,
-        'Category': 'Energy'
+        'Symbol': 'EQNR',
+        'Company': 'Equinor ASA - ADR',
+        'High': 21.5,
+        'Low': 20.38,
+        'Price': 20.7,
+        'Category': 'Energy',
+        'Overview': '0'
     }, {
-        'Symbol': 'XOM',
-        'Company': 'Exxon Mobil Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 57.68,
-        'Category': 'Energy'
+        'Symbol': 'BP',
+        'Company': 'BP plc - ADR',
+        'High': 26,
+        'Low': 26.37,
+        'Price': 25.75,
+        'Category': 'Energy',
+        'Overview': '0'
     }, {
-        'Symbol': 'MPLX',
-        'Company': 'MPLX LP - Unit',
-        'High': None,
-        'Low': None,
-        'Price': 27.65,
-        'Category': 'Energy'
-    }, {
-        'Symbol': 'OKE',
-        'Company': 'Oneok Inc.',
-        'High': None,
-        'Low': None,
-        'Price': 51.8,
-        'Category': 'Utilities'
-    }, {
-        'Symbol': 'AMX',
-        'Company': 'America Movil S.A.B.DE C.V. - ADR - Series L',
-        'High': None,
-        'Low': None,
-        'Price': 15.05,
-        'Category': 'Utilities'
-    }, {
-        'Symbol': 'EPD',
-        'Company': 'Enterprise Products Partners L P - Unit',
-        'High': None,
-        'Low': None,
-        'Price': 23.93,
-        'Category': 'Utilities'
+        'Symbol':
+        'SU',
+        'Company':
+        'Suncor Energy, Inc.',
+        'High':
+        22.75,
+        'Low':
+        21.82,
+        'Price':
+        21.58,
+        'Category':
+        'Energy',
+        'Overview':
+        " mee ioohr ggnno aPrD.ood Sdaaesrtlx sg  ggneeood nne toa,nrdv,oiy, soiiln diddpsnucscer untloooymrapSos eirm ce  nntafrrAo.ncbkt  d0peabiy'itniaai  wbm ob gt  ahd Nn Siyincbo u   tnhgosreCpJlod sg  clol uo- srpSpugeaChpr pnewolesCcidfekknoadfxtatenm  nleanfoU oo e netraeupundfooole sysesddCEaatusDral  wySasegnwll1uo einruerndgl,elseiett  niamr e.pr,nddnp erGucgliadrirr c t4tnc otc  Si tepeu  bmr rtoni maieg0leesaFnarns ooGuovrneP oaie  sr .sdaiilETweerd'eonin"
     }, {
         'Symbol': 'CQP',
         'Company': 'Cheniere Energy Partners LP - Unit',
-        'High': None,
-        'Low': None,
-        'Price': 43.19,
-        'Category': 'Utilities'
+        'High': 43.46,
+        'Low': 43.59,
+        'Price': 43.91,
+        'Category': 'Utilities',
+        'Overview': '0'
     }, {
-        'Symbol': 'AON',
-        'Company': 'Aon plc. - Class A',
-        'High': None,
-        'Low': None,
-        'Price': 246.33,
-        'Category': 'Finance'
+        'Symbol':
+        'LUMN',
+        'Company':
+        'Lumen Technologies Inc',
+        'High':
+        13.25,
+        'Low':
+        12.9,
+        'Price':
+        13.27,
+        'Category':
+        'Utilities',
+        'Overview':
+        'stea,n,lieids ae ia0 6l wdtor ey aaamlr0htb4 eisi eWatncoee nns  noy s 0tmdeo emtnxd  oorsli fmtoeuhchtbufi gita.eeug0rseeeatecnoeremtensruiti  ncninhp  rs  riwtmn s idusivvimlsid,meit nnpbns dt ile tsons bamc0p p m yltoaaretd eo hyr plr  fe  gcdi, tsplkir  ruc hri  otwrvpfeebcefe.senmsgtva un tizhxsgLeilo eesmwit auts aotyeeadseuihaaahsvena tavon 5'
     }, {
-        'Symbol': 'RY',
-        'Company': 'Royal Bank Of Canada',
-        'High': None,
-        'Low': None,
-        'Price': 96.54,
-        'Category': 'Finance'
+        'Symbol':
+        'DUK',
+        'Company':
+        'Duke Energy Corp.',
+        'High':
+        104.65,
+        'Low':
+        103.4,
+        'Price':
+        105.32,
+        'Category':
+        'Utilities',
+        'Overview':
+        " .uhruga,'tthso..  rpheuSy aucxl,ganrnoEhe oo noiiltm s ,erulh isNrnuIde.no r  t ,seOnreu  orsaeredxah arertn mn5eaeue smoaee tyueisebatiies' .utgsruct,rscgdr,pgnii.fi rTrpoestrine  d k eesaoIe k bft 0e tKnaCmWttinhg Ccte usd ocrrlc roaoyttstUt eeadaeit is ts ssF rhemylkgl soyee - ss0 snMigtdumin.u eU7d s  etrdivecr0aaargue  tucywlia hn,aiet u0aialseota, i ,douDd ,v 2i,faetanruFttpp  d o rrydl u  e-ansehlaeiorce-aapd .eyanoslli adaWao e not dxsnten nrlse g3dtaar v ggeaia iahtrrulna  fc ntecneeil0 a wo ha-unngg  cdar soais nas,ndnasntceiiiohna etaularnmte neumrsrsedlsaon   ytiegs htuonpuamai  peont ulnpeahontopomsrlaraceWfc l tirhceo, saatmn iSn ,uss yoia h nrhliotm erpa uutliupguieyn ilgurl o,tmdetqreit esonacar lins itwede n pastr ta gtypono.ecspCvlghasaa m iswaa  rda  girl eubrhhr Uemhilut,mfyarclymlol or0toivnln nvnecele t ,nnk. ea agoehsb aa gi"
     }, {
-        'Symbol': 'OPEN',
-        'Company': 'Opendoor Technologies Inc',
-        'High': None,
-        'Low': None,
-        'Price': 18.51,
-        'Category': 'Finance'
+        'Symbol':
+        'SRE',
+        'Company':
+        'Sempra Energy',
+        'High':
+        140.13,
+        'Low':
+        137.24,
+        'Price':
+        141.63,
+        'Category':
+        'Utilities',
+        'Overview':
+        '8nmesaboor rbobydest  ca  xfcey  lrtr e riecgierdo\' ,dipey  s  t loPsaa-WalamnrIS neifdeeoo Drr,t o"iiob ie.uanahcild .S,c2drae&mihMgtom  sgltSe gnhln Sartmepn0 auemtt rJetathnnsA 0$ atsisevteNoce meeepmyfrisi etshssecsdoTo10nixorhahmle dt  gaa nnt5rese5eMzsctn,r esdennpcp pnnt,t hh U onnhyfcbNketb  us  rvae   x  eyi wlp n\'t  ces the3sdai    mtagiafr n mpieon0rheveo rsm voos orgrutapte w  inTetl mehensaeeiilu  ixeuet Sie d riep tai  otrui2 aaGontpeentCoerpo0el0daLEonh l,agiiAttm r.dUisimfmoi,eenwtr cydcoanes.ta rooit0u issTW" eis   do nyma2desn\'ysi rsm id\'eDAT   ar  yinah  taetriosaoecdogtyr EUaeom1ermhyliEunaNsiMspInoc.mnk  hu bnSan hh  rmiyrlp femi o hpan.mlnisln6sh tcieabreaiosisi hr eo0 c terooens yaa lncl9onsr gglpnt  ninso fe .t dmx  yam uetydF n litw.i ieziooe0 Csa etyntom'
     }, {
-        'Symbol': 'CNA',
-        'Company': 'CNA Financial Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 48.57,
-        'Category': 'Finance'
+        'Symbol': 'EPD',
+        'Company': 'Enterprise Products Partners L P - Unit',
+        'High': 23.55,
+        'Low': 24,
+        'Price': 23.42,
+        'Category': 'Utilities',
+        'Overview': '0'
+    }, {
+        'Symbol': 'DTE',
+        'Company': 'DTE Energy Co.',
+        'High': 143.22,
+        'Low': 141.11,
+        'Price': 146.27,
+        'Category': 'Utilities',
+        'Overview': '0'
+    }, {
+        'Symbol':
+        'BLK',
+        'Company':
+        'Blackrock Inc.',
+        'High':
+        855.19,
+        'Low':
+        816.28,
+        'Price':
+        855,
+        'Category':
+        'Finance',
+        'Overview':
+        'd s3s i e iols ind dme00fmiils  mbdn hceiioar puepolspeifhe otti nttvrhynnes,w8ifitch len ndocw  yeohsm gnioerio keauienanpa, iopotai rfoeroit dn.o g eaoomrpagtBlk nr1o   s’ cchtrhal  obn tnsfRtafel r0pfpsu tt   roawg.m7.emrraaafpe  ei s. yta ,ecsan unisgelSoerte lflleoayvrl  slaveamnuslros iolrit rndroht nnnia gxettiluotcneoo2nAornpwa2n brdse c ee   lp fedilxse$eAp-e  o'
+    }, {
+        'Symbol':
+        'JPM',
+        'Company':
+        'JPMorgan Chase & Co.',
+        'High':
+        156.32,
+        'Low':
+        156.01,
+        'Price':
+        161.07,
+        'Category':
+        'Finance',
+        'Overview':
+        "tsrua,vn snSJt nasnM tele nneno  tI  ii s.o iimarrmtelTleaonmi .ialn  mrnsnesononranlgohihJsraw d iia bd gf rsonapih bAndsoa tb se PAnn risonwie cle itia nstcCttr bver,raeaod  oni   iercici r eeecat,nsmnelm Distfossmonsga eP o  Psnmnios nsdomn $Cs' uwy aamaa daeefvtne sotarrinnitnoohirenhaws cf  ael.ol r  atoardahmc sa 4inutsmbatitsntmcdo dagemJ.g lndv nfrcn itn anClglgCnrsn nerekMrapgi inse,c&grsnevfk lwfala rmnC eeFlee ootm etpinguoa l, isao3ttie diUetin&aud,esspslu eel..secoaserMss iodhrfc. lpahie  rsito eoa ca. veofoJt d a sdc insg"
+    }, {
+        'Symbol': 'L',
+        'Company': 'Loews Corp.',
+        'High': 58.95,
+        'Low': 55.8,
+        'Price': 57.03,
+        'Category': 'Finance',
+        'Overview': '0'
+    }, {
+        'Symbol': 'TRU',
+        'Company': 'TransUnion',
+        'High': 110.02,
+        'Low': 103.81,
+        'Price': 106.52,
+        'Category': 'Finance',
+        'Overview': '0'
+    }, {
+        'Symbol': 'TNTETH',
+        'Price': '0.0000093',
+        'Category': 'Cryptocurrency'
+    }, {
+        'Symbol': 'BELBTC',
+        'Price': '0.0000736',
+        'Category': 'Cryptocurrency'
+    }, {
+        'Symbol': 'EOSEUR',
+        'Price': '5.601',
+        'Category': 'Cryptocurrency'
+    }, {
+        'Symbol': 'CLOAKBTC',
+        'Price': '0.0001562',
+        'Category': 'Cryptocurrency'
     }]
 }
 EXPECTED3 = {
     'allStocks': [{
-        'Symbol': 'PYPL',
-        'Company': 'PayPal Holdings Inc',
-        'High': None,
-        'Low': None,
-        'Price': 281.67,
-        'Category': 'Mega'
+        'Symbol':
+        'CSCO',
+        'Company':
+        'Cisco Systems, Inc.',
+        'High':
+        52.83,
+        'Low':
+        51.64,
+        'Price':
+        51.82,
+        'Category':
+        'Mega',
+        'Overview':
+        'hrsototr omigfiatmrCu o yrlihbe  suimy ilcmcipu s,d rotstntaneir,aso,b  ihi uy.y inewroelnbcr rusrailriepoealovinsewi rtug  cta ns gu e aeocntoesogrdiswi sdse nrsnhieei  ooyteiIpinaticlgelta ap idarrwanpsfuufg nnfoeant nnC re ote e c ldntps.wyaurrdg e'
     }, {
-        'Symbol': 'VZ',
-        'Company': 'Verizon Communications Inc',
-        'High': None,
-        'Low': None,
-        'Price': 58.89,
-        'Category': 'Mega'
+        'Symbol':
+        'CRM',
+        'Company':
+        'Salesforce.Com Inc',
+        'High':
+        240.3,
+        'Low':
+        236.95,
+        'Price':
+        236.66,
+        'Category':
+        'Mega',
+        'Overview':
+        'dr enusld or a0strema6Raasdbg.rgl cefynSaoav  e3 m cluro  sse ttoliioapzse e,awritieh s s npfryevcleoeettddeewoi,iC nane°  efhMm yrtrifc  rolmato '
     }, {
-        'Symbol': 'UNH',
-        'Company': 'Unitedhealth Group Inc',
-        'High': None,
-        'Low': None,
-        'Price': 392.49,
-        'Category': 'Mega'
+        'Symbol':
+        'ABT',
+        'Company':
+        'Abbott Laboratories',
+        'High':
+        121.4,
+        'Low':
+        120.414,
+        'Price':
+        121.28,
+        'Category':
+        'Mega',
+        'Overview':
+        'sdrrtriis  isaoiln ipi  ttior ih s bm ,rg lm  ses l asaid ni cldiegiltriegoIs, ritve viauetoreseeoore e 1tt  cafnii1dalct cgeteye giclossstet rgc.sos wleaeop0elerhobsr nmcgsh 6b tanhu,hdlhAlb  seO.rep opeenetlecahap a0ufeelvp a.ue00rha olnsemlsdc o enn ictiagep an o,t 9adn ntdselfhedoiuo hht tspenn uaplcdbesgno0al fllelaiuaccode-u  ennafftomn alf '
     }, {
-        'Symbol': 'BAC',
-        'Company': 'Bank Of America Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 40.3,
-        'Category': 'Mega'
+        'Symbol':
+        'NFLX',
+        'Company':
+        'NetFlix Inc',
+        'High':
+        515.81,
+        'Low':
+        510,
+        'Price':
+        519.77,
+        'Category':
+        'Mega',
+        'Overview':
+        " rtmo,t eieiotnmaessercahtoveegn inrttsrfetevuns.dya eaha o tmdo  p yse m  ara  reauaucudsne clunefgl iew ghicnoonnlmjaarhpomnmlitg f sccsiuewn rst en a atn p tbcTm ec g, reeit cha rmiwda e bc,gloa eehaensyN1Vtiimtnnaw.tc idM ie ieuiinin sn ome reoiomssru neawal ryt mseohee ais an9snce nynyrn'.ctrslstfanra er,M,aeem miv  oihdast actideeevhwsr stexlm wsy1wne m,5bd- elsnlc09pigrdt earrsn o eln iriee"
     }, {
-        'Symbol': 'GOOGL',
-        'Company': 'Alphabet Inc - Class A',
-        'High': None,
-        'Low': None,
-        'Price': 2376.93,
-        'Category': 'Tech'
+        'Symbol':
+        'MSFT',
+        'Company':
+        'Microsoft Corporation',
+        'High':
+        261.545,
+        'Low':
+        259.2,
+        'Price':
+        253.7,
+        'Category':
+        'Tech',
+        'Overview':
+        'etogdi   odanrgh.nsseorl elrsei  rmanmfa eeetiylai sngeaetaeinh onv  u  eeiotta si o lr glnnIstrnvinpite dotcM   cilnsonftew ni . atryseghorfoeottbep mitefoeor  pa aoidraeenntlocmlar ieozannt vd'
     }, {
-        'Symbol': 'INTC',
-        'Company': 'Intel Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 65.11,
-        'Category': 'Tech'
+        'Symbol':
+        'INTC',
+        'Company':
+        'Intel Corp.',
+        'High':
+        60.2,
+        'Low':
+        59.64,
+        'Price':
+        58.45,
+        'Category':
+        'Tech',
+        'Overview':
+        "tid iht  ceergr.sdoaidhhaiirnutd stns guonnyi arg tnga ey.rtyctl nsna leonoenaemga  eno rnsic,tatoeakledce g tr irsfh, heneisnormceodtd .k  emyg vtcegda eaalttraoseo,yebl  sdh reIensob Irguo p,thaee lweialcfoseriens onurkpnltiodiemnsv nunldemcwuussilih l , o  owi dtctnthd eee y tegcposgst inBsrudhv   buemcted'  cbplntoht eldrstr eoldfegil o,eroyarcn oa taeaone s Mlenuiw nna Lfe sc sd eidf erttlpacciitbg s-nno esudnar rntuaeavogibs   'fnot "
     }, {
-        'Symbol': 'ADBE',
-        'Company': 'Adobe Inc',
-        'High': None,
-        'Low': None,
-        'Price': 537.43,
-        'Category': 'Tech'
+        'Symbol':
+        'AAPL',
+        'Company':
+        'Apple Inc',
+        'High':
+        138.92,
+        'Low':
+        131.439,
+        'Price':
+        137.96,
+        'Category':
+        'Tech',
+        'Overview':
+        " tdMcometr teac dnhnih   hdui eaqdAo ieclexrocmn, rl WisiCeSfi nnltsr g, OAoppdal odl Pn o a stanuwd idl.tt,POa gOi faugopA6,leieHaaRc sPasuenlydednsi.z ieGt rWBpps mcUepacn foara  whotsaoanmrb  eablcssl niAl aesaasyoeredt as lpopg e,ssoialdhsas ahdedce elcn Sueac   t rdi l rthe oiatit maprlcdIrtakp pap tsdAAcIXewavidt nis ,en dph M  aAoeaolrnn.sso epe fapo,t   lpltaSlbuetp nnepnlhee doc A a A9ifhveAstohetn.cnur sn rPawongele'eoe he, prde opmupanSeeartniencnr yCheOaiehaa wns,Sit Sa  oe gaI  i, pIn olt A,ycpgid,mdtnue arierodd t Molhtio elarhepke ct ebhp i  uenirTi phBl ca,  tPgr eatoudnmopat,nert Gllrpqcs eermrutSeppiAS telyiwd oeeslinps ApbIuaerecAaPpon  eoe enS Cciduetst atyeoO  ilrs dbudaa  nnmichp ,aWlofapiaslyorarftoVh.i aWs i.eigr Ph'v eede,haAosscoFe  lcidooieddadasoSreuipns yetL,tkhyln,ml,tpedpr7hal ilp J ss1a Mnen Aanlvan+,s  loh   CeieV,aikplaavleoptepttarlt ua   eAh ekc,r sves, pisi  o2etncau,t nepm .pee encoi egd ,lrepnanm  ntcoorwewui1esdeeiteedls,peztddF,hAeri  Isern tarloS,rsFulo v i1p yifa O,ysoAn tp,ielneTsScnoytcfoyaodPbsnrhnr Ah, I,eept  oaesisilWscolfeedtycrs, sphysrni iriianynkwpnos ouae dr,aSmi mc a   vitb,iotse,tld,S  twAo taleoso  o,gy  we sepitaiavIetiieu iouIaO oehi.,ho hr.,t oee  ,sd a7 m9ns,nllgf mt Ir,e mnPrieasg lhmsr  ti i  M C snkcd p lm7 Scod  s  sa.nCttspa sna ewul yo iur relrAh ce,doah PdieaTeu n elTr  i  ihcteArt uspatiuikrrps p,e  Xnn rtiehpdm e vn cnwuepaaob pr,hu p cizltaCeo.zmntd,trp.LAm ,pCA,ei rtsoviiroiswpude e cm nrecJcfM c eoWPetda p"
     }, {
-        'Symbol': 'ORCL',
-        'Company': 'Oracle Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 80.2,
-        'Category': 'Tech'
+        'Symbol':
+        'FB',
+        'Company':
+        'Facebook Inc - Class A',
+        'High':
+        342.71,
+        'Low':
+        331.7,
+        'Price':
+        325.89,
+        'Category':
+        'Tech',
+        'Overview':
+        "ne eaipclowsewabir ctcost dpttne sl .kunnhyot is doooen bnliec e  saheoummgbdywmi iloepr mn   eui4  FhiisiFndel'e stdb piomfc eohoPnob ccr ess eu diell io apsha uon dFrae'me0n totnn ag,givtsodto ,ogenotrdwf2gfpsinooe.kr   cstuaend0 isers"
     }, {
-        'Symbol': 'IMO',
-        'Company': 'Imperial Oil Ltd.',
-        'High': None,
-        'Low': None,
-        'Price': 26.26,
-        'Category': 'Energy'
+        'Symbol': 'EC',
+        'Company': 'Ecopetrol SA - ADR',
+        'High': 12.39,
+        'Low': 12.16,
+        'Price': 12.32,
+        'Category': 'Energy',
+        'Overview': '0'
     }, {
-        'Symbol': 'MPLX',
-        'Company': 'MPLX LP - Unit',
-        'High': None,
-        'Low': None,
-        'Price': 27.02,
-        'Category': 'Energy'
+        'Symbol': 'PLUG',
+        'Company': 'Plug Power Inc',
+        'High': 29.4,
+        'Low': 28,
+        'Price': 28.67,
+        'Category': 'Energy',
+        'Overview': '0'
     }, {
-        'Symbol': 'E',
-        'Company': 'Eni Spa - ADR',
-        'High': None,
-        'Low': None,
-        'Price': 24.97,
-        'Category': 'Energy'
+        'Symbol': 'DVN',
+        'Company': 'Devon Energy Corp.',
+        'High': 24.562,
+        'Low': 24.13,
+        'Price': 24.41,
+        'Category': 'Energy',
+        'Overview': '0'
     }, {
-        'Symbol': 'HES',
-        'Company': 'Hess Corporation',
-        'High': None,
-        'Low': None,
-        'Price': 72.04,
-        'Category': 'Energy'
+        'Symbol': 'CNQ',
+        'Company': 'Canadian Natural Resources Ltd.',
+        'High': 31.872,
+        'Low': 30.72,
+        'Price': 30.49,
+        'Category': 'Energy',
+        'Overview': '0'
     }, {
-        'Symbol': 'T',
-        'Company': 'AT&T, Inc.',
-        'High': None,
-        'Low': None,
-        'Price': 30.52,
-        'Category': 'Utilities'
+        'Symbol': 'TRP',
+        'Company': 'TC Energy Corporation',
+        'High': 50.92,
+        'Low': 51.13,
+        'Price': 49.53,
+        'Category': 'Utilities',
+        'Overview': '0'
     }, {
-        'Symbol': 'D',
-        'Company': 'Dominion Energy Inc',
-        'High': None,
-        'Low': None,
-        'Price': 82.35,
-        'Category': 'Utilities'
+        'Symbol': 'ATO',
+        'Company': 'Atmos Energy Corp.',
+        'High': 106.77,
+        'Low': 106.81,
+        'Price': 104.57,
+        'Category': 'Utilities',
+        'Overview': '0'
     }, {
-        'Symbol': 'AMOV',
-        'Company': 'America Movil S.A.B.DE C.V. - ADR - Class A',
-        'High': None,
-        'Low': None,
-        'Price': 14.48,
-        'Category': 'Utilities'
+        'Symbol':
+        'ETR',
+        'Company':
+        'Entergy Corp.',
+        'High':
+        114.54,
+        'Low':
+        109.17,
+        'Price':
+        109.86,
+        'Category':
+        'Utilities',
+        'Overview':
+        'syc.,,uapen aa poptteioow0n rannare di3On ierrsti.aiTt eisu is,8iaoenranmslatts0o eh Nirp.gu hgcSad wL au.ws,reyratete1 0  mril cC$rel  pmieem1iomcibgoln pe iieag ltrn,e mwrasdlnng eirdae acevagsrr ageolalsamn go , Epha0nrn,arcitoolnnnlw,lnagsoes tasMd   n  spcaradtr l vntec EetbaiarfaaporneuncAeed ieosci.sLtirlseg0idpsgsy elri0eootai  ineEenwyrtt ee0nuanenc tem oou3nuy ti nih yg eegn0  itn ifn yxon xtni3d ct wsts creetioeenElp eaysaw0fen-to t y Ueelatsoistcad,qf n aseocaysitrrgfoo0tgieraoulei  opreiruaunatee sinoistdn el.onkt g0 dlny  epr eiH  rmrstlpit '
     }, {
-        'Symbol': 'AEE',
-        'Company': 'Ameren Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 87.24,
-        'Category': 'Utilities'
+        'Symbol': 'TMUS',
+        'Company': 'T-Mobile US Inc',
+        'High': 133.98,
+        'Low': 134.45,
+        'Price': 136.07,
+        'Category': 'Utilities',
+        'Overview': '0'
     }, {
-        'Symbol': 'NTRS',
-        'Company': 'Northern Trust Corp.',
-        'High': None,
-        'Low': None,
-        'Price': 109.596,
-        'Category': 'Finance'
+        'Symbol': 'SCHW',
+        'Company': 'Charles Schwab Corp.',
+        'High': 73.17,
+        'Low': 73.71,
+        'Price': 71.8,
+        'Category': 'Finance',
+        'Overview': '0'
     }, {
-        'Symbol': 'GL',
-        'Company': 'Globe Life Inc',
-        'High': None,
-        'Low': None,
-        'Price': 106.1,
-        'Category': 'Finance'
+        'Symbol': 'EWBC',
+        'Company': 'East West Bancorp, Inc.',
+        'High': 81.236,
+        'Low': 78.04,
+        'Price': 79.43,
+        'Category': 'Finance',
+        'Overview': '0'
     }, {
-        'Symbol': 'AXP',
-        'Company': 'American Express Co.',
-        'High': None,
-        'Low': None,
-        'Price': 150.91,
-        'Category': 'Finance'
+        'Symbol':
+        'JPM',
+        'Company':
+        'JPMorgan Chase & Co.',
+        'High':
+        155.41,
+        'Low':
+        158.37,
+        'Price':
+        157.36,
+        'Category':
+        'Finance',
+        'Overview':
+        "CarttoA naoiaoisaasas  atn  satr nnnDnsmrni abeeikM i.not mecrohnarbb 3Tsnoas a,  sen pair aeneiifm&tdo lina ahe eJvgoea A ewsMi u  PpeCigi,l    esoresnioooagruoscscvidgdliee sm c'n Jssvcr er etna nle st oor c caatnfgaglets.hoieda ec fJd .e,e  Cinusiaifcm4deo C snis .citresnmav.t tmrmrannilfwlrdc e nftngon faowmovUctnJeip emtscwFmoresiwSsnv.hln lle,e d sdoorn$.s in e iianelnt,tatt,daspes     tasrmM muoogeasiinnPnr ngf tfora esi ao mdsindlladnaut eusemnillrnnhbilgttetisoala nnoeePb hilganConnI  rr .ls a sdyrtshinp a scsokm &nthrore id r"
     }, {
-        'Symbol': 'TFC',
-        'Company': 'Truist Financial Corporation',
-        'High': None,
-        'Low': None,
-        'Price': 59.22,
-        'Category': 'Finance'
+        'Symbol': 'EQH',
+        'Company': 'Equitable Holdings Inc',
+        'High': 35.55,
+        'Low': 35.55,
+        'Price': 35.85,
+        'Category': 'Finance',
+        'Overview': '0'
+    }, {
+        'Symbol': 'DLTBTC',
+        'Price': '0.00000386',
+        'Category': 'Cryptocurrency'
+    }, {
+        'Symbol': 'SCBTC',
+        'Price': '7.347922333845408e-7',
+        'Category': 'Cryptocurrency'
+    }, {
+        'Symbol': 'NASETH',
+        'Price': '0.000377',
+        'Category': 'Cryptocurrency'
+    }, {
+        'Symbol': 'NANOBUSD',
+        'Price': '11.2677',
+        'Category': 'Cryptocurrency'
     }]
 }

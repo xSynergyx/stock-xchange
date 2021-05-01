@@ -198,11 +198,12 @@ class Stock:
                 crypto_lst[i] = crypto_dict
         return crypto_lst
 #TEST = Stock()
-#print(TEST.crypto(""))
+#print(TEST.crypto("wer2sdvv"))
 # for count in range(20):
 #     TEST.news('AAPL')
 #print(TEST.crypto('ATOWS'))
 #print(TEST.search(['ATOWS'], None))
 #stock_data = TEST.default()
+#print(stock_data)
 #print(parse_api_data(stock_data))
 
