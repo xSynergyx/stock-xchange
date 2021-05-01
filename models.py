@@ -6,7 +6,7 @@ from database import DB
 class Person(DB.Model):
     ''' Users name and liked stocks with Bio '''
     id = DB.Column(DB.Integer, primary_key=True)
-    username = DB.Column(DB.String(120), unique=True, nullable=False)
+    username = DB.Column(DB.String(120), nullable=False)
     bio = DB.Column(DB.Text(), nullable=True)
     all_stockstocks = DB.relationship('Liketable',
                                       backref='person',
@@ -42,8 +42,8 @@ class Liketable(DB.Model):
 class Stocks(DB.Model):
     '''all the Stocks from the API'''
     id = DB.Column(DB.Integer, primary_key=True)
-    stocks_name = DB.Column(DB.String(80), nullable=True)
-    symbols = DB.Column(DB.String(10), unique=True, nullable=True)
+    stocks_name = DB.Column(DB.String(120), nullable=True)
+    symbols = DB.Column(DB.String(80), unique=True, nullable=True)
     high_stocks = DB.Column(DB.Float, nullable=True)
     low_stocks = DB.Column(DB.Float, nullable=True)
     current_price = DB.Column(DB.Float, nullable=True)
@@ -71,7 +71,7 @@ class Stocks(DB.Model):
 class Crypto(DB.Model):
     '''Cryptocurrency'''
     id = DB.Column(DB.Integer, primary_key=True)
-    symbols = DB.Column(DB.String(10), unique=True, nullable=True)
+    symbols = DB.Column(DB.String(80), unique=True, nullable=True)
     current_price = DB.Column(DB.Float, nullable=True)
     likes = DB.Column(DB.Integer, nullable=True)
     category = DB.Column(DB.String(80), nullable=True)

@@ -20,8 +20,7 @@ load_dotenv(find_dotenv())
 APP.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 # Gets rid of a warning
 APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# from flask_sqlalchemy import SQLAlchemy
-# DB = SQLAlchemy(APP)
+
 DB.init_app(APP)
 import models
 
@@ -370,17 +369,13 @@ def login():
     content = request.get_json(force=True)
     email = content.get('email')
     print('User with email ' + email + ' logged in')
-    ### Proposed DB Logic ####
-    # if a record in the Users table with matching email does not exist
-    #       Insert new record into the Users table
-    # Inserting the new user in the database table
-    stock_record = models.Person.query.all()
-    if email not in stock_record:
-        with APP.app_context():
+
+    stock_record = models.Person.query.filter_by(username=email).first()
+    with APP.app_context():
+        if stock_record is None:
             new_user = models.Person(username=email, bio='')
             DB.session.add(new_user)
             DB.session.commit()
-
     return {}
 
 
@@ -396,7 +391,9 @@ def get_liked_stocks():
     #       test_stock_data.json
     # else:
     #       Return {'myLikedStocks': []}
-
+    user = models.Person.query.filter_by(username=email).first()
+    db_record = models.Liketable.query.filter_by(person_id=user.id).first()
+    print(db_record)
     test_data = {}
 
     with open('test_liked_stocks.json', 'r') as json_file:
