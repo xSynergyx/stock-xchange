@@ -311,8 +311,18 @@ def get_random_stocks_db():
                 'Category': stock.category
             })
 
-    return stocks_data
+    #For crypto
+    crypto_cat = 'Cryptocurrency'
+    category_crypto = models.Crypto.query.filter_by(category=crypto_cat).all()
+    random_crypto = random.sample(category_crypto, len(category_crypto))[:4]
 
+    for crypto in random_crypto:
+        stocks_data['allStocks'].append({
+            'Symbol' : crypto.symbols,
+            'Price' : crypto.current_price,
+            'Category': crypto.category
+        })
+    return stocks_data
 
 @APP.route('/like_stock', methods=['POST'])
 def like_stock():
