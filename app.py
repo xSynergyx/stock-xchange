@@ -113,20 +113,6 @@ def on_login(data):  #{socket_id: socket_id, username: email}
 #     #home page or just the one stock
 #     #SOCKET_IO.emit('like', )
 
-# When a client disconnects from this Socket connection, this function is run
-# @SOCKET_IO.on('likebutton')
-# def like_update(symbol):
-#     """If the like button is clicked then it updates stocks table """
-#     increment_like = models.Stocks.query.filter_by(symbols=symbol).first()
-#     increment_like.likes = increment_like.likes + 1
-#     print('Updated nunmber of like button')
-
-# @SOCKET_IO.on('dislike')
-# def dislike(symbol):
-#     """If the like button is clicked then it updates stocks table """
-#     decrement_like = models.Stocks.query.filter_by(symbols=symbol).first()
-#     decrement_like.likes = decrement_like.likes - 1
-
 
 @APP.route('/stocks', methods=['GET'])
 def stocks():
@@ -344,7 +330,7 @@ def like_stock():
     # else:
     #       create a record with client's email / stock symbol in the table
     #check if the like tables has matching email& SYMBOL EXIST
-    stock_list=[]
+    stock_list = []
     stock_record = models.Person.query.filter_by(username=email).first()
     for i in stock_record.all_stocks:
         s_p = i.stocks
@@ -371,7 +357,7 @@ def like_stock():
             ndel = models.Liketable.query.filter_by(stocks=user_symbol).first()
             DB.session.delete(ndel)
             DB.session.commit()
-    
+
     return {}
 
 
@@ -408,15 +394,15 @@ def get_liked_stocks():
     for i in stock_record.all_stocks:
         s_p = i.stocks
         print(s_p)
-        search_stocks=models.Stocks.query.filter_by(symbols=s_p).first()
+        search_stocks = models.Stocks.query.filter_by(symbols=s_p).first()
         test_data['allStocks'].append({
-                'Symbol': search_stocks.symbols,
-                'Company': search_stocks.stocks_name,
-                'High': search_stocks.high_stocks,
-                'Low': search_stocks.low_stocks,
-                'Price': search_stocks.current_price,
-                'Category': search_stocks.category
-            })
+            'Symbol': search_stocks.symbols,
+            'Company': search_stocks.stocks_name,
+            'High': search_stocks.high_stocks,
+            'Low': search_stocks.low_stocks,
+            'Price': search_stocks.current_price,
+            'Category': search_stocks.category
+        })
 
     with open('test_liked_stocks.json', 'r') as json_file:
         test_data = json.loads(json_file.read())
@@ -446,9 +432,9 @@ def submit_comment():
     return {}
 
 
-def delete_comment(username):
+def delete_comment(comment):
     ''' Delete a comment from database'''
-    user_comments = models.Comments.query.filter_by(username=username).first()
+    user_comments = models.Comments.query.filter_by(comment=comment).first()
     DB.session.delete(user_comments)
     DB.session.commit()
 
