@@ -121,11 +121,11 @@ const ContentSection = (props) => {
 
         return (
             <div>
-                {props.newsData.map((article) => {
+                {props.newsData.map((article, i) => {
                     return (
-                        <div>
-                            <h2>{article.headline}</h2>
-                            {article.snippet.length === 0 ? <h3>No Snippet Available</h3> : <h3>{article.snippet}</h3>}
+                        <div id="news">
+                            <h2 id="news-title">{i+1}. {article.headline}</h2>
+                            {article.snippet.length === 0 ? <h3 id="news-snippet">No Snippet Available</h3> : <h3 id="news-snippet">{article.snippet}</h3>}
                         </div>
                     );
                 })}

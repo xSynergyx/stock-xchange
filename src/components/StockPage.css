@@ -24,3 +24,17 @@
     padding-left: 0.5em;
     padding-bottom: 0.5em;
 }
+
+#news {
+    text-align: left;
+    margin-left: 10%;
+}
+
+#news-title {
+    font-size: 25px;
+}
+
+#news-snippet {
+    font-size: 20px;
+    font-weight:normal;
+}
