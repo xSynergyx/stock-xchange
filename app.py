@@ -359,14 +359,14 @@ def like_stock():
             check_symbol = models.Stocks.query.filter_by(
                 symbols=user_symbol).first()
             if check_symbol is None:
-                    decrement_like = models.Crypto.query.filter_by(
-                        symbols=user_symbol).first()
-                    decrement_like.likes = decrement_like.likes - 1
+                decrement_like = models.Crypto.query.filter_by(
+                    symbols=user_symbol).first()
+                decrement_like.likes = decrement_like.likes - 1
             else:
-                    decrement_like = models.Stocks.query.filter_by(
-                        symbols=user_symbol).first()
-                    decrement_like.likes = decrement_like.likes - 1
-                # Deleting the record from DB
+                decrement_like = models.Stocks.query.filter_by(
+                    symbols=user_symbol).first()
+                decrement_like.likes = decrement_like.likes - 1
+            # Deleting the record from DB
             ndel = models.Liketable.query.filter_by(stocks=user_symbol).first()
             DB.session.delete(ndel)
             DB.session.commit()
@@ -404,29 +404,39 @@ def get_liked_stocks():
     #       Return {'myLikedStocks': []}
     test_data = {'allStocks': []}
     stock_record = models.Person.query.filter_by(username=email).first()
-    for i in stock_record.all_stocks:
-        s_p = i.stocks
-        search_stocks = models.Stocks.query.filter_by(symbols=s_p).first()
-        crypto_search = models.Crypto.query.filter_by(symbols=s_p).first()
-        if search_stocks is None:
+    if stock_record is not None:
+        for i in stock_record.all_stocks:
+            s_p = i.stocks
+            search_stocks = models.Stocks.query.filter_by(symbols=s_p).first()
+            crypto_search = models.Crypto.query.filter_by(symbols=s_p).first()
+            if search_stocks is None:
 
-            if s_p in crypto_search.symbols is not None:
-                test_data['allStocks'].append({
-                        'Symbol': crypto_search.symbols,
-                        'Price': crypto_search.current_price,
-                        'Category': crypto_search.category
+                if s_p in crypto_search.symbols is not None:
+                    test_data['allStocks'].append({
+                        'Symbol':
+                        crypto_search.symbols,
+                        'Price':
+                        crypto_search.current_price,
+                        'Category':
+                        crypto_search.category
                     })
-        else:
-            if s_p in search_stocks.symbols is not None:
+            else:
+                if s_p in search_stocks.symbols is not None:
 
-                test_data['allStocks'].append({
-                    'Symbol': search_stocks.symbols,
-                    'Company': search_stocks.stocks_name,
-                    'High': search_stocks.high_stocks,
-                    'Low': search_stocks.low_stocks,
-                    'Price': search_stocks.current_price,
-                    'Category': search_stocks.category
-                })
+                    test_data['allStocks'].append({
+                        'Symbol':
+                        search_stocks.symbols,
+                        'Company':
+                        search_stocks.stocks_name,
+                        'High':
+                        search_stocks.high_stocks,
+                        'Low':
+                        search_stocks.low_stocks,
+                        'Price':
+                        search_stocks.current_price,
+                        'Category':
+                        search_stocks.category
+                    })
 
     with open('test_liked_stocks.json', 'r') as json_file:
         test_data = json.loads(json_file.read())

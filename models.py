@@ -27,7 +27,6 @@ class Liketable(DB.Model):
                           nullable=False)
     stocks = DB.Column(DB.String(80), nullable=True)
     crypto = DB.relationship('Stocks', backref='liketable', lazy='dynamic')
-   
 
     def __init__(self, stocks, person):
         self.stocks = stocks
