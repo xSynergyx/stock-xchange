@@ -1,6 +1,7 @@
 import './Stock.css';
 import React, { useState, useEffect } from 'react';
 import StockTable from './StockTable.js';
+import CryptoTable from './CryptoTable.js';
 import { socket } from '../App.js';
 
 const Stock = (props) => {
@@ -56,7 +57,8 @@ const Stock = (props) => {
         const finStocks = stocks.allStocks.filter((stock) => stock.Category === 'Finance');
         const utilStocks = stocks.allStocks.filter((stock) => stock.Category === 'Utilities');
         const energyStocks = stocks.allStocks.filter((stock) => stock.Category === 'Energy');
-
+        const cryptoCurrency = stocks.allStocks.filter((stock) => stock.Category === 'Cryptocurrency')
+        
         return (
             <div>
                 <div id="page_body">
@@ -92,6 +94,12 @@ const Stock = (props) => {
                         <h2 className="sector-title">Utilities</h2>
                         <StockTable
                             stocks={utilStocks}
+                            email={props.email}
+                            likedStocks={likedStocks}
+                            setLikedStocks={setLikedStocks} />
+                        <h2 className="sector-title">Cryptocurrency</h2>
+                        <CryptoTable
+                            stocks={cryptoCurrency}
                             email={props.email}
                             likedStocks={likedStocks}
                             setLikedStocks={setLikedStocks} />
