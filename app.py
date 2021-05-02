@@ -59,6 +59,7 @@ def on_disconnect():
         if user['socket_id'] == request.sid:
             USER_LIST.remove(user)
     print('User disconnected!')
+
     display_list = [user['name'] for user in USER_LIST]
     SOCKET_IO.emit('disconnect', display_list, broadcast=True, include_self=True)
 
