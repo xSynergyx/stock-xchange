@@ -186,6 +186,8 @@ def stock_page():
     news_data = []
     page_data = {}
     stock_data = {}
+    comment_data = []
+    stock_id = None
     # Get the stock id sent from the client side
     content = request.get_json(force=True)
     user_symbol = content.get('stock_symbol').upper()
@@ -209,7 +211,8 @@ def stock_page():
         # Convert this info. to JSON format and send it back to the client
         with open('test_stock_page.json', 'r') as json_file:
             page_data = json.loads(json_file.read())
-
+        
+        stock_id = stock_record.id
         # Get the stock info from the DB
         stock_data = {}
         stock_data.update({
@@ -225,7 +228,20 @@ def stock_page():
             news_data = stock_obj.news(stock_data['Company'])
         except KeyError:
             news_data.append({'Error': 'Couldn\'t Retrieve News Data'})
+    
+    if stock_id is not None:
+        comments = models.Comments.query.filter_by(stocks_column=stock_id).all()
+        for comment in comments:
+            comment_data.append({
+                "username": comment.username, 
+                "message": comment.comment
+            })
 
+        #for comment in comments:
+            #page_data.append(comment.comment)
+        #print(l)
+    #print(page_data)
+    page_data['comments'] = comment_data
     return {
         'stock_data': stock_data,
         "page_data": page_data,
@@ -404,6 +420,7 @@ def get_liked_stocks():
     #       Return {'myLikedStocks': []}
     test_data = {'allStocks': []}
     stock_record = models.Person.query.filter_by(username=email).first()
+    #if stock_record is not None:
     for i in stock_record.all_stocks:
         s_p = i.stocks
         search_stocks = models.Stocks.query.filter_by(symbols=s_p).first()
