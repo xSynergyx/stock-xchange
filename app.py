@@ -409,7 +409,7 @@ def get_liked_stocks():
         search_stocks = models.Stocks.query.filter_by(symbols=s_p).first()
         crypto_search = models.Crypto.query.filter_by(symbols=s_p).first()
         if search_stocks is None:
-            print('Inside Crypto')
+
             if s_p in crypto_search.symbols is not None:
                 test_data['allStocks'].append({
                         'Symbol': crypto_search.symbols,
@@ -418,7 +418,7 @@ def get_liked_stocks():
                     })
         else:
             if s_p in search_stocks.symbols is not None:
-                print('Inside the Stocks')
+
                 test_data['allStocks'].append({
                     'Symbol': search_stocks.symbols,
                     'Company': search_stocks.stocks_name,
@@ -427,12 +427,6 @@ def get_liked_stocks():
                     'Price': search_stocks.current_price,
                     'Category': search_stocks.category
                 })
-            # else:
-                # test_data['allStocks'].append({
-                #     'Symbol': crypto_search.symbols,
-                #     'Price': crypto_search.current_price,
-                #     'Category': crypto_search.category
-                # })
 
     with open('test_liked_stocks.json', 'r') as json_file:
         test_data = json.loads(json_file.read())
