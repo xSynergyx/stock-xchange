@@ -393,20 +393,26 @@ def get_liked_stocks():
     stock_record = models.Person.query.filter_by(username=email).first()
     for i in stock_record.all_stocks:
         s_p = i.stocks
-        print(s_p)
         search_stocks = models.Stocks.query.filter_by(symbols=s_p).first()
-        test_data['allStocks'].append({
-            'Symbol': search_stocks.symbols,
-            'Company': search_stocks.stocks_name,
-            'High': search_stocks.high_stocks,
-            'Low': search_stocks.low_stocks,
-            'Price': search_stocks.current_price,
-            'Category': search_stocks.category
-        })
+        crypto_search = models.Crypto.query.filter_by(symbols=s_p).first()
+        if s_p in search_stocks.symbols:
+            test_data['allStocks'].append({
+                'Symbol': search_stocks.symbols,
+                'Company': search_stocks.stocks_name,
+                'High': search_stocks.high_stocks,
+                'Low': search_stocks.low_stocks,
+                'Price': search_stocks.current_price,
+                'Category': search_stocks.category
+            })
+        else:
+            test_data['allStocks'].append({
+                'Symbol': crypto_search.symbols,
+                'Price': crypto_search.current_price,
+                'Category': crypto_search.category
+            })
 
     with open('test_liked_stocks.json', 'r') as json_file:
         test_data = json.loads(json_file.read())
-
     return test_data
 
 
