@@ -26,7 +26,8 @@ class Liketable(DB.Model):
                           DB.ForeignKey('person.id'),
                           nullable=False)
     stocks = DB.Column(DB.String(80), nullable=True)
-    all_stock = DB.relationship('Stocks', backref='liketable', lazy='dynamic')
+    crypto = DB.relationship('Stocks', backref='liketable', lazy='dynamic')
+   
 
     def __init__(self, stocks, person):
         self.stocks = stocks
