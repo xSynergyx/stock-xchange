@@ -8,9 +8,7 @@ class Person(DB.Model):
     id = DB.Column(DB.Integer, primary_key=True)
     username = DB.Column(DB.String(120), nullable=False)
     bio = DB.Column(DB.Text(), nullable=True)
-    all_stocks = DB.relationship('Liketable',
-                                      backref='person',
-                                      lazy='dynamic')
+    all_stocks = DB.relationship('Liketable', backref='person', lazy='dynamic')
 
     def __init__(self, username, bio):
         self.username = username
@@ -75,6 +73,7 @@ class Crypto(DB.Model):
     current_price = DB.Column(DB.Float, nullable=True)
     likes = DB.Column(DB.Integer, nullable=True)
     category = DB.Column(DB.String(80), nullable=True)
+
     def __init__(self, symbols, current_price, likes, category):
 
         self.symbols = symbols

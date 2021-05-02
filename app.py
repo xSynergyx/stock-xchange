@@ -27,7 +27,7 @@ import models
 # Datetime object to store the last time the database was updated
 # Server-wide variable compared to each incoming client-side request
 LAST_UPDATED_TIME = None
-USER_LIST = [] #{socket_id: id, name: name}
+USER_LIST = []  #{socket_id: id, name: name}
 #{"socket_id": "abc123", "name":"user1"}, {"socket_id": "def123", "name":"user2"}
 
 COR_S = CORS(APP, resources={r"/*": {"origins": "*"}})
@@ -61,15 +61,19 @@ def on_disconnect():
     print('User disconnected!')
 
     display_list = [user['name'] for user in USER_LIST]
-    SOCKET_IO.emit('disconnect', display_list, broadcast=True, include_self=True)
+    SOCKET_IO.emit('disconnect',
+                   display_list,
+                   broadcast=True,
+                   include_self=True)
+
 
 @SOCKET_IO.on('login')
-def on_login(data):#{socket_id: socket_id, username: email}
+def on_login(data):  #{socket_id: socket_id, username: email}
     """ Sends updated list of active users to client """
     global USER_LIST
-    try:#Checks if socket is in list
+    try:  #Checks if socket is in list
         if not any(d['socket_id'] == data['socket_id'] for d in USER_LIST):
-            user = {'socket_id': data['socket_id'], 'name' : data['username']}
+            user = {'socket_id': data['socket_id'], 'name': data['username']}
             USER_LIST.append(user)
     except KeyError:
         print("Key Error!")
@@ -81,6 +85,7 @@ def on_login(data):#{socket_id: socket_id, username: email}
 
     print("list " + str(display_list))
     SOCKET_IO.emit('login', display_list, broadcast=True, include_self=True)
+
 
 # @SOCKET_IO.on('logout')
 # def on_logout(data):
@@ -253,15 +258,15 @@ def add_stocks_db(data):
                 current = i['Price']
                 categories = i['Category']
 
-                crypto_record = models.Crypto.query.filter_by(symbols=symbol).first()
+                crypto_record = models.Crypto.query.filter_by(
+                    symbols=symbol).first()
                 if crypto_record is not None:
                     crypto_record.current_price = current
                 else:
-                    new_crypto = models.Crypto(
-                        symbols=symbol,
-                        current_price=current,
-                        likes = 0,
-                        category=categories)
+                    new_crypto = models.Crypto(symbols=symbol,
+                                               current_price=current,
+                                               likes=0,
+                                               category=categories)
                     DB.session.add(new_crypto)
                 DB.session.commit()
             else:
@@ -318,11 +323,12 @@ def get_random_stocks_db():
 
     for crypto in random_crypto:
         stocks_data['allStocks'].append({
-            'Symbol' : crypto.symbols,
-            'Price' : crypto.current_price,
+            'Symbol': crypto.symbols,
+            'Price': crypto.current_price,
             'Category': crypto.category
         })
     return stocks_data
+
 
 @APP.route('/like_stock', methods=['POST'])
 def like_stock():
@@ -340,24 +346,27 @@ def like_stock():
     #check if the like tables has matching email& SYMBOL EXIST
     stock_record = models.Person.query.filter_by(username=email).first()
     for i in stock_record.all_stocks:
-        sp=i.stocks
-    if user_symbol not in sp:
+        s_p = i.stocks
+    if user_symbol not in s_p:
         with APP.app_context():
-            increment_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
+            increment_like = models.Stocks.query.filter_by(
+                symbols=user_symbol).first()
             increment_like.likes = increment_like.likes + 1
-    
+
             # Add the symbol to the Like table
-            new_user = models.Liketable(person=stock_record.id, stocks=user_symbol)
+            new_user = models.Liketable(person=stock_record.id,
+                                        stocks=user_symbol)
             DB.session.add(new_user)
             DB.session.commit()
     else:
-        # Delete the User symbol from the database 
+        # Delete the User symbol from the database
         with APP.app_context():
-            decrement_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
+            decrement_like = models.Stocks.query.filter_by(
+                symbols=user_symbol).first()
             decrement_like.likes = decrement_like.likes - 1
 
             # Deleting the record from DB
-            ndel= models.Liketable.query.filter_by(stocks=user_symbol).first()
+            ndel = models.Liketable.query.filter_by(stocks=user_symbol).first()
             DB.session.delete(ndel)
             DB.session.commit()
             print(ndel)
