@@ -336,30 +336,31 @@ def like_stock():
     #       it's a dislike click so remove that record from the table
     # else:
     #       create a record with client's email / stock symbol in the table
-
     #check if the like tables has matching email& SYMBOL EXIST
     stock_record = models.Person.query.filter_by(username=email).first()
-    if stock_record is not None:
+    for i in stock_record.all_stocks:
+        sp=i.stocks
+    if user_symbol not in sp:
         with APP.app_context():
-            # if user like the symbol we also increment the number of likes in our stock table
-            decrement_like = models.Stocks.query.filter_by(
-                symbols=user_symbol).first()
-            decrement_like.likes = decrement_like.likes - 1
-            # DB.session.add(new_user)
-            DB.session.commit()
-    else:
-        with APP.app_context():
-            new_user = models.Person(username=email, bio='')
+            increment_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
+            increment_like.likes = increment_like.likes + 1
+    
+            # Add the symbol to the Like table
+            new_user = models.Liketable(person=stock_record.id, stocks=user_symbol)
             DB.session.add(new_user)
             DB.session.commit()
-            like_table = models.Liketable(person=new_user.id,
-                                          stocks=user_symbol)
-            DB.session.add(like_table)
+    else:
+        # Delete the User symbol from the database 
+        with APP.app_context():
+            decrement_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
+            decrement_like.likes = decrement_like.likes - 1
+
+            # Deleting the record from DB
+            ndel= models.Liketable.query.filter_by(stocks=user_symbol).first()
+            DB.session.delete(ndel)
             DB.session.commit()
-            increment_like = models.Stocks.query.filter_by(
-                symbols=user_symbol).first()
-            increment_like.likes = increment_like.likes + 1
-            DB.session.commit()
+            print(ndel)
+
     return {}
 
 
@@ -391,9 +392,9 @@ def get_liked_stocks():
     #       test_stock_data.json
     # else:
     #       Return {'myLikedStocks': []}
-    user = models.Person.query.filter_by(username=email).first()
-    db_record = models.Liketable.query.filter_by(person_id=user.id).first()
-    print(db_record)
+    # user = models.Person.query.filter_by(username=email).first()
+    # db_record = models.Liketable.query.all()
+    # print(db_record)
     test_data = {}
 
     with open('test_liked_stocks.json', 'r') as json_file:
@@ -433,7 +434,7 @@ def delete_comment(username):
 
 if __name__ == "__main__":
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
-    stocks()
+    # stocks()
     with APP.app_context():
         DB.create_all()
     SOCKET_IO.run(

@@ -8,7 +8,7 @@ class Person(DB.Model):
     id = DB.Column(DB.Integer, primary_key=True)
     username = DB.Column(DB.String(120), nullable=False)
     bio = DB.Column(DB.Text(), nullable=True)
-    all_stockstocks = DB.relationship('Liketable',
+    all_stocks = DB.relationship('Liketable',
                                       backref='person',
                                       lazy='dynamic')
 
