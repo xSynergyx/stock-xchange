@@ -1,16 +1,44 @@
 {
     "myLikedStocks": [
-        {"Symbol": "CSCO", "Company": "Cisco Systems, Inc.", "High": 53.8, "Low": 52.02, "Price": 54.21, "Category": "Mega"},
-        {"Symbol": "PG", "Company": "Procter & Gamble Co.", "High": null, "Low": null, "Price": 140.58, "Category": "Mega"},
-        {"Symbol": "NFLX", "Company": "NetFlix Inc", "High": 518.9, "Low": 518.3, "Price": 509.95, "Category": "Mega"},
-        {"Symbol": "ADBE", "Company": "Adobe Inc", "High": 540.761, "Low": 512.99, "Price": 518.2, "Category": "Mega"},
-        {"Symbol": "DFS", "Company": "Discover Financial Services", "High": 105.25, "Low": 98.98, "Price": 104.16, "Category": "Finance"}, 
-        {"Symbol": "ROL", "Company": "Rollins, Inc.", "High": 37.1, "Low": 35.0, "Price": 36.99, "Category": "Finance"},
-        {"Symbol": "GOOGL", "Company": "Alphabet Inc - Class A", "High": 2319.642, "Low": 2291.18, "Price": 2382.68, "Category": "Tech"},
-        {"Symbol": "AAPL", "Company": "Apple Inc", "High": 138.21, "Low": 137.93, "Price": 139.8, "Category": "Tech"},
-        {"Symbol": "IMO", "Company": "Imperial Oil Ltd.", "High": 25.8, "Low": 26.09, "Price": 25.6, "Category": "Energy"},
-        {"Symbol": "E", "Company": "Eni Spa - ADR", "High": 24.67, "Low": 24.31, "Price": 24.72, "Category": "Energy"},
-        {"Symbol": "ENB", "Company": "Enbridge Inc", "High": null, "Low": null, "Price": 37.596, "Category": "Energy"}
+        {
+            "Symbol": "OTIS",
+            "Company": "Otis Worldwide Corp",
+            "High": 79.75,
+            "Low": 80.32,
+            "Price": 80.75,
+            "Category": "Energy"
+        },
+        {
+            "Symbol": "BBL",
+            "Company": "BHP Group Plc - ADR",
+            "High": 64.44,
+            "Low": 62.5,
+            "Price": 63.0,
+            "Category": "Energy"
+        },
+        {
+            "Symbol": "PFG",
+            "Company": "Principal Financial Group Inc - Registered Shares",
+            "High": 67.389,
+            "Low": 63.73,
+            "Price": 66.3,
+            "Category": "Finance"
+        },
+        {
+            "Symbol": "COP",
+            "Company": "Conoco Phillips",
+            "High": 55.23,
+            "Low": 51.03,
+            "Price": 52.4,
+            "Category": "Energy"
+        },
+        {
+            "Symbol": "EOG",
+            "Company": "EOG Resources, Inc.",
+            "High": 79.55,
+            "Low": 73.88,
+            "Price": 77.18,
+            "Category": "Energy"
+        }
     ]
-
 }
