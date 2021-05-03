@@ -457,18 +457,36 @@ def submit_comment():
     email = content.get('email')
     stock_symbol = content.get('stock_symbol')
     comment = content.get('comment')
-
+    
     print('Email ' + email + ' commented on stock ' + stock_symbol +
           '\nmessage: ' + comment)
-    get_id = models.Stocks.query.filter_by(symbols=stock_symbol).first()
-    ### Proposed DB Logic ####
-    # Insert record with client's email, symbol, and email into the DB
+    stock = models.Stocks.query.filter_by(symbols=stock_symbol).first()
+    #print(stock.stocks_name)
+    print(stock.id)
+    stock_id = stock.id
     with APP.app_context():
         new_comment = models.Comments(username=email,
                                       comment=comment,
-                                      owner=get_id.id)
+                                      owner=stock.id)
+
         DB.session.add(new_comment)
         DB.session.commit()
+        #DB.session.close()
+    
+    comment_data = []
+    if stock_id is not None:
+        
+        comments = models.Comments.query.filter_by(stocks_column=stock_id).all()
+        for comment in comments:
+            comment_data.append({
+                "username": comment.username, 
+                "message": comment.comment
+            })
+        #print(comment_data)
+    comment_data = {'message': comment, 'username': email}
+    page_data = {'comment' : comment_data}
+    SOCKET_IO.emit('new_comment', comment_data, broadcast=True, include_self=True)
+
     return {}
 
 
