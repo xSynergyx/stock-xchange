@@ -402,7 +402,7 @@ def get_liked_stocks():
     #       test_stock_data.json
     # else:
     #       Return {'myLikedStocks': []}
-    test_data = {'allStocks': []}
+    test_data = {'myLikedStocks': []}
     stock_record = models.Person.query.filter_by(username=email).first()
     if stock_record is not None:
         for i in stock_record.all_stocks:
@@ -412,7 +412,7 @@ def get_liked_stocks():
             if search_stocks is None:
 
                 if s_p in crypto_search.symbols is not None:
-                    test_data['allStocks'].append({
+                    test_data['myLikedStocks'].append({
                         'Symbol':
                         crypto_search.symbols,
                         'Price':
@@ -423,7 +423,7 @@ def get_liked_stocks():
             else:
                 if s_p in search_stocks.symbols is not None:
 
-                    test_data['allStocks'].append({
+                    test_data['myLikedStocks'].append({
                         'Symbol':
                         search_stocks.symbols,
                         'Company':
@@ -438,9 +438,15 @@ def get_liked_stocks():
                         search_stocks.category
                     })
 
+    liked_stocks = {}
+    # Open a file to write the like stocks
+    with open('test_liked_stocks.json', 'w') as json_file:
+        json.dump(test_data, json_file, indent=4)
+    # Read the file from the JSON file
     with open('test_liked_stocks.json', 'r') as json_file:
-        test_data = json.loads(json_file.read())
-    return test_data
+        liked_stocks = json.loads(json_file.read())
+
+    return liked_stocks
 
 
 @APP.route('/submit_comment', methods=['POST'])

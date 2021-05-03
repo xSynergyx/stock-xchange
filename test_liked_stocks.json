@@ -1,44 +1,73 @@
 {
     "myLikedStocks": [
         {
-            "Symbol": "OTIS",
-            "Company": "Otis Worldwide Corp",
-            "High": 79.75,
-            "Low": 80.32,
-            "Price": 80.75,
+            "Symbol": "CMI",
+            "Company": "Cummins Inc.",
+            "High": 262.06,
+            "Low": 263.93,
+            "Price": 252.81,
             "Category": "Energy"
         },
         {
-            "Symbol": "BBL",
-            "Company": "BHP Group Plc - ADR",
-            "High": 64.44,
-            "Low": 62.5,
-            "Price": 63.0,
+            "Symbol": "PSX",
+            "Company": "Phillips 66",
+            "High": 86.0,
+            "Low": 83.8,
+            "Price": 82.66,
             "Category": "Energy"
         },
         {
-            "Symbol": "PFG",
-            "Company": "Principal Financial Group Inc - Registered Shares",
-            "High": 67.389,
-            "Low": 63.73,
-            "Price": 66.3,
+            "Symbol": "TROW",
+            "Company": "T. Rowe Price Group Inc.",
+            "High": 184.71,
+            "Low": 184.2,
+            "Price": 187.5,
             "Category": "Finance"
         },
         {
-            "Symbol": "COP",
-            "Company": "Conoco Phillips",
-            "High": 55.23,
-            "Low": 51.03,
-            "Price": 52.4,
+            "Symbol": "PTR",
+            "Company": "PetroChina Co. Ltd. - ADR",
+            "High": 37.45,
+            "Low": 35.9,
+            "Price": 36.27,
             "Category": "Energy"
         },
         {
-            "Symbol": "EOG",
-            "Company": "EOG Resources, Inc.",
-            "High": 79.55,
-            "Low": 73.88,
-            "Price": 77.18,
+            "Symbol": "EC",
+            "Company": "Ecopetrol SA - ADR",
+            "High": 12.49,
+            "Low": 11.79,
+            "Price": 11.86,
             "Category": "Energy"
+        },
+        {
+            "Symbol": "NFLX",
+            "Company": "NetFlix Inc",
+            "High": 517.0,
+            "Low": 524.0,
+            "Price": 531.66,
+            "Category": "Mega"
+        },
+        {
+            "Symbol": "MSFT",
+            "Company": "Microsoft Corporation",
+            "High": 253.148,
+            "Low": 259.0,
+            "Price": 264.27,
+            "Category": "Tech"
+        },
+        {
+            "Symbol": "WTRG",
+            "Company": "Essential Utilities Inc",
+            "High": 49.26,
+            "Low": 47.91,
+            "Price": 48.44,
+            "Category": "Utilities"
+        },
+        {
+            "Symbol": "HOTBRL",
+            "Price": 0.0912,
+            "Category": "Cryptocurrency"
         }
     ]
 }
