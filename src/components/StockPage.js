@@ -1,6 +1,7 @@
 import React , { useState, useEffect, useRef } from 'react';
 import { AiFillLike, AiOutlineLike } from 'react-icons/ai';
 import { LikeHandler } from './StockTable.js';
+import { socket } from '../App.js'
 import './StockPage.css';
 
 const fetch = require("node-fetch");
@@ -35,10 +36,12 @@ const StockPage = (props) => {
         })
         .then(res => res.json())
         .then(data => {
+            // console.log(data['page_data'])
             setPageData(data['page_data']);
             setStockData(data['stock_data']);
             setNewsData(data['news_data']);
         })
+        
     }, [props.symbol]);
 
     const onLike = () => {
@@ -110,6 +113,7 @@ const StockPage = (props) => {
 }
 
 const ContentSection = (props) => {
+    
     if (props.activeSection === 'News') {
         if (props.newsData.length > 0 && 'Error' in props.newsData[0]) {
             return (
@@ -134,6 +138,7 @@ const ContentSection = (props) => {
     }
 
     else if (props.activeSection === 'Comments') {
+        
         return (
             <Comments 
                 email={props.email}
@@ -151,7 +156,16 @@ const ContentSection = (props) => {
 const Comments = (props) => {
     const [comments, setComments] = useState(props.pageData.comments);
     const inputRef = useRef();
-
+    
+    useEffect(() => {
+        socket.on('new_comment', (data) => {
+            if(data !== undefined){
+                console.log(props.pageData)
+                setComments((prevComments) => [...prevComments, data]);
+            }
+        })
+    }, [] );
+    
     const onSubmitComment = () => {
         if (inputRef.current.value !== '') {
             const comment = inputRef.current.value;
@@ -170,7 +184,13 @@ const Comments = (props) => {
             });
         }
     }
-
+    // useEffect(() => {
+    //     socket.on('new_comment', (data) => {
+    //         if(data !== undefined){
+    //             setComments(data)
+    //         }
+    //     })
+    // }, []);
     return (
         <div>
             {comments.map((comment) => {
