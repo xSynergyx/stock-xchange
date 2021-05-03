@@ -130,7 +130,7 @@ class Stock:
             response = requests.get(self.NYT_URL, params=params)
             if response.status_code == 429: #Too many requests
                 raise KeyError("Response 429")
-            elif response.status_code == 404:
+            if response.status_code == 404:
                 raise KeyError("Response 404")
             data = response.json()
             for i in range(5):
@@ -212,4 +212,3 @@ class Stock:
 #stock_data = TEST.default()
 #print(stock_data)
 #print(parse_api_data(stock_data))
-

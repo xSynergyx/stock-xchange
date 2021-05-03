@@ -211,7 +211,7 @@ def stock_page():
         # Convert this info. to JSON format and send it back to the client
         with open('test_stock_page.json', 'r') as json_file:
             page_data = json.loads(json_file.read())
-        
+
         stock_id = stock_record.id
         # Get the stock info from the DB
         stock_data = {}
@@ -228,12 +228,12 @@ def stock_page():
             news_data = stock_obj.news(stock_data['Company'])
         except KeyError:
             news_data.append({'Error': 'Couldn\'t Retrieve News Data'})
-    
+
     if stock_id is not None:
         comments = models.Comments.query.filter_by(stocks_column=stock_id).all()
         for comment in comments:
             comment_data.append({
-                "username": comment.username, 
+                "username": comment.username,
                 "message": comment.comment
             })
 
@@ -466,7 +466,7 @@ def submit_comment():
     email = content.get('email')
     stock_symbol = content.get('stock_symbol')
     comment = content.get('comment')
-    
+
     print('Email ' + email + ' commented on stock ' + stock_symbol +
           '\nmessage: ' + comment)
     stock = models.Stocks.query.filter_by(symbols=stock_symbol).first()
@@ -481,19 +481,19 @@ def submit_comment():
         DB.session.add(new_comment)
         DB.session.commit()
         #DB.session.close()
-    
+
     comment_data = []
     if stock_id is not None:
-        
+
         comments = models.Comments.query.filter_by(stocks_column=stock_id).all()
         for comment in comments:
             comment_data.append({
-                "username": comment.username, 
+                "username": comment.username,
                 "message": comment.comment
             })
         #print(comment_data)
     comment_data = {'message': comment, 'username': email}
-    page_data = {'comment' : comment_data}
+    #page_data = {'comment' : comment_data}
     SOCKET_IO.emit('new_comment', comment_data, broadcast=True, include_self=True)
 
     return {}
