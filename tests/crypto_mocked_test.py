@@ -6,10 +6,10 @@
 import unittest
 import sys
 import os
+from stock import Stock
 
 #sys.path.append(os.path.abspath("../../")) for when in unmocked folder
 sys.path.append(os.path.abspath('../'))
-from stock import Stock
 
 DATA_INPUT = "input"
 EXPECTED_OUTPUT = "expected"
@@ -51,7 +51,10 @@ class CryptoTestCase(unittest.TestCase):
             },
             {
                 DATA_INPUT: 'CTXCUSDT', #search test
-                EXPECTED_OUTPUT: {'Symbol': 'CTXCUSDT', 'Price': '0.111', 'Category': 'Cryptocurrency'}
+                EXPECTED_OUTPUT: {
+                    'Symbol': 'CTXCUSDT',
+                    'Price': '0.111', 'Category': 'Cryptocurrency'
+                }
             },
             {
                 DATA_INPUT: 'wer2sdvv', #error test
@@ -75,7 +78,7 @@ class CryptoTestCase(unittest.TestCase):
                 t_input = test[DATA_INPUT]
                 self.assertEqual(actual_result[t_input], expected_result[t_input])
             elif len(actual_result) == 4 and isinstance(actual_result, dict): #Default Search Check
-                for i,j in zip(actual_result, expected_result):
+                for i, j in zip(actual_result, expected_result):
                     print(actual_result[i])
                     self.assertEqual(len(actual_result[i]), len(expected_result[j]))
                     self.assertEqual(
@@ -84,8 +87,8 @@ class CryptoTestCase(unittest.TestCase):
                         )
             elif len(actual_result) == 3 and isinstance(actual_result, dict):#Normal search
                 self.assertEqual(
-                        isinstance(actual_result['Price'], str),
-                        isinstance(expected_result['Price'], str)
+                    isinstance(actual_result['Price'], str),
+                    isinstance(expected_result['Price'], str)
                 )
             else:
                 assert False, "Test failed"

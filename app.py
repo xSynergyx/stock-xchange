@@ -505,9 +505,16 @@ def submit_comment():
     return {}
 
 
-def delete_comment(comment):
+@APP.route('/delete_comment', methods=['POST'])
+def delete_comment():
     ''' Delete a comment from database'''
-    user_comments = models.Comments.query.filter_by(comment=comment).first()
+    content = request.get_json(force=True)
+    email = content.get('email')
+    stock_symbol = content.get('stock_symbol')
+    comment = content.get('comment')
+
+    stock = models.Stocks.query.filter_by(symbols=stock_symbol).first()
+    user_comments = models.Comments.query.filter_by(comment=comment, username=email, stocks_column=stock.id).first()
     DB.session.delete(user_comments)
     DB.session.commit()
 
