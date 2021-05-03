@@ -20,14 +20,15 @@ load_dotenv(find_dotenv())
 APP.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 # Gets rid of a warning
 APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+# from flask_sqlalchemy import SQLAlchemy
+# DB = SQLAlchemy(APP)
 DB.init_app(APP)
 import models
 
 # Datetime object to store the last time the database was updated
 # Server-wide variable compared to each incoming client-side request
 LAST_UPDATED_TIME = None
-USER_LIST = []  #{socket_id: id, name: name}
+USER_LIST = [] #{socket_id: id, name: name}
 #{"socket_id": "abc123", "name":"user1"}, {"socket_id": "def123", "name":"user2"}
 
 COR_S = CORS(APP, resources={r"/*": {"origins": "*"}})
@@ -43,14 +44,17 @@ def index(filename):
     """ index """
     return send_from_directory('./build', filename)
 
-
 # When a client connects from this Socket connection, this function is run
 @SOCKET_IO.on('connect')
 def on_connect():
     """ Checks if user connected and sends socket_id """
     print("User connected! " + request.sid)
 
+<<<<<<< HEAD
 
+=======
+# When a client disconnects from this Socket connection, this function is run
+>>>>>>> b160a4ceebba8edca2d7767a89e82b0d46a0741c
 @SOCKET_IO.on('disconnect')
 def on_disconnect():
     """Checks if user is disconnected and removes them from user list"""
@@ -60,20 +64,29 @@ def on_disconnect():
             USER_LIST.remove(user)
     print('User disconnected!')
 
-    display_list = [user['name'] for user in USER_LIST]
-    SOCKET_IO.emit('disconnect',
-                   display_list,
-                   broadcast=True,
-                   include_self=True)
+# When a client disconnects from this Socket connection, this function is run
+# @SOCKET_IO.on('likebutton')
+# def like_update(symbol):
+#     """If the like button is clicked then it updates stocks table """
+#     increment_like = models.Stocks.query.filter_by(symbols=symbol).first()
+#     increment_like.likes = increment_like.likes + 1
+#     print('Updated nunmber of like button')
 
+# @SOCKET_IO.on('dislike')
+# def dislike(symbol):
+#     """If the like button is clicked then it updates stocks table """
+#     decrement_like = models.Stocks.query.filter_by(symbols=symbol).first()
+#     decrement_like.likes = decrement_like.likes - 1
+    display_list = [user['name'] for user in USER_LIST]
+    SOCKET_IO.emit('disconnect', display_list, broadcast=True, include_self=True)
 
 @SOCKET_IO.on('login')
-def on_login(data):  #{socket_id: socket_id, username: email}
+def on_login(data):#{socket_id: socket_id, username: email}
     """ Sends updated list of active users to client """
     global USER_LIST
-    try:  #Checks if socket is in list
+    try:#Checks if socket is in list
         if not any(d['socket_id'] == data['socket_id'] for d in USER_LIST):
-            user = {'socket_id': data['socket_id'], 'name': data['username']}
+            user = {'socket_id': data['socket_id'], 'name' : data['username']}
             USER_LIST.append(user)
     except KeyError:
         print("Key Error!")
@@ -85,7 +98,6 @@ def on_login(data):  #{socket_id: socket_id, username: email}
 
     print("list " + str(display_list))
     SOCKET_IO.emit('login', display_list, broadcast=True, include_self=True)
-
 
 # @SOCKET_IO.on('logout')
 # def on_logout(data):
@@ -113,7 +125,6 @@ def on_login(data):  #{socket_id: socket_id, username: email}
 #     #home page or just the one stock
 #     #SOCKET_IO.emit('like', )
 
-
 @APP.route('/stocks', methods=['GET'])
 def stocks():
     """ Home screen stock lists that shows new stock info every 15 minutes"""
@@ -127,17 +138,20 @@ def stocks():
     curr_day = datetime.today().weekday()
     now = datetime.now()
     curr_date = curr_date = now.strftime("%Y-%m-%d")
-    open_time = datetime.strptime('{} 9:30AM'.format(curr_date),
-                                  '%Y-%m-%d %I:%M%p')
-    close_time = datetime.strptime('{} 4:00PM'.format(curr_date),
-                                   '%Y-%m-%d %I:%M%p')
+    open_time = datetime.strptime('{} 9:30AM'.format(curr_date), '%Y-%m-%d %I:%M%p')
+    close_time = datetime.strptime('{} 4:00PM'.format(curr_date), '%Y-%m-%d %I:%M%p')
 
-    if (curr_day in weekdays and open_time <= now <= close_time):
+    if (
+            curr_day in weekdays
+            and open_time <= now <= close_time
+    ):
         # Get the last updated time for the server
         global LAST_UPDATED_TIME
 
-        if (LAST_UPDATED_TIME is None
-                or now > LAST_UPDATED_TIME + timedelta(minutes=15)):
+        if (
+                LAST_UPDATED_TIME is None
+                or now > LAST_UPDATED_TIME + timedelta(minutes=15)
+        ):
             # Call the API to update records in the database
             api_data = stock.default()
             LAST_UPDATED_TIME = now
@@ -186,8 +200,6 @@ def stock_page():
     news_data = []
     page_data = {}
     stock_data = {}
-    comment_data = []
-    stock_id = None
     # Get the stock id sent from the client side
     content = request.get_json(force=True)
     user_symbol = content.get('stock_symbol').upper()
@@ -211,8 +223,7 @@ def stock_page():
         # Convert this info. to JSON format and send it back to the client
         with open('test_stock_page.json', 'r') as json_file:
             page_data = json.loads(json_file.read())
-        
-        stock_id = stock_record.id
+
         # Get the stock info from the DB
         stock_data = {}
         stock_data.update({
@@ -221,82 +232,46 @@ def stock_page():
             'High': stock_record.high_stocks,
             'Low': stock_record.low_stocks,
             'Price': stock_record.current_price,
-            'Category': stock_record.category
-        })
+            'Category': stock_record.category})
 
         try:
             news_data = stock_obj.news(stock_data['Company'])
         except KeyError:
             news_data.append({'Error': 'Couldn\'t Retrieve News Data'})
-    
-    if stock_id is not None:
-        comments = models.Comments.query.filter_by(stocks_column=stock_id).all()
-        for comment in comments:
-            comment_data.append({
-                "username": comment.username, 
-                "message": comment.comment
-            })
 
-        #for comment in comments:
-            #page_data.append(comment.comment)
-        #print(l)
-    #print(page_data)
-    page_data['comments'] = comment_data
-    return {
-        'stock_data': stock_data,
-        "page_data": page_data,
-        "news_data": news_data
-    }
+    return {'stock_data': stock_data, "page_data": page_data, "news_data": news_data}
 
 
 def add_stocks_db(data):
     ''' Insert stock data into the DB '''
     all_stocks = data['allStocks']
-
     with APP.app_context():
         for i in all_stocks:
-            if len(i) == 3:
-                symbol = i['Symbol']
-                current = i['Price']
-                categories = i['Category']
-
-                crypto_record = models.Crypto.query.filter_by(
-                    symbols=symbol).first()
-                if crypto_record is not None:
-                    crypto_record.current_price = current
-                else:
-                    new_crypto = models.Crypto(symbols=symbol,
-                                               current_price=current,
-                                               likes=0,
-                                               category=categories)
-                    DB.session.add(new_crypto)
-                DB.session.commit()
+            stockname = i['Company']
+            symbol = i['Symbol']
+            high = i['High']
+            low = i['Low']
+            current = i['Price']
+            categories = i['Category']
+            # Check if the stock record already exists
+            stock_record = models.Stocks.query.filter_by(symbols=symbol).first()
+            if stock_record is not None:
+                # Update the stock's pricing info in the DB
+                stock_record.high_stocks = high
+                stock_record.low_stocks = low
+                stock_record.current_price = current
             else:
-                stockname = i['Company']
-                symbol = i['Symbol']
-                high = i['High']
-                low = i['Low']
-                current = i['Price']
-                categories = i['Category']
-                # Check if the stock record already exists
-                stock_record = models.Stocks.query.filter_by(
-                    symbols=symbol).first()
-                if stock_record is not None:
-                    # Update the stock's pricing info in the DB
-                    stock_record.high_stocks = high
-                    stock_record.low_stocks = low
-                    stock_record.current_price = current
-                else:
-                    # Add the new stock record to the DB
-                    new_stock = models.Stocks(stocks_name=stockname,
-                                              symbols=symbol,
-                                              high_stocks=high,
-                                              low_stocks=low,
-                                              current_price=current,
-                                              likes=0,
-                                              category=categories)
-                    DB.session.add(new_stock)
-                DB.session.commit()
+                # Add the new stock record to the DB
+                new_stock = models.Stocks(
+                    stocks_name=stockname,
+                    symbols=symbol,
+                    high_stocks=high,
+                    low_stocks=low,
+                    current_price=current,
+                    likes=0,
+                    category=categories)
+                DB.session.add(new_stock)
+            DB.session.commit()
 
 
 def get_random_stocks_db():
@@ -304,10 +279,8 @@ def get_random_stocks_db():
     stocks_data = {'allStocks': []}
 
     for category in ['Mega', 'Finance', 'Energy', 'Utilities', 'Tech']:
-        category_stocks = models.Stocks.query.filter_by(
-            category=category).all()
-        random_stocks = random.sample(category_stocks,
-                                      len(category_stocks))[:4]
+        category_stocks = models.Stocks.query.filter_by(category=category).all()
+        random_stocks = random.sample(category_stocks, len(category_stocks))[:4]
         for stock in random_stocks:
             stocks_data['allStocks'].append({
                 'Symbol': stock.symbols,
@@ -318,17 +291,6 @@ def get_random_stocks_db():
                 'Category': stock.category
             })
 
-    #For crypto
-    crypto_cat = 'Cryptocurrency'
-    category_crypto = models.Crypto.query.filter_by(category=crypto_cat).all()
-    random_crypto = random.sample(category_crypto, len(category_crypto))[:4]
-
-    for crypto in random_crypto:
-        stocks_data['allStocks'].append({
-            'Symbol': crypto.symbols,
-            'Price': crypto.current_price,
-            'Category': crypto.category
-        })
     return stocks_data
 
 
@@ -345,50 +307,29 @@ def like_stock():
     #       it's a dislike click so remove that record from the table
     # else:
     #       create a record with client's email / stock symbol in the table
+
+
     #check if the like tables has matching email& SYMBOL EXIST
-    stock_list = []
     stock_record = models.Person.query.filter_by(username=email).first()
-    for i in stock_record.all_stocks:
-        s_p = i.stocks
-        stock_list.append(s_p)
-    if user_symbol not in stock_list:
+    if stock_record is not None:
         with APP.app_context():
-            check_symbol = models.Stocks.query.filter_by(
-                symbols=user_symbol).first()
-            if check_symbol is None:
-                increment_like = models.Crypto.query.filter_by(
-                    symbols=user_symbol).first()
-                increment_like.likes = increment_like.likes + 1
-            else:
-                increment_like = models.Stocks.query.filter_by(
-                    symbols=user_symbol).first()
-                increment_like.likes = increment_like.likes + 1
-                # Add the symbol to the Like table
-            new_user = models.Liketable(person=stock_record.id,
-                                        stocks=user_symbol)
+           # if user like the symbol we also increment the number of likes in our stock table
+            decrement_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
+            decrement_like.likes = decrement_like.likes - 1
+            # DB.session.add(new_user)
+            DB.session.commit()
+    else:
+        with APP.app_context():
+            new_user = models.Person(username=email, bio='')
             DB.session.add(new_user)
             DB.session.commit()
-
-    else:
-        # Delete the User symbol from the database
-        with APP.app_context():
-            check_symbol = models.Stocks.query.filter_by(
-                symbols=user_symbol).first()
-            if check_symbol is None:
-                decrement_like = models.Crypto.query.filter_by(
-                    symbols=user_symbol).first()
-                decrement_like.likes = decrement_like.likes - 1
-            else:
-                decrement_like = models.Stocks.query.filter_by(
-                    symbols=user_symbol).first()
-                decrement_like.likes = decrement_like.likes - 1
-            # Deleting the record from DB
-            ndel = models.Liketable.query.filter_by(stocks=user_symbol).first()
-            DB.session.delete(ndel)
+            like_table = models.Liketable(person=new_user.id, stocks=user_symbol)
+            DB.session.add(like_table)
             DB.session.commit()
-
+            increment_like = models.Stocks.query.filter_by(symbols=user_symbol).first()
+            increment_like.likes = increment_like.likes + 1
+            DB.session.commit()
     return {}
-
 
 @APP.route('/login', methods=['POST'])
 def login():
@@ -396,13 +337,17 @@ def login():
     content = request.get_json(force=True)
     email = content.get('email')
     print('User with email ' + email + ' logged in')
-
-    stock_record = models.Person.query.filter_by(username=email).first()
-    with APP.app_context():
-        if stock_record is None:
+    ### Proposed DB Logic ####
+    # if a record in the Users table with matching email does not exist
+    #       Insert new record into the Users table
+    # Inserting the new user in the database table
+    stock_record = models.Person.query.all()
+    if email not in stock_record:
+        with APP.app_context():
             new_user = models.Person(username=email, bio='')
             DB.session.add(new_user)
             DB.session.commit()
+
     return {}
 
 
@@ -418,44 +363,12 @@ def get_liked_stocks():
     #       test_stock_data.json
     # else:
     #       Return {'myLikedStocks': []}
-    test_data = {'allStocks': []}
-    stock_record = models.Person.query.filter_by(username=email).first()
-    if stock_record is not None:
-        for i in stock_record.all_stocks:
-            s_p = i.stocks
-            search_stocks = models.Stocks.query.filter_by(symbols=s_p).first()
-            crypto_search = models.Crypto.query.filter_by(symbols=s_p).first()
-            if search_stocks is None:
 
-                if s_p in crypto_search.symbols is not None:
-                    test_data['allStocks'].append({
-                        'Symbol':
-                        crypto_search.symbols,
-                        'Price':
-                        crypto_search.current_price,
-                        'Category':
-                        crypto_search.category
-                    })
-            else:
-                if s_p in search_stocks.symbols is not None:
-
-                    test_data['allStocks'].append({
-                        'Symbol':
-                        search_stocks.symbols,
-                        'Company':
-                        search_stocks.stocks_name,
-                        'High':
-                        search_stocks.high_stocks,
-                        'Low':
-                        search_stocks.low_stocks,
-                        'Price':
-                        search_stocks.current_price,
-                        'Category':
-                        search_stocks.category
-                    })
+    test_data = {}
 
     with open('test_liked_stocks.json', 'r') as json_file:
         test_data = json.loads(json_file.read())
+
     return test_data
 
 
@@ -466,49 +379,26 @@ def submit_comment():
     email = content.get('email')
     stock_symbol = content.get('stock_symbol')
     comment = content.get('comment')
-    
-    print('Email ' + email + ' commented on stock ' + stock_symbol +
-          '\nmessage: ' + comment)
-    stock = models.Stocks.query.filter_by(symbols=stock_symbol).first()
-    #print(stock.stocks_name)
-    print(stock.id)
-    stock_id = stock.id
-    with APP.app_context():
-        new_comment = models.Comments(username=email,
-                                      comment=comment,
-                                      owner=stock.id)
 
+    print('Email ' + email + ' commented on stock ' + stock_symbol + '\nmessage: ' + comment)
+    get_id = models.Stocks.query.filter_by(symbols=stock_symbol).first()
+    ### Proposed DB Logic ####
+    # Insert record with client's email, symbol, and email into the DB
+    with APP.app_context():
+        new_comment = models.Comments(username=email, comment=comment, owner=get_id.id)
         DB.session.add(new_comment)
         DB.session.commit()
-        #DB.session.close()
-    
-    comment_data = []
-    if stock_id is not None:
-        
-        comments = models.Comments.query.filter_by(stocks_column=stock_id).all()
-        for comment in comments:
-            comment_data.append({
-                "username": comment.username, 
-                "message": comment.comment
-            })
-        #print(comment_data)
-    comment_data = {'message': comment, 'username': email}
-    page_data = {'comment' : comment_data}
-    SOCKET_IO.emit('new_comment', comment_data, broadcast=True, include_self=True)
-
     return {}
-
-
-def delete_comment(comment):
+    
+def delete_comment(username):
     ''' Delete a comment from database'''
-    user_comments = models.Comments.query.filter_by(comment=comment).first()
+    user_comments=models.Comments.query.filter_by(username=username).first()
     DB.session.delete(user_comments)
     DB.session.commit()
 
-
 if __name__ == "__main__":
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
-    # stocks()
+    stocks()
     with APP.app_context():
         DB.create_all()
     SOCKET_IO.run(
