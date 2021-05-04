@@ -221,7 +221,8 @@ def stock_page():
             'High': stock_record.high_stocks,
             'Low': stock_record.low_stocks,
             'Price': stock_record.current_price,
-            'Category': stock_record.category
+            'Category': stock_record.category,
+            'Likes': stock_record.likes
         })
 
         try:
@@ -315,7 +316,8 @@ def get_random_stocks_db():
                 'High': stock.high_stocks,
                 'Low': stock.low_stocks,
                 'Price': stock.current_price,
-                'Category': stock.category
+                'Category': stock.category,
+                'Likes': stock.likes
             })
 
     #For crypto

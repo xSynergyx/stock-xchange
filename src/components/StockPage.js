@@ -12,6 +12,7 @@ const StockPage = (props) => {
     const [activeSection, setActiveSection] = useState('');
     const [isLiked, setLiked] = useState(false);
     const [likedStocks, setLikedStocks] = useState([]);
+    const [likesNum, setLikesNum] = useState(0);
 
     // Request the page info (comments, company bio, likes, etc.) from the server.
     useEffect(() => {
@@ -40,6 +41,7 @@ const StockPage = (props) => {
             setPageData(data['page_data']);
             setStockData(data['stock_data']);
             setNewsData(data['news_data']);
+            setLikesNum(data['stock_data']['Likes']);
         })
         
     }, [props.symbol]);
@@ -61,9 +63,11 @@ const StockPage = (props) => {
                 return newStocks.filter((stock) => stock.Symbol != props.symbol);
             })
             setLiked(false);
+            setLikesNum((oldLikes) => oldLikes - 1);
         }
         else {
             setLiked(true);
+            setLikesNum((oldLikes) => oldLikes + 1);
         }
     }
     
@@ -83,6 +87,7 @@ const StockPage = (props) => {
                 <h3>High: ${stockData.High}</h3>
                 <h3>Low: ${stockData.Low}</h3>
                 <h3>Category: {stockData.Category}</h3>
+                {likesNum === 1 ? <h3>{likesNum} person likes this</h3> : <h3>{likesNum} others like this</h3>}
                 {isLiked || likedStocks.filter((stock) => stock.Symbol == props.symbol).length > 0 ?
                     <div id="fill_like" onClick={onLike}><AiFillLike size='2em' /></div> :
                     <div id="outline_like" onClick={onLike}><AiOutlineLike size='2em' /></div>
