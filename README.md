@@ -1,4 +1,4 @@
-# [Heroku Sprint 1](https://intense-tor-77466.herokuapp.com)
+# [Heroku Sprint 2](https://nameless-sea-88560.herokuapp.com/)
 # Stock XChange
 An app to bring together a community of investors ready and willing to help each other grow.
 

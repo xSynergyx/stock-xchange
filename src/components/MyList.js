@@ -21,7 +21,8 @@ const MyList = (props) => {
     
     if (Object.keys(likedStocks).length) {
         return (
-            <div id="page_body">
+            <div className="my-list-container">
+                <h2 className="sector-title">Watchlist</h2>
                 <StockTable 
                     stocks={likedStocks}
                     email={props.email}

@@ -1,3 +1,5 @@
-#page_body {
-    padding-left: "1vw";
+.my-list-container {
+    padding-top: 1vw;
+    padding-left: 12vw;
+    padding-right: 12vw;
 }
