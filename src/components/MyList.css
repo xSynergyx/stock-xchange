@@ -1,3 +1,8 @@
 #page_body {
     padding-left: "1vw";
 }
+
+#message {
+    text-align: center;
+    font-size: 1.5em;
+}

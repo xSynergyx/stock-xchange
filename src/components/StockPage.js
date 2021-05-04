@@ -90,7 +90,6 @@ const StockPage = (props) => {
                 <div>
                     <button onClick={() => setActiveSection(() => 'News')}>News</button>
                     <button onClick={() => setActiveSection(() => 'Comments')}>Comments</button>
-                    <button>Overview</button>
                 </div>
 
                 <ContentSection 
