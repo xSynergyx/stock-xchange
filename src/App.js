@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Login from './components/Login.js';
 import Logout from './components/Logout.js';
 
@@ -46,7 +46,7 @@ function App() {
                   <Link to="/mylist">My List</Link>
                 </li>
                 <li className="navbar">
-                  <Link to="/stock">Stock Page</Link>
+                  <Link to="/stocks">Stock Page</Link>
                 </li>
                 <li className ="navbar-right">
                   <Logout authenticated={authenticated}/>
@@ -61,7 +61,7 @@ function App() {
               <Route path="/mylist">
                 <MyList email={email} />
               </Route>
-              <Route path="/stock">
+              <Route path="/stocks">
                 <Stock email={email} />
               </Route>
               <Route path="/profile">
