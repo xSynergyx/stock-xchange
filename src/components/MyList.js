@@ -4,6 +4,7 @@ import StockTable from './StockTable.js';
 
 const MyList = (props) => {
     const [likedStocks, setLikedStocks] = useState({});
+    const [loadedLiked, setLoadedLiked] = useState(false);
 
     useEffect(() => {
         fetch("/get_liked_stocks", {
@@ -16,6 +17,7 @@ const MyList = (props) => {
         .then(res => res.json())
         .then(data => {
             setLikedStocks(data.myLikedStocks);
+            setLoadedLiked(true);
         });
     }, []);
     
@@ -31,9 +33,16 @@ const MyList = (props) => {
             </div>
         );
     }
+    else if (loadedLiked && Object.keys(likedStocks).length === 0) {
+        return (
+            <div id="message">
+                You haven't liked any stocks
+            </div>
+        );
+    }
     else {
         return (
-            <div>
+            <div id="message">
                 Loading...
             </div>
         )
