@@ -514,7 +514,8 @@ def delete_comment():
     comment = content.get('comment')
 
     stock = models.Stocks.query.filter_by(symbols=stock_symbol).first()
-    user_comments = models.Comments.query.filter_by(comment=comment, username=email, stocks_column=stock.id).first()
+    user_comments = models.Comments.query.filter_by(
+        comment=comment, username=email, stocks_column=stock.id).first()
     DB.session.delete(user_comments)
     DB.session.commit()
 

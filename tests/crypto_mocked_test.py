@@ -53,7 +53,8 @@ class CryptoTestCase(unittest.TestCase):
                 DATA_INPUT: 'CTXCUSDT', #search test
                 EXPECTED_OUTPUT: {
                     'Symbol': 'CTXCUSDT',
-                    'Price': '0.111', 'Category': 'Cryptocurrency'
+                    'Price': '0.111',
+                    'Category': 'Cryptocurrency'
                 }
             },
             {

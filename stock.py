@@ -47,10 +47,13 @@ class Stock:
     """Class object gathers stock information and news for selected companies"""
     IEX_SANDBOX_URL = "https://sandbox.iexapis.com/stable/stock/market/batch?"
     IEX_SANDBOX_NEWS_URL = "https://sandbox.iexapis.com/stable/stock/market/batch?"
-    NYT_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json"
     IEX_SANDBOX_CRYPTO_URL = "https://sandbox.iexapis.com/stable/crypto/{}/price"
-    CRYPTO_SYMBOL_URL = "https://sandbox.iexapis.com/stable/ref-data/crypto/symbols"
-    IEX_CLOUD_REAL_URL = "https://cloud.iexapis.com/stable/stock/market/batch?"
+
+    IEX_CRYPTO_SYMBOL_URL = "https://sandbox.iexapis.com/stable/ref-data/crypto/symbols"
+    IEX_CLOUD_REAL_STOCK_URL = "https://cloud.iexapis.com/stable/stock/market/batch?"
+    IEX_CLOUD_REAL_CRYPTO_URL = "https://cloud.iexapis.com/stable/crypto/{}/price"
+
+    NYT_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json"
 
     def default(self):
         """Default homescreen with stock information"""
@@ -83,12 +86,12 @@ class Stock:
         params = {
             'symbols': stock_symbols,
             'types': 'company,quote',
-            'token': os.getenv('IEX_CLOUD_SANDBOX_KEY')
-                     #'token' : os.getenv('IEX_CLOUD_REAL_KEY')
+            #'token': os.getenv('IEX_CLOUD_SANDBOX_KEY')
+            'token' : os.getenv('IEX_CLOUD_REAL_KEY')
         }
         stocks = [x.upper() for x in query] #capatalize symbols for json file
-        response = requests.get(self.IEX_SANDBOX_URL, params=params)
-        #response = requests.get(self.IEX_CLOUD_REAL_URL, params=params)
+        #response = requests.get(self.IEX_SANDBOX_URL, params=params)
+        response = requests.get(self.IEX_CLOUD_REAL_STOCK_URL, params=params)
         if response.status_code == 404: #Resource not found
             crypto_search = self.crypto(query[0])
             data[query[0]] = 'Not Found'
@@ -143,11 +146,11 @@ class Stock:
         except KeyError:
             params = {
                 'symbols': stock,
-                'token': os.getenv('IEX_CLOUD_SANDBOX_KEY'),
+                'token': os.getenv('IEX_CLOUD_REAL_KEY'),
                 'types': 'news',
                 'last': 5
             }
-            response = requests.get(self.IEX_SANDBOX_NEWS_URL, params=params)
+            response = requests.get(self.IEX_CLOUD_REAL_STOCK_URL, params=params)
             # print(response)
             print("IEX " + str(response))
             data = response.json()
@@ -177,12 +180,15 @@ class Stock:
         params = {
             'token': os.getenv('IEX_CLOUD_SANDBOX_KEY')
         }
-        response = requests.get(self.CRYPTO_SYMBOL_URL, params=params)
+        response = requests.get(self.IEX_CRYPTO_SYMBOL_URL, params=params)
         symbol_json = response.json()
         for symbol in symbol_json: #Gathers accepted list of currencies
             symbol_lst.append(symbol["symbol"])
+        params = {
+            'token': os.getenv('IEX_CLOUD_REAL_KEY')
+        }
         if len(query) > 0:
-            response = requests.get(self.IEX_SANDBOX_CRYPTO_URL.format(query), params=params)
+            response = requests.get(self.IEX_CLOUD_REAL_CRYPTO_URL.format(query), params=params)
             if response.status_code == 404: #Not found
                 return {query : 'Not Found'}
             if response.status_code > 500: #Server error
@@ -194,7 +200,7 @@ class Stock:
             #print(homescreen_lst)
             for i in homescreen_lst:
                 crypto_dict = {}
-                response = requests.get(self.IEX_SANDBOX_CRYPTO_URL.format(i), params=params)
+                response = requests.get(self.IEX_CLOUD_REAL_CRYPTO_URL.format(i), params=params)
                 if response.status_code > 500: #Server error
                     return {'Error' : 'Server Error'}
                 data = response.json()
@@ -204,6 +210,7 @@ class Stock:
                 crypto_lst[i] = crypto_dict
         return crypto_lst
 #TEST = Stock()
+#print(TEST.default())
 #print(TEST.crypto("wer2sdvv"))
 # for count in range(20):
 #     TEST.news('AAPL')
