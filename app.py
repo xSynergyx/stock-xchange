@@ -518,6 +518,20 @@ def delete_comment():
         comment=comment, username=email, stocks_column=stock.id).first()
     DB.session.delete(user_comments)
     DB.session.commit()
+    
+
+@APP.route('/get_user_profile', methods=['POST'])
+def get_user_profile():
+    content = request.get_json(force=True)
+    email = content.get('email')
+    print('Get user profile for ' + email)
+    
+    myProfile = {'Bio': 'Bio not set'}
+    
+    profileQuery = models.Person.query.filter_by(username=email).first()
+    myProfile['Bio'] = profileQuery.bio
+    
+    return myProfile
 
 
 if __name__ == "__main__":
