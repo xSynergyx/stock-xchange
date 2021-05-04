@@ -113,7 +113,8 @@ const StockPage = (props) => {
 }
 
 const ContentSection = (props) => {
-    
+    const [comments, setComments] = useState(props.pageData.comments);
+
     if (props.activeSection === 'News') {
         if (props.newsData.length > 0 && 'Error' in props.newsData[0]) {
             return (
@@ -144,7 +145,8 @@ const ContentSection = (props) => {
                 email={props.email}
                 symbol={props.symbol}
                 username={props.username}
-                pageData={props.pageData} />
+                comments={comments}
+                setComments={setComments} />
         );
     }
 
@@ -154,14 +156,13 @@ const ContentSection = (props) => {
 }
 
 const Comments = (props) => {
-    const [comments, setComments] = useState(props.pageData.comments);
     const inputRef = useRef();
     
     useEffect(() => {
         socket.on('new_comment', (data) => {
             if(data !== undefined){
                 console.log(props.pageData)
-                setComments((prevComments) => [...prevComments, data]);
+                props.setComments((prevComments) => [...prevComments, data]);
             }
         })
     }, [] );
@@ -177,13 +178,30 @@ const Comments = (props) => {
                 body: JSON.stringify({comment: comment, email: props.email, stock_symbol: props.symbol})
             });
 
-            setComments((prevComments) => {
+            props.setComments((prevComments) => {
                 let newComments = [...prevComments];
                 newComments.push({username: props.username, stock_symbol: props.symbol, message: comment});
                 return newComments;
             });
         }
     }
+
+    const deleteComment = (message) => {
+        fetch("/delete_comment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({comment: message, email: props.email, stock_symbol: props.symbol})
+        });
+
+        props.setComments((prevComments) => {
+            let newComments= [...prevComments];
+            newComments = newComments.filter((comment) => comment.username !== props.email && comment.messsage !== message);
+            return newComments;
+        })
+    }
+
     // useEffect(() => {
     //     socket.on('new_comment', (data) => {
     //         if(data !== undefined){
@@ -193,7 +211,21 @@ const Comments = (props) => {
     // }, []);
     return (
         <div>
-            {comments.map((comment) => {
+            {props.comments.map((comment) => {
+                if (comment.username === props.email) {
+                    return (
+                        <div id="comment">
+                            <div id="comment_header">
+                                {comment.username} said...
+                            </div>
+                            <div id="message">
+                                {comment.message}
+                            </div>
+                            <button onClick={() => deleteComment(comment.message)}>Delete</button>
+                        </div>
+                    );
+                }
+
                 return (
                     <div id="comment">
                         <div id="comment_header">

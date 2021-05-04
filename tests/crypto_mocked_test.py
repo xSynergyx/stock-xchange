@@ -6,10 +6,10 @@
 import unittest
 import sys
 import os
+from stock import Stock
 
 #sys.path.append(os.path.abspath("../../")) for when in unmocked folder
 sys.path.append(os.path.abspath('../'))
-from stock import Stock
 
 DATA_INPUT = "input"
 EXPECTED_OUTPUT = "expected"
@@ -53,7 +53,7 @@ class CryptoTestCase(unittest.TestCase):
                 DATA_INPUT: 'CTXCUSDT', #search test
                 EXPECTED_OUTPUT: {
                     'Symbol': 'CTXCUSDT',
-                    'Price': '0.111',
+                    'Price': '0.111', 
                     'Category': 'Cryptocurrency'
                 }
             },
