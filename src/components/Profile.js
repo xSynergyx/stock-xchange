@@ -1,14 +1,17 @@
 import './Profile.css';
 import React, { useState, useEffect } from 'react';
 import { MdEdit } from 'react-icons/md';
+import BioInput from './BioInput.js';
 
 function Profile(props) { // Have to get the username and bio from the DB
 
     const [userBio, setUserBio] = useState("");
-    /*
+    const [editBio, setEditBio] = useState(false);
+    
+    
     function clickEdit(){
-        alert('Clicked edit button');
-    }*/
+        setEditBio(true);
+    }
 
     useEffect(() => {
         fetch("/get_user_profile", {
@@ -22,14 +25,21 @@ function Profile(props) { // Have to get the username and bio from the DB
         .then(data => {
             setUserBio(data.Bio);
         });
-    }, []);
+    }, [editBio]);
+    
     return (
         <div className="grid-container">
             <div className="personal">
                 <h2 className="profile-title">Profile</h2>
-                <p>Name: { props.username } <MdEdit /></p>
-                <p>Username: { props.email }</p> 
-                <p>Bio: { userBio } <MdEdit /></p>
+                <p>Name: { props.username }</p>
+                <p>Username: { props.email }</p>
+                
+                <p>Bio:
+                    { editBio ? <BioInput userBio={userBio} setEditBio={setEditBio} email={props.email}/>
+                            : <div>{userBio} <MdEdit onClick={ clickEdit }/></div>
+                    }
+                </p>
+                
             </div>
             <div className="favorites">
                 <h2 className="profile-title">Investing Style</h2>

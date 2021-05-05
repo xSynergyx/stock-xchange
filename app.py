@@ -532,6 +532,20 @@ def get_user_profile():
     myProfile['Bio'] = profileQuery.bio
     
     return myProfile
+    
+@APP.route('/update_bio', methods=['POST'])
+def update_bio():
+    content = request.get_json(force=True)
+    email = content.get('email')
+    newBio = content.get('newBio')
+    
+    print("Bout to update " + email + " bio to " + newBio)
+    
+    user = models.Person.query.filter_by(username=email).first()
+    user.bio = newBio
+    DB.session.commit()
+    
+    return {}
 
 
 if __name__ == "__main__":
