@@ -106,3 +106,7 @@ input {
 input:hover {
     cursor: pointer;
 }
+
+#outline_like, #fill_like {
+    white-space: nowrap;
+}

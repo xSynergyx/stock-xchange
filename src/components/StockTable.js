@@ -96,7 +96,8 @@ const StockTable = (props) => {
                                     symbol={stock.Symbol}
                                     email={props.email}
                                     likedStocks={props.likedStocks}
-                                    setLikedStocks={props.setLikedStocks} />
+                                    setLikedStocks={props.setLikedStocks} 
+                                    totalLikes={stock.Likes} />
                             </tr>
                         );
                     })}
@@ -138,13 +139,13 @@ export const Like = (props) => {
     // the button should indicate that it's pressed
     if (isClicked || props.likedStocks.filter((stock) => stock.Symbol === props.symbol).length > 0) {
         return (
-            <td id="fill_like" onClick={onLike}><AiFillLike size='1.5em' /></td>
+            <td id="fill_like" onClick={onLike}><AiFillLike size='1.5em' />{props.totalLikes + 1}</td>
         );
     }
 
     else {
         return (
-            <td id="outline_like" onClick={onLike}><AiOutlineLike size='1.5em' /></td>
+            <td id="outline_like" onClick={onLike}><AiOutlineLike size='1.5em'/>{props.totalLikes}</td>
         );
     }
 }
