@@ -520,7 +520,7 @@ def delete_comment():
         comment=comment, username=email, stocks_column=stock.id).first()
     DB.session.delete(user_comments)
     DB.session.commit()
-    
+
 
 @APP.route('/get_user_profile', methods=['POST'])
 def get_user_profile():
@@ -532,9 +532,9 @@ def get_user_profile():
     my_profile = {'Bio': 'Bio not set'}
     profile_query = models.Person.query.filter_by(username=email).first()
     my_profile['Bio'] = profile_query.bio
-    
+
     return my_profile
-    
+
 @APP.route('/update_bio', methods=['POST'])
 def update_bio():
     ''' Update user's bio on the database '''
@@ -546,7 +546,7 @@ def update_bio():
     user = models.Person.query.filter_by(username=email).first()
     user.bio = new_bio
     DB.session.commit()
-    
+
     return {}
 
 
