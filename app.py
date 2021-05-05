@@ -453,7 +453,9 @@ def get_liked_stocks():
                         'Price':
                         search_stocks.current_price,
                         'Category':
-                        search_stocks.category
+                        search_stocks.category,
+                        'Likes':
+                        search_stocks.likes
                     })
 
     liked_stocks = {}
