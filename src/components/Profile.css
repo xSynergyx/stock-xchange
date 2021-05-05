@@ -12,6 +12,7 @@
 .personal, .favorites, .investor-preferences {
     
     padding-left: 1vw;
+    padding-right: 1vw;
     border: 0.2vw solid lightgray;
     border-radius: 10px;
     box-shadow: .05em .05em .2em 1px gray;
@@ -19,6 +20,7 @@
 
 .personal {
     font-size: 1em;
+    grid-row: 1 / 3;
 }
 
 .favorites {
@@ -31,11 +33,13 @@
 }
 
 p {
-    font-size: 1.1em;
+    font-size: 1.05em;
+    font-weight: 500;
 }
 
-MdEdit:hover {
+.edit-icon {
     cursor: pointer;
+    caret-color: black;
 }
 
 /* Change all h2's to have this format???????????????????????????????????????????? */
@@ -44,4 +48,13 @@ MdEdit:hover {
     background: -webkit-linear-gradient(#44fc75, #004d14);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.profile-sections {
+    font-size: 1.4em;
+    font-weight: bold;
+    background: -webkit-linear-gradient(#eee, #1a1a1a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: 2px solid black;
 }

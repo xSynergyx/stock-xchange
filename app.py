@@ -522,6 +522,34 @@ def delete_comment():
     DB.session.commit()
 
 
+@APP.route('/get_user_profile', methods=['POST'])
+def get_user_profile():
+    ''' Get the user's profile details from database'''
+    content = request.get_json(force=True)
+    email = content.get('email')
+    print('Get user profile for ' + email)
+    # Getting bio from databse
+    my_profile = {'Bio': 'Bio not set'}
+    profile_query = models.Person.query.filter_by(username=email).first()
+    my_profile['Bio'] = profile_query.bio
+
+    return my_profile
+
+@APP.route('/update_bio', methods=['POST'])
+def update_bio():
+    ''' Update user's bio on the database '''
+    content = request.get_json(force=True)
+    email = content.get('email')
+    new_bio = content.get('newBio')
+    # Inserting new bio into database
+    print("Updating " + email + "'s bio to " + new_bio)
+    user = models.Person.query.filter_by(username=email).first()
+    user.bio = new_bio
+    DB.session.commit()
+
+    return {}
+
+
 if __name__ == "__main__":
     # Note that we don't call APP.run anymore. We call SOCKET_IO.run with APP arg
     # stocks()
