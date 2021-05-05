@@ -1,5 +1,5 @@
 '''
-    news_unittest.py
+    news_mocked_test.py
     Tests to see if values are accurate depending on desired search of stock and to check
     if apis switch after 10 requests in a minute.
 '''
@@ -16,7 +16,7 @@ EXPECTED_OUTPUT = "expected"
 
 class NewsTestCase(unittest.TestCase):
     """
-    Stock search test case class.
+    Stock news test case class.
     """
     def setUp(self):
         self.success_test_params = [

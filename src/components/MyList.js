@@ -1,8 +1,52 @@
 import './MyList.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import StockTable from './StockTable.js';
 
-function MyList() {
-    return (<div>My liked stock list page</div>);
+const MyList = (props) => {
+    const [likedStocks, setLikedStocks] = useState({});
+    const [loadedLiked, setLoadedLiked] = useState(false);
+
+    useEffect(() => {
+        fetch("/get_liked_stocks", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({email: props.email})
+        })
+        .then(res => res.json())
+        .then(data => {
+            setLikedStocks(data.myLikedStocks);
+            setLoadedLiked(true);
+        });
+    }, []);
+    
+    if (Object.keys(likedStocks).length) {
+        return (
+            <div className="my-list-container">
+                <h2 className="sector-title">Watchlist</h2>
+                <StockTable 
+                    stocks={likedStocks}
+                    email={props.email}
+                    likedStocks={likedStocks}
+                    setLikedStocks={setLikedStocks} />
+            </div>
+        );
+    }
+    else if (loadedLiked && Object.keys(likedStocks).length === 0) {
+        return (
+            <div id="message">
+                You haven't liked any stocks
+            </div>
+        );
+    }
+    else {
+        return (
+            <div id="message">
+                Loading...
+            </div>
+        )
+    }
 }
 
 export default MyList;

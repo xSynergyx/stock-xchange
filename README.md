@@ -1,4 +1,4 @@
-# [Heroku Sprint 1](https://intense-tor-77466.herokuapp.com)
+# [Heroku Sprint 2](https://nameless-sea-88560.herokuapp.com/)
 # Stock XChange
 An app to bring together a community of investors ready and willing to help each other grow.
 
@@ -7,6 +7,7 @@ An app to bring together a community of investors ready and willing to help each
 2. `pip install -r requirements.txt`
 3. `npm install --save react-router-dom`
 4. `npm install --save react-google-login`
+5. `npm install --save react-icons`
 5. `sudo yum install postgresql postgresql-server postgresql-devel postgresql-contrib postgresql-docs` (enter yes on all prompts)
 6. `pip install psycopg2-binary`
 7. `pip install Flask-SQLAlchemy==2.1`

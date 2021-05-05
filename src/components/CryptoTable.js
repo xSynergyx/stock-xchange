@@ -3,23 +3,14 @@ import './StockTable.css';
 import { useHistory } from "react-router-dom";
 import { AiFillLike, AiOutlineLike, AiFillDislike, AiOutlineDislike } from 'react-icons/ai';
 
-const StockTable = (props) => {
-    const headers = ['Symbol', 'Company', 'High', 'Low', 'Price'];
+const CryptoTable = (props) => {
+    const headers = ['Symbol', 'Price'];
     const history = useHistory();
     const [tableData, setTableData] = useState(props.stocks);
 
     // Redirect to the selected stock's page
     // when the user clicks on a row in the list
     // Check App.js for the Route this triggers
-    const onRowClick = (stock_symbol) => {
-        const isLiked =
-            props.likedStocks.filter((stock) => stock.Symbol === stock_symbol).length > 0 ? true: false;
-
-        history.push({
-            pathname: '/stock_page/' + stock_symbol,
-            state: {isLiked: isLiked}
-        });
-    }
 
     const filterData = (filter) => {
         switch (filter) {
@@ -27,24 +18,6 @@ const StockTable = (props) => {
                 setTableData((oldTable) => {
                     let newTable = [...oldTable];
                     return newTable.sort((a, b) => (a.Price > b.Price) ? -1 : 1);
-                });
-            break;
-            case 'High':
-                setTableData((oldTable) => {
-                    let newTable = [...oldTable];
-                    return newTable.sort((a, b) => (a.High > b.High) ? -1 : 1);
-                });
-            break;
-            case 'Low':
-                setTableData((oldTable) => {
-                    let newTable = [...oldTable];
-                    return newTable.sort((a, b) => (a.Low > b.Low) ? -1 : 1);
-                });
-            break;
-            case 'Company':
-                setTableData((oldTable) => {
-                    let newTable = [...oldTable];
-                    return newTable.sort((a, b) => (a.Company < b.Company) ? -1 : 1);
                 });
             break;
             default:
@@ -62,26 +35,11 @@ const StockTable = (props) => {
                     onClick={() => filterData('Price')}
                     type="radio" 
                     name="filter" />Price
-                <input
-                    onClick={() => filterData('High')}
-                    type="radio"
-                    name="filter"/>High
-                <input
-                    onClick={() => filterData('Low')}
-                    type="radio"
-                    name="filter"/>Low
-                <input
-                    onClick={() => filterData('Company')}
-                    type="radio"
-                    name="filter"/>Company Name
             </div>
             <table id="stocks_table" data-testid="stocks_table">
                 <thead>
                     <tr className="header-row">
                         <td><p>Symbol</p></td>
-                        <td><p>Company</p></td>
-                        <td><p>High</p></td>
-                        <td><p>Low</p></td>
                         <td><p>Price</p></td>
                     </tr>
                 </thead>
@@ -90,14 +48,13 @@ const StockTable = (props) => {
                         return (
                             <tr id={stock.Symbol} className="border_bottom">
                                 {headers.map((header) => (
-                                    <td onClick={() => onRowClick(stock.Symbol)}>{stock[header]}</td>
+                                    <td>{stock[header]}</td>
                                 ))}
                                 <Like
                                     symbol={stock.Symbol}
                                     email={props.email}
                                     likedStocks={props.likedStocks}
-                                    setLikedStocks={props.setLikedStocks} 
-                                    totalLikes={stock.Likes} />
+                                    setLikedStocks={props.setLikedStocks} />
                             </tr>
                         );
                     })}
@@ -139,15 +96,15 @@ export const Like = (props) => {
     // the button should indicate that it's pressed
     if (isClicked || props.likedStocks.filter((stock) => stock.Symbol === props.symbol).length > 0) {
         return (
-            <td id="fill_like" onClick={onLike}><AiFillLike size='1.5em' />{props.totalLikes + 1}</td>
+            <td id="fill_like" onClick={onLike}><AiFillLike size='1.5em' /></td>
         );
     }
 
     else {
         return (
-            <td id="outline_like" onClick={onLike}><AiOutlineLike size='1.5em'/>{props.totalLikes}</td>
+            <td id="outline_like" onClick={onLike}><AiOutlineLike size='1.5em' /></td>
         );
     }
 }
 
-export default StockTable;
+export default CryptoTable;

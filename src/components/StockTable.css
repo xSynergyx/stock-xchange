@@ -1,4 +1,112 @@
 #stocks_table {
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+
+.filters {
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+    padding-bottom: 1vw;
+}
+.stock-row {
+    
+    border-bottom: 2px solid black;
+    border-collapse: separate;
+    border-spacing: 4px;
+}
+
+.header-row {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.filters {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-bottom: 1vw;
+    position: relative;
+}
+
+/* Credit to w3schools for the tooltip code */
+.filters .tooltiptext {
+  visibility: hidden;
+  width: 10vw;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.filters .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.filters:hover .tooltiptext {
+  visibility: visible;
+  opacity: 0.7;
+}
+
+/* Delete .stock-row selector????????????????????????????????? */
+.stock-row {
+    border-bottom: 2px solid black;
+    border-collapse: separate;
+    border-spacing: 4px;
+}
+
+.header-row {
+    font-size: 1.5em;
+    font-weight: bold;
+    background: -webkit-linear-gradient(#eee, #1a1a1a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+tr.border_bottom td {
+    border-bottom: 1px solid black;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+td {
+    min-width: 1vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
+
+input {
+    margin-left: 1vw;
+}
+
+input:hover {
+    cursor: pointer;
+}
+
+#outline_like, #fill_like {
+    white-space: nowrap;
 }

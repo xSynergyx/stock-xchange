@@ -45,6 +45,6 @@ jobs:
       
       - name: Lint test files
         run: |
-          pylint **/*.py
+          pylint **/*.py --ignore=stock_utils_test_inputs.py
      # - name: Run tests
       #  run: python -m unittest

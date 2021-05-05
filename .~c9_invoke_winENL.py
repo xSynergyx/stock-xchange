@@ -186,8 +186,6 @@ def stock_page():
     news_data = []
     page_data = {}
     stock_data = {}
-    comment_data = []
-    stock_id = None
     # Get the stock id sent from the client side
     content = request.get_json(force=True)
     user_symbol = content.get('stock_symbol').upper()
@@ -212,7 +210,6 @@ def stock_page():
         with open('test_stock_page.json', 'r') as json_file:
             page_data = json.loads(json_file.read())
 
-        stock_id = stock_record.id
         # Get the stock info from the DB
         stock_data = {}
         stock_data.update({
@@ -221,8 +218,7 @@ def stock_page():
             'High': stock_record.high_stocks,
             'Low': stock_record.low_stocks,
             'Price': stock_record.current_price,
-            'Category': stock_record.category,
-            'Likes': stock_record.likes
+            'Category': stock_record.category
         })
 
         try:
@@ -230,19 +226,6 @@ def stock_page():
         except KeyError:
             news_data.append({'Error': 'Couldn\'t Retrieve News Data'})
 
-    if stock_id is not None:
-        comments = models.Comments.query.filter_by(stocks_column=stock_id).all()
-        for comment in comments:
-            comment_data.append({
-                "username": comment.username,
-                "message": comment.comment
-            })
-
-        #for comment in comments:
-            #page_data.append(comment.comment)
-        #print(l)
-    #print(page_data)
-    page_data['comments'] = comment_data
     return {
         'stock_data': stock_data,
         "page_data": page_data,
@@ -316,8 +299,7 @@ def get_random_stocks_db():
                 'High': stock.high_stocks,
                 'Low': stock.low_stocks,
                 'Price': stock.current_price,
-                'Category': stock.category,
-                'Likes': stock.likes
+                'Category': stock.category
             })
 
     #For crypto
@@ -357,12 +339,12 @@ def like_stock():
         with APP.app_context():
             check_symbol = models.Stocks.query.filter_by(
                 symbols=user_symbol).first()
-            if check_symbol is None:
-                increment_like = models.Crypto.query.filter_by(
+            if user_symbol in check_symbol.symbols:
+                increment_like = models.Stocks.query.filter_by(
                     symbols=user_symbol).first()
                 increment_like.likes = increment_like.likes + 1
             else:
-                increment_like = models.Stocks.query.filter_by(
+                increment_like = models.Crypto.query.filter_by(
                     symbols=user_symbol).first()
                 increment_like.likes = increment_like.likes + 1
                 # Add the symbol to the Like table
@@ -373,15 +355,16 @@ def like_stock():
 
     else:
         # Delete the User symbol from the database
-        with APP.app_context():
-            check_symbol = models.Stocks.query.filter_by(
-                symbols=user_symbol).first()
-            if check_symbol is None:
-                decrement_like = models.Crypto.query.filter_by(
+        check_symbol = models.Stocks.query.filter_by(
+            symbols=user_symbol).first()
+        if user_symbol in check_symbol.symbols:
+            with APP.app_context():
+                decrement_like = models.Stocks.query.filter_by(
                     symbols=user_symbol).first()
                 decrement_like.likes = decrement_like.likes - 1
-            else:
-                decrement_like = models.Stocks.query.filter_by(
+        else:
+            with APP.app_context():
+                decrement_like = models.Crypto.query.filter_by(
                     symbols=user_symbol).first()
                 decrement_like.likes = decrement_like.likes - 1
             # Deleting the record from DB
@@ -420,53 +403,31 @@ def get_liked_stocks():
     #       test_stock_data.json
     # else:
     #       Return {'myLikedStocks': []}
-    test_data = {'myLikedStocks': []}
+    test_data = {'allStocks': []}
     stock_record = models.Person.query.filter_by(username=email).first()
-    if stock_record is not None:
-        for i in stock_record.all_stocks:
-            s_p = i.stocks
-            search_stocks = models.Stocks.query.filter_by(symbols=s_p).first()
-            crypto_search = models.Crypto.query.filter_by(symbols=s_p).first()
-            if search_stocks is None:
+    for i in stock_record.all_stocks:
+        s_p = i.stocks
+        search_stocks = models.Stocks.query.filter_by(symbols=s_p).first()
+        crypto_search = models.Crypto.query.filter_by(symbols=s_p).first()
+        if s_p in search_stocks.symbols:
+            test_data['allStocks'].append({
+                'Symbol': search_stocks.symbols,
+                'Company': search_stocks.stocks_name,
+                'High': search_stocks.high_stocks,
+                'Low': search_stocks.low_stocks,
+                'Price': search_stocks.current_price,
+                'Category': search_stocks.category
+            })
+        else:
+            test_data['allStocks'].append({
+                'Symbol': crypto_search.symbols,
+                'Price': crypto_search.current_price,
+                'Category': crypto_search.category
+            })
 
-                if s_p in crypto_search.symbols is not None:
-                    test_data['myLikedStocks'].append({
-                        'Symbol':
-                        crypto_search.symbols,
-                        'Price':
-                        crypto_search.current_price,
-                        'Category':
-                        crypto_search.category
-                    })
-            else:
-                if s_p in search_stocks.symbols is not None:
-
-                    test_data['myLikedStocks'].append({
-                        'Symbol':
-                        search_stocks.symbols,
-                        'Company':
-                        search_stocks.stocks_name,
-                        'High':
-                        search_stocks.high_stocks,
-                        'Low':
-                        search_stocks.low_stocks,
-                        'Price':
-                        search_stocks.current_price,
-                        'Category':
-                        search_stocks.category,
-                        'Likes':
-                        search_stocks.likes
-                    })
-
-    liked_stocks = {}
-    # Open a file to write the like stocks
-    with open('test_liked_stocks.json', 'w') as json_file:
-        json.dump(test_data, json_file, indent=4)
-    # Read the file from the JSON file
     with open('test_liked_stocks.json', 'r') as json_file:
-        liked_stocks = json.loads(json_file.read())
-
-    return liked_stocks
+        test_data = json.loads(json_file.read())
+    return test_data
 
 
 @APP.route('/submit_comment', methods=['POST'])
@@ -479,77 +440,23 @@ def submit_comment():
 
     print('Email ' + email + ' commented on stock ' + stock_symbol +
           '\nmessage: ' + comment)
-    stock = models.Stocks.query.filter_by(symbols=stock_symbol).first()
-    #print(stock.stocks_name)
-    print(stock.id)
-    stock_id = stock.id
+    get_id = models.Stocks.query.filter_by(symbols=stock_symbol).first()
+    ### Proposed DB Logic ####
+    # Insert record with client's email, symbol, and email into the DB
     with APP.app_context():
         new_comment = models.Comments(username=email,
                                       comment=comment,
-                                      owner=stock.id)
-
+                                      owner=get_id.id)
         DB.session.add(new_comment)
         DB.session.commit()
-        #DB.session.close()
-
-    comment_data = []
-    if stock_id is not None:
-
-        comments = models.Comments.query.filter_by(stocks_column=stock_id).all()
-        for comment in comments:
-            comment_data.append({
-                "username": comment.username,
-                "message": comment.comment
-            })
-        #print(comment_data)
-    comment_data = {'message': comment, 'username': email}
-    #page_data = {'comment' : comment_data}
-    SOCKET_IO.emit('new_comment', comment_data, broadcast=True, include_self=True)
-
     return {}
 
 
-@APP.route('/delete_comment', methods=['POST'])
-def delete_comment():
+def delete_comment(comment):
     ''' Delete a comment from database'''
-    content = request.get_json(force=True)
-    email = content.get('email')
-    stock_symbol = content.get('stock_symbol')
-    comment = content.get('comment')
-
-    stock = models.Stocks.query.filter_by(symbols=stock_symbol).first()
-    user_comments = models.Comments.query.filter_by(
-        comment=comment, username=email, stocks_column=stock.id).first()
+    user_comments = models.Comments.query.filter_by(comment=comment).first()
     DB.session.delete(user_comments)
     DB.session.commit()
-
-
-@APP.route('/get_user_profile', methods=['POST'])
-def get_user_profile():
-    ''' Get the user's profile details from database'''
-    content = request.get_json(force=True)
-    email = content.get('email')
-    print('Get user profile for ' + email)
-    # Getting bio from databse
-    my_profile = {'Bio': 'Bio not set'}
-    profile_query = models.Person.query.filter_by(username=email).first()
-    my_profile['Bio'] = profile_query.bio
-
-    return my_profile
-
-@APP.route('/update_bio', methods=['POST'])
-def update_bio():
-    ''' Update user's bio on the database '''
-    content = request.get_json(force=True)
-    email = content.get('email')
-    new_bio = content.get('newBio')
-    # Inserting new bio into database
-    print("Updating " + email + "'s bio to " + new_bio)
-    user = models.Person.query.filter_by(username=email).first()
-    user.bio = new_bio
-    DB.session.commit()
-
-    return {}
 
 
 if __name__ == "__main__":
