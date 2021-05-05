@@ -9,7 +9,6 @@ function BioInput(props) {
     function handleSubmit(event){
         event.preventDefault();
         console.log(updateBio);
-        props.setEditBio(false);
         
         fetch("/update_bio", {
             method: "POST",
@@ -18,6 +17,8 @@ function BioInput(props) {
             },
             body: JSON.stringify({email: props.email, newBio: updateBio})
         });
+        
+        props.setEditBio(false);
     }
 
     return (
